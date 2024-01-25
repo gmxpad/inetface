@@ -103,7 +103,7 @@ const HowToJoin = () => {
                   <p className="text-2xl">{item.name}</p>
                   <p className="text-[#9d9d9d]">{item.desx}</p>
                 </div>
-                <div className="flex sm:w-1/3 md:w-1/2 justify-center items-center h-full relative">
+                <div className="flex sm:w-3/4 md:w-1/2 justify-center items-center h-full relative">
                   <div className="absolute -top-12 right-0">
                     <Image isBlurred width={180} src={item.image} />
                   </div>
