@@ -44,8 +44,8 @@ const HeroHeader = () => {
 
   return (
     <>
-      <div className=" flex w-full h-full py-8  sm:flex-col-reverse justify-between relative items-center">
-        <div className="absolute sm:hidden dual-gradient-background opacity-50 z-0"></div>
+      <div className=" flex w-full h-full py-8 sm:flex-col-reverse justify-between relative items-center">
+        <div className="absolute md:flex sm:hidden dual-gradient-background opacity-50 z-0"></div>
         <div
           ref={divRef}
           style={{
@@ -125,7 +125,7 @@ const HeroHeader = () => {
             width={1450}
             height={550}
             isBlurred
-            className="md:h-[650px] sm:w-[300px]"
+            className="md:w-full sm:w-[300px]"
             src="/games/character1.png"
             alt="game"
           />

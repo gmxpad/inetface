@@ -14,8 +14,7 @@ import {
 import { Web3Modal } from "@web3modal/react";
 
 const chains = [skaleChaosTestnet];
-const projectId: string =
-  process.env.PROJECT_ID || "bf329c0050689f9c83bf06a7d4016bb6";
+const projectId: string = process.env.PROJECT_ID_WC || "";
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
