@@ -29,25 +29,25 @@ const HowToJoin = () => {
   };
   const SLIDES = [
     {
-      image: "/icons/trigger-1.svg",
+      image: "/icons/Getgmxp.png",
       name: "Get $GMXP",
       desx: "Get your hands on $GMXP tokens and unlock the door to engaging in exciting Initial Game Offerings (IGOs) available on GameXPad.",
       link: "/",
     },
     {
-      image: "/icons/trigger-1.svg",
+      image: "/icons/stake.png",
       name: "Stake $GMXP",
       desx: "Unlock the world of Initial Game Offerings (IGOs) with GMXP token staking. The key to winning is here at GameXPad!",
       link: "/",
     },
     {
-      image: "/icons/trigger-1.svg",
+      image: "/icons/register.png",
       name: "Register",
       desx: "Apply to IGOs and unlock your path to winning by determining your participation amount with GameXPad.",
       link: "/",
     },
     {
-      image: "/icons/trigger-1.svg",
+      image: "/icons/ido.png",
       name: "Join IDO",
       desx: "Acquire your new tokens and reveal the earnings that are on the horizon. Your adventure towards success begins now!",
       link: "/",
@@ -105,7 +105,7 @@ const HowToJoin = () => {
                 </div>
                 <div className="flex sm:w-1/3 md:w-1/2 justify-center items-center h-full relative">
                   <div className="absolute -top-12 right-0">
-                    <Image width={180} src={item.image} />
+                    <Image isBlurred width={180} src={item.image} />
                   </div>
                 </div>
               </div>
