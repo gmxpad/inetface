@@ -73,7 +73,7 @@ const AccessGames = () => {
 
   return (
     <>
-      <div className="h-full w-full flex items-center justify-center  relative py-24">
+      <div className="h-full w-full flex items-center bg-dark justify-center relative py-24">
         <div
           ref={divRef8}
           style={{
@@ -83,7 +83,7 @@ const AccessGames = () => {
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
-          className="absolute left-24 top-[40%] z-50 text-white">
+          className="absolute md:left-24 md:top-[40%] sm:-top-32 sm:right-0 z-50 text-white">
           <Image src="/games/rocketleague.png" />
         </div>
         <div
@@ -95,7 +95,7 @@ const AccessGames = () => {
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
-          className="absolute -left-12 bottom-[30%] z-50 text-white">
+          className="absolute -left-12 bottom-[30%] z-50 text-white sm:hidden">
           <Image src="/games/cs2.png" />
         </div>
         <div
@@ -107,22 +107,24 @@ const AccessGames = () => {
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
-          className="absolute -right-12 top-1/2 z-50 text-white">
+          className="absolute md:-right-12 md:top-1/2 sm:top-2/3 sm:right-0 z-50 text-white">
           <Image src="/games/fortnite.png" />
         </div>
 
-        <div className="absolute dual-background opacity-30 z-0"></div>
-        <div className="rounded-full border border-gray-800/50  h-[800px] w-[800px] flex items-center justify-center relative">
+        <div className="absolute sm:hidden md:flex dual-background opacity-30 z-0"></div>
+        <div className="rounded-full border border-gray-800/50 sm:h-[300px] sm:w-[300px]  md:h-[800px] md:w-[800px] flex items-center justify-center relative">
           <div className="absolute flex justify-center flex-col text-white items-center gap-7 z-50">
-            <p className=" font-SpaceGro text-4xl">Access Games Instantly</p>
-            <p className="w-[80%] text-center">
+            <p className=" font-SpaceGro md:text-4xl sm:text-2xl whitespace-nowrap">
+              Access Games Instantly
+            </p>
+            <p className="md:w-[80%] text-center">
               Explore these thrilling Web3 games and immerse yourself in an
               engaging and profitable experience
             </p>
             <Button
               as={Link}
-              className="bg-transparent z-50 text-white font-bold  text-xl duration-300 border-3 py-7 px-8 border-white"
-              href="#">
+              className="bg-transparent z-50 text-white font-bold  md:text-xl duration-300 border-3 md:py-7 sm:py-6 px-8 border-white"
+              href="/">
               Explore Games
             </Button>
           </div>
@@ -135,7 +137,7 @@ const AccessGames = () => {
               scale: "0.9",
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
-            className="absolute left-6 top-[20%] z-50 text-white">
+            className="absolute md:left-6 md:top-[20%] sm:-left-6 sm:-top-[55%] z-50 text-white">
             <Image src="/games/valo.png" />
           </div>
           <div
@@ -147,7 +149,7 @@ const AccessGames = () => {
               scale: "0.9",
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
-            className="absolute left-12 bottom-0 z-50 text-white">
+            className="absolute left-12 bottom-0 z-50 text-white sm:hidden">
             <Image src="/games/rdr2.png" />
           </div>
           <div
@@ -159,7 +161,7 @@ const AccessGames = () => {
               scale: "0.9",
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
-            className="absolute -right-20 z-50 top-32 text-white">
+            className="absolute -right-20 z-50 top-32 text-white sm:hidden">
             <Image src="/games/forza.png" />
           </div>
           <div
@@ -171,11 +173,11 @@ const AccessGames = () => {
               scale: "0.9",
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
-            className="absolute -right-12 bottom-32 z-50 text-white">
+            className="absolute -right-12 bottom-32 z-50 text-white sm:hidden">
             <Image src="/games/battlefront.png" />
           </div>
 
-          <div className="rounded-full border border-gray-800/50 h-[500px]  w-[500px] flex items-center justify-center relative">
+          <div className="rounded-full border border-gray-800/50 sm:h-[200px] sm:w-[200px] md:h-[500px] md:w-[500px] flex items-center justify-center relative">
             <div
               ref={divRef5}
               style={{
@@ -187,11 +189,11 @@ const AccessGames = () => {
                 scale: "0.9",
                 transition: "scale 1s,transform 1s, opacity 1s",
               }}
-              className="absolute right-16 top-28 z-50 text-white">
+              className="absolute md:right-16 md:top-28 sm:bottom-0 sm:-left-12 z-50 text-white">
               <Image src="/games/fifa.png" />
             </div>
 
-            <div className="rounded-full border border-gray-800/50  h-[200px] w-[200px] flex items-center justify-center"></div>
+            <div className="rounded-full border border-gray-800/50 sm:h-[100px] sm:w-[100px] md:h-[200px] md:w-[200px] flex items-center justify-center"></div>
           </div>
         </div>
       </div>

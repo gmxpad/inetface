@@ -27,12 +27,12 @@ const sponsors = [
 const Footer = () => {
   return (
     <>
-      <div className="w-screen h-full bg-dark-gray flex gap-4 flex-col px-[18%]">
+      <div className="w-screen h-full bg-dark-gray flex gap-4 flex-col sm:px-5 md:px-[18%]">
         <div className="flex items-center justify-center pt-32 pb-8 w-full">
           <p className="text-white">Trusted by Global Platforms</p>
         </div>
 
-        <div className="flex w-full justify-evenly border-b border-gray-800/50 pb-12">
+        <div className="md:flex sm:grid sm:grid-cols-3 w-full justify-evenly border-b border-gray-800/50 pb-12">
           {sponsors.map((item: any, index: number) => (
             <div className="" key={`SPONSOR_${index}`}>
               <Image width={80} src={item.path} />
@@ -40,9 +40,9 @@ const Footer = () => {
           ))}
         </div>
         <div className="flex flex-col text-white pt-12">
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-5  w-[24%]">
-              <div className="flex gap-4">
+          <div className="flex sm:flex-col sm:gap-5 sm:justify-center sm:text-center md:justify-between">
+            <div className="flex flex-col gap-5 sm:items-center sm:w-full md:w-[24%]">
+              <div className="flex gap-4 sm:items-center sm:justify-center sm:w-full">
                 <p className="text-3xl font-SpaceGro">GAMEXPAD</p>
               </div>
               <p>
@@ -53,7 +53,7 @@ const Footer = () => {
                 info@gamexpad.io
               </Link>
             </div>
-            <div className="flex flex-col gap-5  ">
+            <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">About us</p>
               <div className="flex flex-col gap-2">
                 <p className="text-[#9d9d9d]">Company</p>
@@ -64,7 +64,7 @@ const Footer = () => {
                 <p className="text-[#9d9d9d]">Whitepaper</p>
               </div>
             </div>
-            <div className="flex flex-col gap-5  ">
+            <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Products</p>
               <div className="flex flex-col gap-2">
                 <p className="text-[#9d9d9d]">IGO Launchpad</p>
@@ -74,7 +74,7 @@ const Footer = () => {
                 <p className="text-[#9d9d9d]">Game Hub</p>
               </div>
             </div>
-            <div className="flex flex-col gap-5  ">
+            <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Contacts</p>
               <div className="flex flex-col gap-2">
                 <p className="text-[#9d9d9d]">Twitter</p>
@@ -87,7 +87,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="w-full text-center text-white pb-5 pt-12">
+        <div className="w-full text-center sm:text-sm whitespace-nowrap border-t border-gray-800/50 text-white pb-5 pt-5">
           © GameXPad. All Rights Reserved 2024
         </div>
       </div>

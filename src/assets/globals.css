@@ -15,8 +15,8 @@
 }
 
 .dual-background {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   margin-top: 0%;
   margin-left: 3%;
@@ -34,6 +34,18 @@
 }
 
 :root {
+  @apply bg-dark;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 100%;
   @apply bg-dark;
 }
 

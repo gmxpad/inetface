@@ -68,7 +68,7 @@ const HowToJoin = () => {
 
   return (
     <>
-      <div className=" flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
         <div
           ref={divRef}
           style={{
@@ -76,10 +76,10 @@ const HowToJoin = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="text-4xl text-white font-semibold">
+          className="md:text-4xl sm:text-2xl text-white font-semibold">
           <p>HOW TO JOIN?</p>
         </div>
-        <div className="grid grid-cols-2 gap-12 text-white">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-12 text-white">
           {SLIDES.map((item: any, index: number) => (
             <div
               ref={
@@ -99,11 +99,11 @@ const HowToJoin = () => {
               key={"how_to_join_key_" + index.toString()}
               className="bg-dark-gray rounded-lg ">
               <div className="flex p-5">
-                <div className="w-1/2 flex flex-col gap-7">
+                <div className="sm:w-full md:w-1/2 flex flex-col gap-7">
                   <p className="text-2xl">{item.name}</p>
                   <p className="text-[#9d9d9d]">{item.desx}</p>
                 </div>
-                <div className="flex w-1/2 justify-center items-center h-full relative">
+                <div className="flex sm:w-1/3 md:w-1/2 justify-center items-center h-full relative">
                   <div className="absolute -top-12 right-0">
                     <Image width={180} src={item.image} />
                   </div>

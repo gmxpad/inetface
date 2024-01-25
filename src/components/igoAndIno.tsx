@@ -95,7 +95,7 @@ const IgoAndIno = () => {
 
   return (
     <>
-      <div className=" flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
         <div
           ref={divRef}
           style={{
@@ -103,10 +103,10 @@ const IgoAndIno = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="text-4xl text-white font-semibold">
+          className="md:text-4xl sm:text-2xl text-white font-semibold">
           <p>UPCOMING PROJECTS</p>
         </div>
-        <div className="grid grid-cols-4 gap-8 text-white">
+        <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-8 text-white">
           {SLIDES.map((item: any, index: number) => (
             <div
               ref={

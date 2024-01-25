@@ -11,36 +11,52 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import { Web3Button, Web3Modal } from "@web3modal/react";
+import useWindowDimensions from "@/scripts/useWindowDimensions";
 
 export default function Header() {
+  const { windowWidth } = useWindowDimensions();
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Launchpad",
+      link: "/",
+    },
+    {
+      name: "Stake",
+      link: "/",
+    },
+    {
+      name: "Games",
+      link: "/",
+    },
+    {
+      name: "X Hub",
+      link: "/",
+    },
   ];
 
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      maxWidth="xl"
+      maxWidth="full"
       position="sticky"
-      className="bg-dark py-4 px-[8%] z-[999]">
-      <NavbarContent>
+      className="bg-dark py-4 sm:px-1 md:px-[8%] z-[999] w-screen">
+      <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:flex md:hidden"
+          className="sm:flex md:hidden text-white"
         />
         <NavbarBrand>
-          <p className="font-bold text-4xl text-white font-SpaceGro">
+          <p className="font-bold sm:hidden md:flex md:text-4xl text-white font-SpaceGro">
+            GAMEXPAD
+          </p>
+          <p className="font-bold md:hidden sm:flex sm:text-xl text-white font-SpaceGro">
             GAMEXPAD
           </p>
         </NavbarBrand>
@@ -87,24 +103,16 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Web3Button />
+          <Web3Button
+            label={windowWidth > 768 ? "Connect Wallet" : "Connect"}
+          />
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu className="w-full flex gap-8 py-12 bg-dark">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              className="w-full"
-              href="#"
-              size="lg">
-              {item}
+          <NavbarMenuItem className="flex" key={`${item}-${index}`}>
+            <Link className="w-full text-white py-2" href={item.link} size="lg">
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

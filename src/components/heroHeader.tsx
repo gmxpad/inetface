@@ -7,50 +7,72 @@ import {
 } from "@/scripts/applyAnimationTop";
 
 const HeroHeader = () => {
-  const ref1 = useRef<HTMLDivElement>(null);
-  const ref2 = useRef<HTMLDivElement>(null);
-  const ref3 = useRef<HTMLDivElement>(null);
-  const ref4 = useRef<HTMLDivElement>(null);
+  const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            ref.current?.style.setProperty("opacity", "1");
+            ref.current?.style.setProperty("scale", "1");
+          } else {
+            ref.current?.style.setProperty("opacity", "0.01");
+            ref.current?.style.setProperty("scale", "0.9");
+          }
+        },
+        { threshold: 0.4 }
+      );
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref]);
+  };
 
-  useEffect(() => {
-    applyAnimationTop(ref1);
-    applyAnimationTop(ref4);
+  const divRef = useRef<HTMLDivElement>(null);
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const divRef2 = useRef<HTMLDivElement>(null);
+  const divRef3 = useRef<HTMLDivElement>(null);
 
-    applyAnimationTopDuration(ref2);
-    applyAnimationTopDuration(ref3);
-  }, []);
+  useIntersectionObserver(divRef);
+  useIntersectionObserver(divRef1);
+  useIntersectionObserver(divRef2);
+  useIntersectionObserver(divRef3);
 
   return (
     <>
-      <div className="flex w-full h-full justify-between relative items-center">
-        <div className="absolute dual-gradient-background opacity-50 z-0"></div>
+      <div className=" flex w-full h-full py-8  sm:flex-col-reverse justify-between relative items-center">
+        <div className="absolute sm:hidden dual-gradient-background opacity-50 z-0"></div>
         <div
-          ref={ref1}
-          className={classNames(
-            "flex flex-col h-full w-[49%] gap-10 text-white",
-            ref1.current
-              ? "sm:translate-y-[50px] sm:opacity-10"
-              : "translate-y-[50px] opacity-10"
-          )}>
-          <div className="text-9xl font-SpaceGro font-bold flex flex-col gap-3">
+          ref={divRef}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="flex flex-col h-full sm:w-full md:w-[49%] gap-10 text-white">
+          <div className="sm:text-6xl sm:text-center md:text-9xl font-SpaceGro font-bold flex flex-col gap-3">
             <p>Play,</p>
             <p>Invest</p>
             <p>& Earn</p>
-            <p className="text-lg w-[85%]">
+            <p className="md:text-lg sm:text-base md:w-[85%]">
               Elevate Your Gaming Experience with Our Route to Triumph and
               Beyond!
             </p>
           </div>
           <div
-            ref={ref2}
-            className={classNames(
-              "flex justify-between w-2/3",
-              ref2.current
-                ? "sm:translate-y-[50px] sm:opacity-10"
-                : "translate-y-[50px] opacity-10"
-            )}>
-            <div className="flex flex-col">
-              <div className="text-lg relative max-w-48 whitespace-nowrap">
+            ref={divRef1}
+            style={{
+              opacity: "0.01",
+              scale: "0.9",
+              transition: "scale 1s, opacity 1s",
+            }}
+            className="flex sm:flex-col sm:justify-center sm:items-center sm:gap-6 md:justify-between sm:w-full md:w-2/3">
+            <div className="flex flex-col sm:text-center ">
+              <div className="text-lg  relative md:max-w-48 whitespace-nowrap">
                 Project Launched
                 <span className="absolute -top-11 text-6xl text-purple-600 -right-3">
                   .
@@ -58,8 +80,8 @@ const HeroHeader = () => {
               </div>
               <p className="text-5xl font-mono">0,00</p>
             </div>
-            <div className="flex flex-col ">
-              <div className="text-lg relative max-w-12 ">
+            <div className="flex flex-col sm:text-center ">
+              <div className="text-lg relative md:max-w-12 sm:text-center ">
                 Users
                 <span className="absolute -top-11 text-6xl text-green-550 -right-3">
                   .
@@ -69,39 +91,41 @@ const HeroHeader = () => {
             </div>
           </div>
           <div
-            ref={ref3}
-            className={classNames(
-              "flex gap-12",
-              ref3.current ? " sm:opacity-10" : "opacity-10"
-            )}>
+            ref={divRef2}
+            style={{
+              opacity: "0.01",
+              scale: "0.9",
+              transition: "scale 1s, opacity 1s",
+            }}
+            className="flex md:gap-12 sm:justify-between w-full">
             <Button
               as={Link}
               isExternal={true}
-              className="bg-transparent text-white font-bold  text-xl duration-300 border-3 py-7 px-8 border-white"
+              className="bg-transparent text-white font-bold  text-xl duration-300 border-3 py-7 md:px-8 sm:w-[45%] border-white"
               href="https://docs.gamexpad.io/">
               Learn More
             </Button>
             <Button
               as={Link}
-              className="bg-[#a664fe] text-white font-bold  text-xl duration-300 border-3 py-7 px-8 border-[#a664fe]"
+              className="bg-[#a664fe] text-white font-bold  text-xl duration-300 border-3 py-7 md:px-8 sm:w-[45%] border-[#a664fe]"
               href="#">
               Submit Project
             </Button>
           </div>
         </div>
         <div
-          ref={ref4}
-          className={classNames(
-            "absolute bottom-0 right-0",
-            ref4.current
-              ? "sm:translate-y-[50px] sm:opacity-10"
-              : "translate-y-[50px] opacity-10"
-          )}>
+          ref={divRef3}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="md:absolute sm:flex md:bottom-0 md:right-0">
           <Image
             width={1450}
             height={550}
             isBlurred
-            className="md:h-[650px] w-full"
+            className="md:h-[650px] sm:w-[300px]"
             src="/games/character1.png"
             alt="game"
           />

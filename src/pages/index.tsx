@@ -1,3 +1,4 @@
+import React from "react";
 import AccessGames from "@/components/accessGames";
 import FAQ from "@/components/faq";
 import Features from "@/components/features";
@@ -5,33 +6,32 @@ import HeroHeader from "@/components/heroHeader";
 import HowToJoin from "@/components/howToJoin";
 import IgoAndIno from "@/components/igoAndIno";
 import PopulerGames from "@/components/populerGames";
-import React from "react";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col gap-48 px-[10%]">
+      <div className="flex flex-col sm:gap-20 md:gap-48 sm:px-[5%] md:px-[10%]">
         <section>
           <HeroHeader />
         </section>
-        <div>
+        <section>
           <IgoAndIno />
-        </div>
-        <div>
+        </section>
+        <section>
           <HowToJoin />
-        </div>
-        <div>
+        </section>
+        <section>
           <AccessGames />
-        </div>
-        <div>
+        </section>
+        <section>
           <Features />
-        </div>
-        <div>
+        </section>
+        <section>
           <PopulerGames />
-        </div>
-        <div>
+        </section>
+        <section>
           <FAQ />
-        </div>
+        </section>
       </div>
     </>
   );
