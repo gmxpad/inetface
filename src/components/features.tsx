@@ -4,25 +4,25 @@ import { Button, Image, Link } from "@nextui-org/react";
 const Features = () => {
   const SLIDES = [
     {
-      image: "/icons/trigger-7.svg",
+      image: "/icons/ido.png",
       name: "IDO",
       desx: "Your gateway to the next generation of gaming finance, offering early access to exclusive GameFi projects.",
       link: "/",
     },
     {
-      image: "/icons/trigger-7.svg",
+      image: "/icons/ino.png",
       name: "INO",
       desx: "Unleash the potential of gaming with exclusive NFT offerings, crafting your path in the GameFi universe.",
       link: "/",
     },
     {
-      image: "/icons/trigger-7.svg",
+      image: "/icons/nftmarket.png",
       name: "NFT Marketplace",
       desx: "Trade, collect, and strategize with rare digital assets in the ultimate GameFi ecosystem.",
       link: "/",
     },
     {
-      image: "/icons/trigger-7.svg",
+      image: "/icons/hub.png",
       name: "Gaming Hub",
       desx: "Connect, collaborate, and conquer in our dynamic GameFi community, where every player has a role.",
       link: "/",
