@@ -115,7 +115,9 @@ const AccessGames = () => {
           <Image src="/games/fortnite.png" />
         </div>
 
-        <div className="absolute sm:hidden md:flex dual-background opacity-30 z-0"></div>
+        <div
+          style={{ width: "500px", height: "500px" }}
+          className="absolute sm:hidden md:flex dual-background opacity-30 z-0"></div>
         <div className="rounded-full border border-gray-800/50 sm:h-[300px] sm:w-[300px]  md:h-[650px] md:w-[650px] xl:h-[800px] xl:w-[800px] flex items-center justify-center relative">
           <div className="absolute flex justify-center flex-col text-white items-center gap-7 z-50">
             <p className=" font-SpaceGro md:text-4xl sm:text-2xl whitespace-nowrap">
