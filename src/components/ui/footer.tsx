@@ -27,7 +27,7 @@ const sponsors = [
 const Footer = () => {
   return (
     <>
-      <div className="w-screen h-[75vh] bg-dark-gray flex gap-4 flex-col px-[18%]">
+      <div className="w-screen h-full bg-dark-gray flex gap-4 flex-col px-[18%]">
         <div className="flex items-center justify-center pt-32 pb-8 w-full">
           <p className="text-white">Trusted by Global Platforms</p>
         </div>

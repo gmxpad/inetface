@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { Image } from "@nextui-org/react";
 
 const IgoAndIno = () => {
+  const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            ref.current?.style.setProperty("opacity", "1");
+            ref.current?.style.setProperty("scale", "1");
+          } else {
+            ref.current?.style.setProperty("opacity", "0.01");
+            ref.current?.style.setProperty("scale", "0.9");
+          }
+        },
+        { threshold: 0.4 }
+      );
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref]);
+  };
   const SLIDES = [
     {
       image: "/games/valo-purple.jpeg",
@@ -57,15 +81,48 @@ const IgoAndIno = () => {
       slug: "/",
     },
   ];
+  const divRef = useRef<HTMLDivElement>(null);
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const divRef2 = useRef<HTMLDivElement>(null);
+  const divRef3 = useRef<HTMLDivElement>(null);
+  const divRef4 = useRef<HTMLDivElement>(null);
+
+  useIntersectionObserver(divRef);
+  useIntersectionObserver(divRef1);
+  useIntersectionObserver(divRef2);
+  useIntersectionObserver(divRef3);
+  useIntersectionObserver(divRef4);
+
   return (
     <>
       <div className=" flex flex-col gap-5">
-        <div className="text-4xl text-white font-semibold">
+        <div
+          ref={divRef}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="text-4xl text-white font-semibold">
           <p>UPCOMING PROJECTS</p>
         </div>
         <div className="grid grid-cols-4 gap-8 text-white">
           {SLIDES.map((item: any, index: number) => (
             <div
+              ref={
+                index == 0
+                  ? divRef1
+                  : index === 1
+                  ? divRef2
+                  : index === 2
+                  ? divRef3
+                  : divRef4
+              }
+              style={{
+                opacity: "0.01",
+                scale: "0.9",
+                transition: "scale 1s, opacity 1s",
+              }}
               key={"upcoming_projects_" + index.toString()}
               className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
               <Image isBlurred radius="none" src={item.image} />

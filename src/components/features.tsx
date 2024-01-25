@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Button, Image, Link } from "@nextui-org/react";
 
 const Features = () => {
@@ -28,13 +28,60 @@ const Features = () => {
       link: "/",
     },
   ];
+
+  const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            ref.current?.style.setProperty("opacity", "1");
+            ref.current?.style.setProperty("scale", "1");
+          } else {
+            ref.current?.style.setProperty("opacity", "0.01");
+            ref.current?.style.setProperty("scale", "0.9");
+          }
+        },
+        { threshold: 0.4 }
+      );
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref]);
+  };
+
+  const divRef = useRef<HTMLDivElement>(null);
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const divRef2 = useRef<HTMLDivElement>(null);
+  const divRef3 = useRef<HTMLDivElement>(null);
+  const divRef4 = useRef<HTMLDivElement>(null);
+  const divRef5 = useRef<HTMLDivElement>(null);
+
+  useIntersectionObserver(divRef);
+  useIntersectionObserver(divRef1);
+  useIntersectionObserver(divRef2);
+  useIntersectionObserver(divRef3);
+  useIntersectionObserver(divRef4);
+  useIntersectionObserver(divRef5);
+
   return (
     <>
-      <div className="flex flex-col gap-20 text-white relative items-center justify-center">
+      <div className="flex flex-col gap-28 text-white relative items-center justify-center">
         <div
           style={{ width: "50%" }}
           className="dual-background absolute opacity-30 z-0"></div>
-        <div className="flex flex-col gap-8 w-full items-center z-10 justify-center">
+        <div
+          ref={divRef}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="flex flex-col gap-8 w-full items-center z-10 justify-center">
           <p className="text-5xl font-SpaceGro">Features</p>
           <p className="w-1/3 text-center">
             We are constantly working to bring new updates and features to
@@ -44,7 +91,23 @@ const Features = () => {
 
         <div className="grid grid-cols-4 gap-12 text-white z-10">
           {SLIDES.map((item: any, index: number) => (
-            <div key={"how_to_join_key_" + index.toString()} className="">
+            <div
+              ref={
+                index === 0
+                  ? divRef1
+                  : index === 1
+                  ? divRef2
+                  : index === 2
+                  ? divRef3
+                  : divRef4
+              }
+              style={{
+                opacity: "0.01",
+                scale: "0.9",
+                transition: "scale 1s, opacity 1s",
+              }}
+              key={"how_to_join_key_" + index.toString()}
+              className="">
               <div className="flex items-center h-[150px] rounded-full justify-center relative">
                 <div className="absolute -top-8 ">
                   <Image width={120} src={item.image} />
@@ -57,16 +120,24 @@ const Features = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col w-full gap-8 justify-center items-center z-10">
+        <div
+          ref={divRef5}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="flex flex-col w-full gap-8 justify-center items-center z-10">
           <p className="text-4xl font-SpaceGro">And so much more...</p>
           <p className="w-[42%] text-center">
             Earn achievements, read reviews, explore custom recommendations, and
-            more.
+            more. For detailed product insights, explore our documentation.
           </p>
           <Button
             as={Link}
+            isExternal={true}
             className="bg-transparent text-white font-bold  text-xl duration-300 border-3 py-7 px-8 border-white"
-            href="#">
+            href="https://docs.gamexpad.io/">
             Learn More
           </Button>
         </div>

@@ -10,26 +10,26 @@ import React from "react";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col gap-20 ">
-        <div className="px-[18%]">
+      <div className="flex flex-col gap-48 px-[10%]">
+        <section>
           <HeroHeader />
-        </div>
-        <div className="px-[18%]">
+        </section>
+        <div>
           <IgoAndIno />
         </div>
-        <div className="px-[18%]">
+        <div>
           <HowToJoin />
         </div>
-        <div className="px-[10%]">
+        <div>
           <AccessGames />
         </div>
-        <div className="px-[18%]">
+        <div>
           <Features />
         </div>
-        <div className="px-[18%]">
+        <div>
           <PopulerGames />
         </div>
-        <div className="px-[18%]">
+        <div>
           <FAQ />
         </div>
       </div>

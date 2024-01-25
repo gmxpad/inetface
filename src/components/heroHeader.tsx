@@ -1,33 +1,54 @@
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
+import { Link, Button, Image } from "@nextui-org/react";
+import classNames from "classnames";
 import {
-  User,
-  Link,
-  Tooltip,
-  Button,
-  Image,
-  Tabs,
-  Tab,
-  Card,
-  CardBody,
-} from "@nextui-org/react";
+  applyAnimationTop,
+  applyAnimationTopDuration,
+} from "@/scripts/applyAnimationTop";
 
 const HeroHeader = () => {
+  const ref1 = useRef<HTMLDivElement>(null);
+  const ref2 = useRef<HTMLDivElement>(null);
+  const ref3 = useRef<HTMLDivElement>(null);
+  const ref4 = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    applyAnimationTop(ref1);
+    applyAnimationTop(ref4);
+
+    applyAnimationTopDuration(ref2);
+    applyAnimationTopDuration(ref3);
+  }, []);
+
   return (
     <>
-      <div className="flex justify-between w-full text-white py-5 relative">
+      <div className="flex w-full h-full justify-between relative items-center">
         <div className="absolute dual-gradient-background opacity-50 z-0"></div>
-        <div className="w-[48%] flex flex-col gap-12 z-10">
+        <div
+          ref={ref1}
+          className={classNames(
+            "flex flex-col h-full w-[49%] gap-10 text-white",
+            ref1.current
+              ? "sm:translate-y-[50px] sm:opacity-10"
+              : "translate-y-[50px] opacity-10"
+          )}>
           <div className="text-9xl font-SpaceGro font-bold flex flex-col gap-3">
             <p>Play,</p>
             <p>Invest</p>
             <p>& Earn</p>
             <p className="text-lg w-[85%]">
-              GameXPad brings together the gaming and finance worlds, offering
-              you unique opportunities.
+              Elevate Your Gaming Experience with Our Route to Triumph and
+              Beyond!
             </p>
           </div>
-          <div className="flex justify-between w-2/3">
+          <div
+            ref={ref2}
+            className={classNames(
+              "flex justify-between w-2/3",
+              ref2.current
+                ? "sm:translate-y-[50px] sm:opacity-10"
+                : "translate-y-[50px] opacity-10"
+            )}>
             <div className="flex flex-col">
               <div className="text-lg relative max-w-48 whitespace-nowrap">
                 Project Launched
@@ -47,11 +68,17 @@ const HeroHeader = () => {
               <p className="text-5xl font-mono">0,00</p>
             </div>
           </div>
-          <div className="flex gap-12">
+          <div
+            ref={ref3}
+            className={classNames(
+              "flex gap-12",
+              ref3.current ? " sm:opacity-10" : "opacity-10"
+            )}>
             <Button
               as={Link}
+              isExternal={true}
               className="bg-transparent text-white font-bold  text-xl duration-300 border-3 py-7 px-8 border-white"
-              href="#">
+              href="https://docs.gamexpad.io/">
               Learn More
             </Button>
             <Button
@@ -62,11 +89,19 @@ const HeroHeader = () => {
             </Button>
           </div>
         </div>
-        <div className="w-[48%] ">
+        <div
+          ref={ref4}
+          className={classNames(
+            "absolute bottom-0 right-0",
+            ref4.current
+              ? "sm:translate-y-[50px] sm:opacity-10"
+              : "translate-y-[50px] opacity-10"
+          )}>
           <Image
             width={1450}
             height={550}
-            className="h-[640px] w-full"
+            isBlurred
+            className="md:h-[650px] w-full"
             src="/games/character1.png"
             alt="game"
           />

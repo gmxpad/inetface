@@ -1,34 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
 export default function FAQ() {
+  const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            ref.current?.style.setProperty("opacity", "1");
+            ref.current?.style.setProperty("scale", "1");
+          } else {
+            ref.current?.style.setProperty("opacity", "0.01");
+            ref.current?.style.setProperty("scale", "0.9");
+          }
+        },
+        { threshold: 0.4 }
+      );
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [ref]);
+  };
   const FAQ_ITEMS = [
     {
-      id: 6,
+      id: 0,
       query: "What is GAMEXPAD?",
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
     },
-    {
-      id: 7,
-      query: "What is GAMEXPAD?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
-    },
-    {
-      id: 8,
-      query: "What is GAMEXPAD?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
-    },
-    {
-      id: 9,
-      query: "What is GAMEXPAD?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
-    },
-  ];
-  const FAQ_ITEMS_2 = [
     {
       id: 1,
       query: "What is GAMEXPAD?",
@@ -47,27 +51,81 @@ export default function FAQ() {
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
     },
+  ];
+  const FAQ_ITEMS_2 = [
     {
       id: 4,
       query: "What is GAMEXPAD?",
       answer:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
     },
+    {
+      id: 5,
+      query: "What is GAMEXPAD?",
+      answer:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+    },
+    {
+      id: 6,
+      query: "What is GAMEXPAD?",
+      answer:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+    },
+    {
+      id: 7,
+      query: "What is GAMEXPAD?",
+      answer:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+    },
   ];
+
+  const divRef = useRef<HTMLDivElement>(null);
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const divRef2 = useRef<HTMLDivElement>(null);
+  const divRef3 = useRef<HTMLDivElement>(null);
+  const divRef4 = useRef<HTMLDivElement>(null);
+  const divRef5 = useRef<HTMLDivElement>(null);
+  const divRef6 = useRef<HTMLDivElement>(null);
+  const divRef7 = useRef<HTMLDivElement>(null);
+  const divRef8 = useRef<HTMLDivElement>(null);
+
+  useIntersectionObserver(divRef);
+  useIntersectionObserver(divRef1);
+  useIntersectionObserver(divRef2);
+  useIntersectionObserver(divRef3);
+  useIntersectionObserver(divRef4);
+  useIntersectionObserver(divRef5);
+  useIntersectionObserver(divRef6);
+  useIntersectionObserver(divRef7);
+  useIntersectionObserver(divRef8);
+
   return (
     <>
-      <div className="flex flex-col justify-center items-center pb-24">
-        <div className="flex flex-col items-center justify-center text-center text-white gap-2">
+      <div className="flex flex-col gap-12 justify-center items-center pb-24">
+        <div
+          ref={divRef}
+          style={{
+            opacity: "0.01",
+            scale: "0.9",
+            transition: "scale 1s, opacity 1s",
+          }}
+          className="flex flex-col items-center justify-center text-center text-white gap-2">
           <p className=" font-SpaceGro text-5xl text-white z-10">FAQ</p>
           <p>The most common questions</p>
         </div>
         <div className="flex w-full justify-between">
           <div className="h-full flex flex-col  w-1/2 sm:w-full rounded-lg">
-            <div className="  text-white/75 p-4 gap-2 flex flex-col">
+            <div
+              ref={divRef1}
+              style={{
+                opacity: "0.01",
+                scale: "0.9",
+                transition: "scale 1s, opacity 1s",
+              }}
+              className="  text-white/75 p-4 gap-2 flex flex-col">
               <Accordion
                 variant="light"
                 showDivider={false}
-                defaultExpandedKeys={["key1"]}
                 itemClasses={{
                   base: "w-full py-2",
                   heading:
@@ -88,11 +146,17 @@ export default function FAQ() {
             </div>
           </div>
           <div className="h-full flex flex-col  w-1/2 sm:w-full rounded-lg">
-            <div className="  text-white/75 p-4 gap-2 flex flex-col">
+            <div
+              ref={divRef2}
+              style={{
+                opacity: "0.01",
+                scale: "0.9",
+                transition: "scale 1s, opacity 1s",
+              }}
+              className="  text-white/75 p-4 gap-2 flex flex-col">
               <Accordion
                 variant="light"
                 showDivider={false}
-                defaultExpandedKeys={["key2"]}
                 itemClasses={{
                   base: "w-full py-2",
                   heading:

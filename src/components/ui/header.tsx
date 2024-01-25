@@ -33,7 +33,7 @@ export default function Header() {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="xl"
       position="sticky"
-      className="bg-transparent py-4">
+      className="bg-dark py-4 px-[8%] z-[999]">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -51,7 +51,7 @@ export default function Header() {
           <Button
             as={Link}
             radius="none"
-            className="bg-transparent text-white font-light  text-lg duration-300"
+            className="bg-transparent text-white font-normal  text-lg duration-300"
             href="#">
             Launchpads
           </Button>
@@ -61,7 +61,7 @@ export default function Header() {
             as={Link}
             href="#"
             radius="none"
-            className="bg-transparent text-white font-light  text-lg duration-300"
+            className="bg-transparent text-white font-normal  text-lg duration-300"
             aria-current="page">
             Stake
           </Button>
@@ -70,7 +70,7 @@ export default function Header() {
           <Button
             as={Link}
             radius="none"
-            className="bg-transparent text-white font-light  text-lg duration-300"
+            className="bg-transparent text-white font-normal  text-lg duration-300"
             href="#">
             Games
           </Button>
@@ -79,7 +79,7 @@ export default function Header() {
           <Button
             as={Link}
             radius="none"
-            className="bg-transparent text-white font-light  text-lg duration-300"
+            className="bg-transparent text-white font-normal  text-lg duration-300"
             href="#">
             X Hub
           </Button>
