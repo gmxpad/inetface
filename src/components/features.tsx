@@ -109,8 +109,8 @@ const Features = () => {
               key={"how_to_join_key_" + index.toString()}
               className="">
               <div className="flex items-center h-[150px] rounded-full justify-center relative">
-                <div className="absolute -top-8 ">
-                  <Image width={120} src={item.image} />
+                <div className="absolute ">
+                  <Image isBlurred width={180} src={item.image} />
                 </div>
               </div>
               <div className="text-center flex mt-5 gap-5 flex-col items-center">
