@@ -83,13 +83,13 @@ const Features = () => {
           }}
           className="flex flex-col gap-8 w-full items-center z-10 justify-center">
           <p className="md:text-5xl sm:text-3xl font-SpaceGro">Features</p>
-          <p className="md:w-1/3 sm:w-full text-center">
+          <p className="xl:w-1/3 sm:w-full text-center">
             We are constantly working to bring new updates and features to
             GameXPad, such as:
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-4 sm:gap-16 md:gap-12 text-white z-10">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 sm:gap-16 md:gap-16 xl:gap-12 text-white z-10">
           {SLIDES.map((item: any, index: number) => (
             <div
               ref={
@@ -131,7 +131,7 @@ const Features = () => {
           <p className="md:text-4xl sm:text-2xl font-SpaceGro">
             And so much more...
           </p>
-          <p className="md:w-[42%] text-center">
+          <p className="xl:w-[42%] text-center">
             For detailed product insights, explore our documentation.
           </p>
           <Button

@@ -47,10 +47,16 @@ const PopulerGames = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="md:text-4xl sm:text-2xl text-white font-semibold sm:pb-5">
+          className="xl:text-4xl flex justify-between whitespace-nowrap sm:text-2xl items-center md:text-2xl text-white font-semibold sm:pb-5 md:pb-5 xl:pb-0">
           <p>POPULAR GAMES</p>
+          <Button
+            as={Link}
+            className="bg-transparent text-white font-normal  text-xl duration-300 border-2 md:py-7 md:px-8 sm:w-[35%] border-white"
+            href="/">
+            View All
+          </Button>
         </div>
-        <div className="flex sm:flex-col md:flex-row sm:gap-10 w-full md:justify-between">
+        <div className="flex xl:flex-row md:flex-col sm:flex-col sm:gap-10 md:gap-10 xl:gap-0 w-full h-full xl:justify-between">
           <div
             ref={divRef1}
             style={{
@@ -58,19 +64,19 @@ const PopulerGames = () => {
               scale: "0.9",
               transition: "scale 1s, opacity 1s",
             }}
-            className="rounded-xl bg-dark-gray md:w-[65%] sm:w-full relative">
-            <div className="md:absolute sm:flex md:-top-12 md:right-0 sm:-translate-y-12 sm:translate-x-16">
+            className="rounded-xl bg-dark-gray xl:w-[65%] sm:w-full md:w-full relative">
+            <div className="xl:absolute sm:flex md:flex xl:-top-12 xl:right-0 sm:-translate-y-12 sm:translate-x-16 md:-translate-y-12 md:translate-x-[50%] xl:-translate-y-0 xl:translate-x-0">
               <Image
                 isBlurred
-                className="sm:w-[300px]"
+                className="sm:w-[300px] md:w-[300px] xl:w-full"
                 src="/games/populerGame-1.png"
               />
             </div>
-            <div className="md:w-2/3 flex flex-col gap-8 justify-center p-5 md:h-[440px] overflow-hidden text-white">
+            <div className="xl:w-2/3 flex flex-col gap-8 justify-center p-5 xl:h-[440px] overflow-hidden text-white">
               <div className="flex flex-col gap-3">
                 <p>18 million players</p>
                 <Image isBlurred radius="none" src="/icons/valorant.png" />
-                <p className="md:w-[50%] sm:w-[75%]">
+                <p className="xl:w-[50%] sm:w-[75%] md:w-[75%]">
                   Tactical shooter with 5v5 matches and unique characters.
                 </p>
               </div>
@@ -83,7 +89,7 @@ const PopulerGames = () => {
               </Button>
             </div>
           </div>
-          <div className="flex flex-col md:w-[31%] sm:h-full sm:gap-10 md:justify-between">
+          <div className="flex flex-col xl:w-[31%] sm:h-full md:w-full sm:gap-10 md:h-full md:gap-10 xl:justify-between">
             <div
               ref={divRef2}
               style={{
@@ -91,7 +97,7 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[45%]  bg-[#a664fe]/50">
+              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-[#a664fe]/50">
               <div className="absolute -top-3">
                 <Image isBlurred src="/games/forza-car.png" />
               </div>
@@ -118,7 +124,7 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[45%] bg-dark-gray">
+              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px] bg-dark-gray">
               <div className="absolute -top-5 -right-1">
                 <Image isBlurred src="/games/soldier.png" />
               </div>

@@ -46,23 +46,22 @@ export default function Header() {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
       position="sticky"
-      className="bg-dark py-4 sm:px-1 md:px-[8%] z-[999] w-screen">
+      className="bg-dark py-4 sm:px-1 md:px-1 lg:px-[8%] z-[999] w-screen">
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:flex md:hidden text-white"
+          className="sm:flex md:flex lg:hidden text-white"
         />
         <NavbarBrand>
-          <p className="font-bold sm:hidden md:flex md:text-4xl text-white font-SpaceGro">
-            GAMEXPAD
-          </p>
-          <p className="font-bold md:hidden sm:flex sm:text-xl text-white font-SpaceGro">
+          <p className="font-bold md:text-4xl sm:text-xl text-white font-SpaceGro">
             GAMEXPAD
           </p>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden md:flex gap-4 " justify="center">
+      <NavbarContent
+        className="sm:hidden md:hidden lg:flex gap-4 "
+        justify="center">
         <NavbarItem>
           <Button
             as={Link}
@@ -104,11 +103,11 @@ export default function Header() {
       <NavbarContent justify="end">
         <NavbarItem>
           <Web3Button
-            label={windowWidth > 768 ? "Connect Wallet" : "Connect"}
+            label={windowWidth > 767 ? "Connect Wallet" : "Connect"}
           />
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="w-full flex gap-8 py-12 bg-dark">
+      <NavbarMenu className="w-full flex gap-8 py-12 z-[999] bg-dark">
         {menuItems.map((item, index) => (
           <NavbarMenuItem className="flex" key={`${item}-${index}`}>
             <Link className="w-full text-white py-2" href={item.link} size="lg">

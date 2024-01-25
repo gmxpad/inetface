@@ -44,8 +44,8 @@ const HeroHeader = () => {
 
   return (
     <>
-      <div className=" flex w-full h-full py-8 sm:flex-col-reverse justify-between relative items-center">
-        <div className="absolute md:flex sm:hidden dual-gradient-background opacity-50 z-0"></div>
+      <div className=" flex w-full h-full py-8 sm:flex-col-reverse md:flex-col-reverse lg:flex-row justify-between relative items-center">
+        <div className="absolute md:flex sm:hidden dual-gradient-background top-12 opacity-50 z-0"></div>
         <div
           ref={divRef}
           style={{
@@ -53,12 +53,12 @@ const HeroHeader = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="flex flex-col h-full sm:w-full md:w-[49%] gap-10 text-white">
-          <div className="sm:text-6xl sm:text-center md:text-9xl font-SpaceGro font-bold flex flex-col gap-3">
+          className="flex flex-col h-full sm:w-full md:w-full lg:w-[49%] gap-10 text-white">
+          <div className="sm:text-6xl md:text-8xl sm:text-center md:text-center lg:text-start xl:text-9xl font-SpaceGro font-bold flex flex-col gap-3">
             <p>Play,</p>
             <p>Invest</p>
             <p>& Earn</p>
-            <p className="md:text-lg sm:text-base md:w-[85%]">
+            <p className="lg:text-lg sm:text-base md:text-base lg:w-[85%]">
               Elevate Your Gaming Experience with Our Route to Triumph and
               Beyond!
             </p>
@@ -70,7 +70,7 @@ const HeroHeader = () => {
               scale: "0.9",
               transition: "scale 1s, opacity 1s",
             }}
-            className="flex sm:flex-col sm:justify-center sm:items-center sm:gap-6 md:justify-between sm:w-full md:w-2/3">
+            className="flex sm:flex-col sm:justify-center sm:items-center sm:gap-6 md:justify-between md:items-center md:gap-6 lg:justify-between sm:w-full md:w-full lg:w-2/3">
             <div className="flex flex-col sm:text-center ">
               <div className="text-lg  relative md:max-w-48 whitespace-nowrap">
                 Project Launched
@@ -97,7 +97,7 @@ const HeroHeader = () => {
               scale: "0.9",
               transition: "scale 1s, opacity 1s",
             }}
-            className="flex md:gap-12 sm:justify-between w-full">
+            className="flex lg:gap-12 sm:justify-between md:gap-5 md:justify-center xl:justify-start w-full">
             <Button
               as={Link}
               isExternal={true}
@@ -120,12 +120,12 @@ const HeroHeader = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="md:absolute sm:flex md:bottom-0 md:right-0">
+          className="lg:absolute sm:flex md:flex lg:bottom-12 xl:bottom-0 lg:right-0">
           <Image
             width={1450}
             height={550}
             isBlurred
-            className="md:w-full sm:w-[300px]"
+            className="xl:w-full lg:w-[500px] md:w-[600px] sm:w-[300px]"
             src="/games/character1.png"
             alt="game"
           />

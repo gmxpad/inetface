@@ -27,12 +27,12 @@ const sponsors = [
 const Footer = () => {
   return (
     <>
-      <div className="w-screen h-full bg-dark-gray flex gap-4 flex-col sm:px-5 md:px-[18%]">
+      <div className="w-screen h-full bg-dark-gray flex gap-4 flex-col sm:px-5 md:px-5 xl:px-[18%]">
         <div className="flex items-center justify-center pt-32 pb-8 w-full">
           <p className="text-white">Trusted by Global Platforms</p>
         </div>
 
-        <div className="md:flex sm:grid sm:grid-cols-3 w-full justify-evenly border-b border-gray-800/50 pb-12">
+        <div className="xl:flex md:grid md:grid-cols-5 sm:grid sm:grid-cols-3 w-full justify-evenly border-b border-gray-800/50 pb-12">
           {sponsors.map((item: any, index: number) => (
             <div className="" key={`SPONSOR_${index}`}>
               <Image width={80} src={item.path} />

@@ -106,7 +106,7 @@ const IgoAndIno = () => {
           className="md:text-4xl sm:text-2xl text-white font-semibold">
           <p>UPCOMING PROJECTS</p>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-8 text-white">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
           {SLIDES.map((item: any, index: number) => (
             <div
               ref={

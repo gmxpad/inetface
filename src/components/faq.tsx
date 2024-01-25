@@ -110,13 +110,13 @@ export default function FAQ() {
             transition: "scale 1s, opacity 1s",
           }}
           className="flex flex-col items-center justify-center text-center text-white gap-2">
-          <p className=" font-SpaceGro sm:text-3xl md:text-5xl text-white z-10">
+          <p className=" font-SpaceGro sm:text-3xl md:text-3xl xl:text-5xl text-white z-10">
             FAQ
           </p>
           <p>The most common questions</p>
         </div>
-        <div className="flex w-full sm:flex-col justify-between">
-          <div className="h-full flex flex-col sm:justify-center  md:w-1/2 sm:w-full rounded-lg">
+        <div className="flex w-full xl:flex-row md:flex-col sm:flex-col justify-between">
+          <div className="h-full flex flex-col xl:justify-start md:justify-center sm:justify-center  xl:w-1/2 sm:w-full md:w-full rounded-lg">
             <div
               ref={divRef1}
               style={{
@@ -147,7 +147,7 @@ export default function FAQ() {
               </Accordion>
             </div>
           </div>
-          <div className="h-full flex flex-col md:w-1/2 sm:w-full rounded-lg">
+          <div className="h-full md:flex sm:hidden flex-col xl:w-1/2 md:w-full sm:w-full rounded-lg">
             <div
               ref={divRef2}
               style={{
