@@ -102,9 +102,7 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Web3Button
-            label={windowWidth > 767 ? "Connect Wallet" : "Connect"}
-          />
+          <Web3Button />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="w-full flex gap-8 py-12 z-[999] bg-dark">

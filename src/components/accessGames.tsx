@@ -13,6 +13,8 @@ const AccessGames = () => {
     divRef: React.RefObject<HTMLDivElement>,
     windowWidth: number
   ) => {
+    const observerRef = useRef<IntersectionObserver | null>(null); // Keep a reference to the observer
+
     useEffect(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -29,11 +31,9 @@ const AccessGames = () => {
                 "translateY(100px)"
               );
             }
-
             divRef.current?.style.setProperty("scale", "1");
           } else {
             divRef.current?.style.setProperty("transform", "translateY(100px)");
-
             divRef.current?.style.setProperty("opacity", "0.01");
             divRef.current?.style.setProperty("scale", "0.9");
           }
@@ -41,16 +41,20 @@ const AccessGames = () => {
         { threshold: 0.4 }
       );
 
+      observerRef.current = observer;
+
       if (divRef.current) {
         observer.observe(divRef.current);
       }
 
       return () => {
-        if (divRef.current) {
-          observer.unobserve(divRef.current);
+        if (divRef.current && observerRef.current) {
+          observerRef.current.unobserve(divRef.current);
         }
       };
     }, [divRef, windowWidth]);
+
+    return observerRef.current;
   };
 
   const divRef = useRef<HTMLDivElement>(null);
@@ -78,7 +82,7 @@ const AccessGames = () => {
           ref={divRef8}
           style={{
             transform:
-              windowWidth > 767 ? "translateY(-100px)" : "translateY(100px)",
+              windowWidth > 768 ? "translateY(-100px)" : "translateY(100px)",
             opacity: "0",
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
@@ -90,7 +94,7 @@ const AccessGames = () => {
           ref={divRef7}
           style={{
             transform:
-              windowWidth > 767 ? "translateY(-100px)" : "translateY(100px)",
+              windowWidth > 768 ? "translateY(-100px)" : "translateY(100px)",
             opacity: "0",
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
@@ -102,7 +106,7 @@ const AccessGames = () => {
           ref={divRef6}
           style={{
             transform:
-              windowWidth > 767 ? "translateY(-100px)" : "translateY(100px)",
+              windowWidth > 768 ? "translateY(-100px)" : "translateY(100px)",
             opacity: "0",
             scale: "0.9",
             transition: "scale 1s,transform 1s, opacity 1s",
