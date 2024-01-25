@@ -72,9 +72,6 @@ const Features = () => {
     <>
       <div className="flex flex-col gap-28 text-white relative items-center justify-center">
         <div
-          style={{ width: "50%" }}
-          className="dual-background sm:hidden md:flex absolute opacity-30 z-0"></div>
-        <div
           ref={divRef}
           style={{
             opacity: "0.01",
