@@ -128,12 +128,12 @@ const Games: NextPageWithLayout<
           <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex gap-2 text-white items-center sm:right-[5%] md:right-[5%] lg:right-[10%] z-10">
             <PrevButton
               onClick={() => prevGroup()}
-              className="hover:bg-green-550/50 hover:border-green-550 
+              className="hover:bg-[#a664fe] hover:border-[#a664fe] rounded-full
               sm:w-9 sm:h-9 md:w-16 md:h-16 
-          border border-gray-500 rounded-xl p-3 transition-all duration-300 flex items-center justify-center"></PrevButton>
+          border border-gray-500 p-3 transition-all duration-300 flex items-center justify-center"></PrevButton>
             <NextButton
               onClick={() => nextGroup()}
-              className="hover:bg-green-550/50 p-3 hover:border-green-550 sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-xl transition-all duration-300 flex items-center justify-center"></NextButton>
+              className="hover:bg-[#a664fe] p-3 hover:border-[#a664fe] sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-full transition-all duration-300 flex items-center justify-center"></NextButton>
             <div className="text-xl">
               {currentIndex + 1} / {games.length}
             </div>

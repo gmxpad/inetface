@@ -65,9 +65,19 @@ const Footer = () => {
                 <p className="text-[#9d9d9d]">Company</p>
                 <p className="text-[#9d9d9d]">Press Kit</p>
                 <p className="text-[#9d9d9d]">Disclaimer</p>
-                <p className="text-[#9d9d9d]">Privacy</p>
-                <p className="text-[#9d9d9d]">Terms of Use</p>
-                <p className="text-[#9d9d9d]">Whitepaper</p>
+                <Link className="text-[#9d9d9d]" href="/privacy-policy">
+                  Privacy Policy
+                </Link>
+                <Link className="text-[#9d9d9d]" href="/terms-of-use">
+                  Terms of Use
+                </Link>
+
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://docs.gamexpad.io/welcome/what-is-gamexpad">
+                  Whitepaper
+                </Link>
               </div>
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
@@ -76,17 +86,42 @@ const Footer = () => {
                 <p className="text-[#9d9d9d]">IGO Launchpad</p>
                 <p className="text-[#9d9d9d]">INO Launchpad</p>
                 <p className="text-[#9d9d9d]">Staking</p>
-                <p className="text-[#9d9d9d]">Games</p>
+                <Link className="text-[#9d9d9d]" href="/games">
+                  Games
+                </Link>
+
                 <p className="text-[#9d9d9d]">Game Hub</p>
               </div>
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Contacts</p>
               <div className="grid md:grid-cols-1 sm:grid-cols-2 gap-2">
-                <p className="text-[#9d9d9d]">Twitter</p>
-                <p className="text-[#9d9d9d]">Telegram</p>
-                <p className="text-[#9d9d9d]">Medium</p>
-                <p className="text-[#9d9d9d]">Github</p>
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://twitter.com/gmxpad">
+                  Twitter
+                </Link>
+
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://t.me/gamexpad">
+                  Telegram
+                </Link>
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://medium.com/@gamexpad">
+                  Medium
+                </Link>
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://github.com/gmxpad">
+                  Github
+                </Link>
+
                 <p className="text-[#9d9d9d]">Help Center</p>
                 <p className="text-[#9d9d9d]">Submit Project</p>
               </div>
