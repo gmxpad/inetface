@@ -8,9 +8,10 @@ import {
   Button,
   NavbarMenuToggle,
   NavbarMenu,
+  Image,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import { Web3Button, Web3Modal } from "@web3modal/react";
+import { Web3Button } from "@web3modal/react";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
 
 export default function Header() {
@@ -53,9 +54,9 @@ export default function Header() {
           className="sm:flex md:flex lg:hidden text-white"
         />
         <NavbarBrand>
-          <p className="font-bold md:text-4xl sm:text-xl text-white font-SpaceGro">
-            GAMEXPAD
-          </p>
+          <Button as={Link} href="/" className="bg-transparent h-full">
+            <Image radius="none" width={200} src="/logos/game-x-pad.svg" />
+          </Button>
         </NavbarBrand>
       </NavbarContent>
 

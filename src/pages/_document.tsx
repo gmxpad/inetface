@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <title>GameXPad</title>
+      <link rel="icon" href="/logos/gmx-logo.svg" />
       <body>
         <Main />
         <NextScript />

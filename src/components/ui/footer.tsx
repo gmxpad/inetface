@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Link } from "@nextui-org/react";
+import { Button, Image, Link } from "@nextui-org/react";
 
 const sponsors = [
   {
@@ -43,7 +43,12 @@ const Footer = () => {
           <div className="flex sm:flex-col sm:gap-5 sm:justify-center sm:text-center md:justify-between">
             <div className="flex flex-col gap-5 sm:items-center sm:w-full md:w-[24%]">
               <div className="flex gap-4 sm:items-center sm:justify-center sm:w-full">
-                <p className="text-3xl font-SpaceGro">GAMEXPAD</p>
+                <Button
+                  as={Link}
+                  href="/"
+                  className="h-full bg-transparent px-0">
+                  <Image width={200} src="/logos/gamex-pad-purple.svg" />
+                </Button>
               </div>
               <p>
                 GameXPad brings together the gaming and finance worlds, offering
