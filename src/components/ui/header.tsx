@@ -34,7 +34,7 @@ export default function Header() {
     },
     {
       name: "Games",
-      link: "/",
+      link: "/games",
     },
     {
       name: "X Hub",
@@ -105,7 +105,7 @@ export default function Header() {
             as={Link}
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="#">
+            href="/games">
             Games
           </Button>
         </NavbarItem>
