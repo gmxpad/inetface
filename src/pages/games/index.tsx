@@ -27,11 +27,23 @@ import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
 import classNames from "classnames";
 import { base } from "viem/chains";
+import { ChevronDown } from "@/components/icons/Icons";
 
 export { getStaticProps };
 const Games: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ games }: any) => {
+  const icons = {
+    chevron: (
+      <ChevronDown
+        fill="currentColor"
+        size={16}
+        height={undefined}
+        width={undefined}
+      />
+    ),
+  };
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextGroup = () => {
@@ -87,13 +99,17 @@ const Games: NextPageWithLayout<
   }
 
   const [filterActive, setFilterActive] = useState<boolean>(false);
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["new"]));
+  const [selectedKeys, setSelectedKeys] = React.useState(
+    new Set(["new_games"])
+  );
 
   const selectedValue = React.useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
     [selectedKeys]
   );
   const [isInvalid, setIsInvalid] = React.useState(true);
+  console.log(selectedValue, "xdddd");
+
   return (
     <>
       <div className="flex flex-col w-full h-full pb-10">
@@ -158,9 +174,6 @@ const Games: NextPageWithLayout<
         <div className="flex flex-col gap-5 text-white text-4xl font-semibold px-[5%] mt-10">
           <div className="flex w-full justify-between">
             <p>Games</p>
-            <Button radius="sm" color="secondary" className="font-semibold">
-              Add Game
-            </Button>
           </div>
           <div className="w-full flex items-center justify-between">
             <div className="flex md:gap-5 items-center">
@@ -182,11 +195,11 @@ const Games: NextPageWithLayout<
                 Clear All
               </Button>
             </div>
-
             <Dropdown className="bg-dark-gray text-white">
               <DropdownTrigger>
                 <Button
                   radius="sm"
+                  endContent={icons.chevron}
                   variant="bordered"
                   className="capitalize text-white px-10 border border-gray-800/50">
                   {selectedValue}
@@ -194,17 +207,59 @@ const Games: NextPageWithLayout<
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Single selection example"
-                variant="flat"
                 disallowEmptySelection
                 selectionMode="single"
                 selectedKeys={selectedKeys}
                 // @ts-ignore
                 onSelectionChange={setSelectedKeys}>
-                <DropdownItem key="new">New Games</DropdownItem>
-                <DropdownItem key="old">Old Games</DropdownItem>
-                <DropdownItem key="date">Date</DropdownItem>
-                <DropdownItem key="single_date">Single Date</DropdownItem>
-                <DropdownItem key="iteration">Iteration</DropdownItem>
+                <DropdownItem
+                  key="new_games"
+                  color="secondary"
+                  className={classNames(
+                    selectedValue === "new games"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  New Games
+                </DropdownItem>
+                <DropdownItem
+                  key="old_games"
+                  color="secondary"
+                  className={classNames(
+                    selectedValue === "old games"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  Old Games
+                </DropdownItem>
+                <DropdownItem
+                  key="date"
+                  color="secondary"
+                  className={classNames(
+                    selectedValue === "date" ? "text-white" : "text-white/50"
+                  )}>
+                  Date
+                </DropdownItem>
+                <DropdownItem
+                  key="single_date"
+                  color="secondary"
+                  className={classNames(
+                    selectedValue === "single date"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  Single Date
+                </DropdownItem>
+                <DropdownItem
+                  key="iteration"
+                  color="secondary"
+                  className={classNames(
+                    selectedValue === "iteration"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  Iteration
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>

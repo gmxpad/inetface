@@ -14,7 +14,7 @@ import {
   Tabs,
 } from "@nextui-org/react";
 import classNames from "classnames";
-
+import { ChevronDown } from "@/components/icons/Icons";
 export default function Stake() {
   const MOCK_POSITIONS = [
     {
@@ -84,6 +84,17 @@ export default function Stake() {
     }
   };
 
+  const icons = {
+    chevron: (
+      <ChevronDown
+        fill="currentColor"
+        size={16}
+        height={undefined}
+        width={undefined}
+      />
+    ),
+  };
+
   return (
     <>
       <div className="flex justify-between w-full h-[84vh] px-[10%] relative overflow-hidden">
@@ -95,9 +106,18 @@ export default function Stake() {
             <span className="text-[#a664fe]">Stake</span> your $GMXPs to join
             the best <span className="text-[#a664fe]">IGOs</span>
           </div>
-          <Button radius="sm" className="max-w-[130px] bg-[#a664fe] text-white">
-            Buy $GMXP
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              radius="sm"
+              className="max-w-[130px] bg-[#a664fe] text-white">
+              Buy $GMXP
+            </Button>
+            <Button
+              radius="sm"
+              className="max-w-[130px] bg-transparent text-white border-2 border-gray-800/50">
+              Learn More
+            </Button>
+          </div>
           <div className="flex items-center gap-2">
             <p className="text-[#9d9d9d] font-semibold">AVAILABLE ON:</p>
             <Image width={190} src="/chains/skale-name.svg" />
@@ -113,20 +133,16 @@ export default function Stake() {
             <Button
               onPress={() => setActiveTab(0)}
               className={classNames(
-                "px-10",
-                activeTab === 0
-                  ? "bg-dark text-white"
-                  : "bg-transparent text-white/50"
+                "px-10 bg-transparent",
+                activeTab === 0 ? " text-white" : " text-white/50"
               )}>
               Stake
             </Button>
             <Button
               onPress={() => setActiveTab(1)}
               className={classNames(
-                "px-10",
-                activeTab === 1
-                  ? "bg-dark text-white"
-                  : "bg-transparent text-white/50"
+                "px-10 bg-transparent",
+                activeTab === 1 ? " text-white" : " text-white/50"
               )}>
               My Pools
             </Button>
@@ -140,7 +156,7 @@ export default function Stake() {
                     radius="sm"
                     onPress={() => selectedTimeVeriable(30)}
                     className={classNames(
-                      "w-full px-8",
+                      "w-full px-7",
                       selectedDays === 30
                         ? "bg-[#a664fe] text-white"
                         : "bg-gray-800/50 text-white/50"
@@ -157,7 +173,7 @@ export default function Stake() {
                     radius="sm"
                     onPress={() => selectedTimeVeriable(90)}
                     className={classNames(
-                      "w-full px-8",
+                      "w-full px-7",
                       selectedDays === 90
                         ? "bg-[#a664fe] text-white"
                         : "bg-gray-800/50 text-white/50"
@@ -174,7 +190,7 @@ export default function Stake() {
                     radius="sm"
                     onPress={() => selectedTimeVeriable(180)}
                     className={classNames(
-                      "w-full px-8",
+                      "w-full px-7",
                       selectedDays === 180
                         ? "bg-[#a664fe] text-white"
                         : "bg-gray-800/50 text-white/50"
@@ -186,12 +202,13 @@ export default function Stake() {
                   </div>
                 </div>
                 <div className="relative text-white ">
-                  <Dropdown className="bg-black text-white">
+                  <Dropdown className="bg-dark-gray text-white">
                     <DropdownTrigger>
                       <Button
                         size="lg"
                         radius="sm"
                         variant="flat"
+                        endContent={icons.chevron}
                         className={classNames(
                           "w-full",
                           selectedDays > 180
@@ -203,7 +220,6 @@ export default function Stake() {
                     </DropdownTrigger>
                     <DropdownMenu
                       aria-label="Single selection example"
-                      variant="flat"
                       disallowEmptySelection
                       selectionMode="single"
                       className="text-[#A566FD]"
@@ -213,32 +229,57 @@ export default function Stake() {
                       <DropdownItem
                         color="secondary"
                         onPress={() => selectedTimeVeriable(365)}
+                        className={classNames(
+                          selectedValue === "1 Year"
+                            ? "text-white"
+                            : "text-white/50"
+                        )}
                         key="1_Year">
-                        1 Year
+                        {`1 Year (4x)`}
                       </DropdownItem>
                       <DropdownItem
                         color="secondary"
                         onPress={() => selectedTimeVeriable(730)}
+                        className={classNames(
+                          selectedValue === "2 Year"
+                            ? "text-white"
+                            : "text-white/50"
+                        )}
                         key="2_Year">
-                        2 Year
+                        {`2 Year (8x)`}
                       </DropdownItem>
                       <DropdownItem
                         color="secondary"
                         onPress={() => selectedTimeVeriable(1095)}
+                        className={classNames(
+                          selectedValue === "3 Year"
+                            ? "text-white"
+                            : "text-white/50"
+                        )}
                         key="3_Year">
-                        3 Year
+                        {`3 Year (12x)`}
                       </DropdownItem>
                       <DropdownItem
                         color="secondary"
                         onPress={() => selectedTimeVeriable(1460)}
+                        className={classNames(
+                          selectedValue === "4 Year"
+                            ? "text-white"
+                            : "text-white/50"
+                        )}
                         key="4_Year">
-                        4 Year
+                        {`4 Year (16x)`}
                       </DropdownItem>
                       <DropdownItem
                         color="secondary"
                         onPress={() => selectedTimeVeriable(1825)}
+                        className={classNames(
+                          selectedValue === "5 Year"
+                            ? "text-white"
+                            : "text-white/50"
+                        )}
                         key="5_Year">
-                        5 Year
+                        {`5 Year (20x)`}
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
@@ -293,15 +334,16 @@ export default function Stake() {
                     radius="sm"
                     onInput={handleStakeInput}
                     type="text"
+                    color="success"
                     placeholder="Enter Stake Amount"
                     classNames={{
                       input:
-                        "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75",
+                        "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75 dark:text-white ",
                       inputWrapper:
-                        "dark:bg-black/70 dark:hover:bg-[#9d9d9d]/50 focus-within:!bg-[#9d9d9d] rounded-r-none",
-                      innerWrapper: "bg-transparent",
+                        "dark:bg-transparent dark:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
+                      innerWrapper: "bg-transparent text-white ",
                     }}
-                    className="w-[95%] whitespace-nowrap p-0"
+                    className="w-full whitespace-nowrap p-0 text-white"
                   />
                   <div className="flex items-center">
                     <Button

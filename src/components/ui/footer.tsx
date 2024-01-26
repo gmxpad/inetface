@@ -44,11 +44,7 @@ const Footer = () => {
             <div className="flex flex-col gap-5 sm:items-center sm:w-full md:w-[24%]">
               <div className="flex gap-4 sm:items-center sm:justify-center sm:w-full">
                 <Link href="/" className=" ">
-                  <Image
-                    radius="none"
-                    width={390}
-                    src="/logos/gmx-purple.svg"
-                  />
+                  <Image radius="none" width={390} src="/logos/gmx-hands.svg" />
                 </Link>
               </div>
               <p>
