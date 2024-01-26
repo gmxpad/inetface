@@ -48,7 +48,7 @@ const HowToJoin = () => {
     },
     {
       image: "/icons/ido.png",
-      name: "Join IDO",
+      name: "Join IGO",
       desx: "Acquire your new tokens and reveal the earnings that are on the horizon. Your adventure towards success begins now!",
       link: "/",
     },

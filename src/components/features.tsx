@@ -5,7 +5,7 @@ const Features = () => {
   const SLIDES = [
     {
       image: "/icons/ido.png",
-      name: "IDO",
+      name: "IGO",
       desx: "Your gateway to the next generation of gaming finance, offering early access to exclusive GameFi projects.",
       link: "/",
     },

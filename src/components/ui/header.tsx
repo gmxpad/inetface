@@ -58,13 +58,23 @@ export default function Header() {
           className="sm:flex md:flex lg:hidden text-white"
         />
         <NavbarBrand>
-          <Button
-            as={Link}
-            radius="sm"
+          <Link
+            size="lg"
             href="/"
-            className="bg-transparent h-[50px] w-[150px] p-0">
-            <Image radius="none" width={300} src="/logos/game-x-pad.svg" />
-          </Button>
+            className="bg-transparent sm:h-[50px] sm:w-[50px] md:h-[70px] md:w-[290px] px-0">
+            <Image
+              radius="none"
+              width={50}
+              className="sm:flex md:hidden"
+              src="/logos/gmx-logo.svg"
+            />
+            <Image
+              radius="none"
+              width={250}
+              className="sm:hidden md:flex"
+              src="/logos/game-x-pad.svg"
+            />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

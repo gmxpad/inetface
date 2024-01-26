@@ -113,7 +113,7 @@ export default function FAQ() {
           <p className=" font-SpaceGro sm:text-3xl md:text-3xl xl:text-5xl text-white z-10">
             FAQ
           </p>
-          <p>The most common questions</p>
+          <p>The Most Common Questions</p>
         </div>
         <div className="flex w-full xl:flex-row md:flex-col sm:flex-col justify-between">
           <div className="h-full flex flex-col xl:justify-start md:justify-center sm:justify-center  xl:w-1/2 sm:w-full md:w-full rounded-lg">

@@ -43,12 +43,13 @@ const Footer = () => {
           <div className="flex sm:flex-col sm:gap-5 sm:justify-center sm:text-center md:justify-between">
             <div className="flex flex-col gap-5 sm:items-center sm:w-full md:w-[24%]">
               <div className="flex gap-4 sm:items-center sm:justify-center sm:w-full">
-                <Button
-                  as={Link}
-                  href="/"
-                  className="h-full bg-transparent px-0">
-                  <Image width={200} src="/logos/gamex-pad-purple.svg" />
-                </Button>
+                <Link href="/" className=" ">
+                  <Image
+                    radius="none"
+                    width={390}
+                    src="/logos/gmx-purple.svg"
+                  />
+                </Link>
               </div>
               <p>
                 GameXPad brings together the gaming and finance worlds, offering
@@ -60,7 +61,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">About us</p>
-              <div className="flex flex-col gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-3 sm:text-center gap-2">
                 <p className="text-[#9d9d9d]">Company</p>
                 <p className="text-[#9d9d9d]">Press Kit</p>
                 <p className="text-[#9d9d9d]">Disclaimer</p>
@@ -71,7 +72,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Products</p>
-              <div className="flex flex-col gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-center whitespace-nowrap gap-2">
                 <p className="text-[#9d9d9d]">IGO Launchpad</p>
                 <p className="text-[#9d9d9d]">INO Launchpad</p>
                 <p className="text-[#9d9d9d]">Staking</p>
@@ -81,7 +82,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Contacts</p>
-              <div className="flex flex-col gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-2 gap-2">
                 <p className="text-[#9d9d9d]">Twitter</p>
                 <p className="text-[#9d9d9d]">Telegram</p>
                 <p className="text-[#9d9d9d]">Medium</p>
