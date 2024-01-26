@@ -117,7 +117,7 @@ export default function Stake() {
   return (
     <>
       {isLoad === false ? (
-        <div className="flex sm:flex-col md:flex-col xl:flex-row justify-between w-full sm:h-full md:h-full xl:h-[84vh] sm:px-5 md:px-5 xl:px-[10%] relative overflow-hidden sm:py-12 md:py-12 xl:py-0">
+        <div className="flex sm:flex-col md:flex-col xl:flex-row justify-between w-full sm:h-full md:h-full xl:h-full sm:px-5 md:px-5 xl:px-[10%] relative overflow-hidden py-12">
           <div
             style={{ width: "900px", height: "800px" }}
             className="dual-background absolute top-0 right-0 z-0 blur-3xl opacity-25"></div>
@@ -156,7 +156,7 @@ export default function Stake() {
             </div>
           </div>
 
-          <div className="sm:w-full md:w-full xl:w-[49%] bg-dark-gray rounded-lg flex flex-col z-10 sm:mt-12 md:mt-12 xl:mt-0  md:scale-95 md:-mr-5">
+          <div className="sm:w-full md:w-full xl:w-[49%] bg-dark-gray rounded-lg flex flex-col z-10 sm:mt-12 md:mt-12 xl:mt-0  xl:scale-95 xl:-mr-5">
             <div className=" flex gap-3 p-3 border-b border-gray-800/50 sm:justify-center md:justify-center xl:justify-start">
               <Button
                 onPress={() => setActiveTab(0)}
