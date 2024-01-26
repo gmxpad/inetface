@@ -5,7 +5,7 @@ export const MOCK_GAMES = [
     desc: "Call of Duty is a popular first-person shooter video game series developed by Infinity Ward and published by Activision.",
     image: "/games/cod.jpeg",
     slug: "cod",
-    chains: ["/chains/skale.svg"],
+    chains: ["/chains/skale.svg", "/chains/skale.svg"],
     logo: "/games/cod-logo.jpeg",
   },
   {
@@ -14,7 +14,7 @@ export const MOCK_GAMES = [
     desc: "Valorant is a tactical first-person shooter (FPS) game developed and published by Riot Games. Released in June 2020.",
     image: "/games/valo-purple.jpeg",
     slug: "valorant",
-    chains: ["/chains/skale.svg"],
+    chains: ["/chains/skale.svg", "/chains/skale.svg"],
     logo: "/games/cod-logo.jpeg",
   },
   {
@@ -23,7 +23,7 @@ export const MOCK_GAMES = [
     desc: "Forza Horizon is an open-world racing video game series developed by Playground Games and published by Microsoft Studios.",
     image: "/games/forza-4k.jpeg",
     slug: "forza-horizon",
-    chains: ["/chains/skale.svg"],
+    chains: ["/chains/skale.svg", "/chains/skale.svg"],
     logo: "/games/cod-logo.jpeg",
   },
   {
@@ -32,7 +32,7 @@ export const MOCK_GAMES = [
     desc: "Red Dead Redemption 2 (RDR2) is an action-adventure game developed and published by Rockstar Games.",
     image: "/games/rdr2-4k.webp",
     slug: "rdr2",
-    chains: ["/chains/skale.svg"],
+    chains: ["/chains/skale.svg", "/chains/skale.svg"],
     logo: "/games/cod-logo.jpeg",
   },
   {
@@ -41,7 +41,7 @@ export const MOCK_GAMES = [
     desc: "Fortnite is a popular online multiplayer battle royale game developed and published by Epic Games.",
     image: "/games/fortnite-4k.jpeg",
     slug: "fortnite",
-    chains: ["/chains/skale.svg"],
+    chains: ["/chains/skale.svg", "/chains/skale.svg"],
     logo: "/games/cod-logo.jpeg",
   },
 ];

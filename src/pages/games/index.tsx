@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
+  Avatar,
+  AvatarGroup,
   Button,
   Card,
   CardBody,
@@ -196,13 +198,19 @@ const Games: NextPageWithLayout<
                               )}
                             </div>
                             <div className="flex gap-1">
-                              {filteredGame.chains.map(
-                                (item: any, index: number) => (
-                                  <div key={"chainKey" + index.toString()}>
-                                    <Image width={30} src={item} />
-                                  </div>
-                                )
-                              )}
+                              <AvatarGroup
+                                key={"chainKey" + index.toString()}
+                                isBordered>
+                                {filteredGame.chains.map(
+                                  (item: any, index: number) => (
+                                    <Avatar
+                                      size="sm"
+                                      key={item.toString() + index.toString()}
+                                      src={item}
+                                    />
+                                  )
+                                )}
+                              </AvatarGroup>
                             </div>
                           </div>
                         </CardBody>
