@@ -80,7 +80,7 @@ const Games: NextPageWithLayout<
 
   return (
     <>
-      <div className="flex flex-col w-full h-full gap-10">
+      <div className="flex flex-col w-full h-full sm:gap-0 md:gap-10">
         <div className="relative h-full w-full">
           <div
             style={{
@@ -118,7 +118,7 @@ const Games: NextPageWithLayout<
                     href={`/games/${item.slug}`}
                     radius="sm"
                     size="sm"
-                    className="bg-[#a664fe] sm:px-5 md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-base md:text-lg px-16">
+                    className="bg-[#a664fe] sm:max-w-[25%] md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-sm md:text-lg px-16">
                     Explore
                   </Button>
                 </div>
@@ -139,7 +139,7 @@ const Games: NextPageWithLayout<
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5 text-white text-4xl font-semibold px-[5%] w-[35%]">
+        <div className="flex flex-col md:gap-5 text-white text-4xl font-semibold px-[5%] sm:w-full md:w-[35%]">
           <p>Browse Games</p>
           <Input
             classNames={{
@@ -155,76 +155,59 @@ const Games: NextPageWithLayout<
             onChange={filter}
           />
         </div>
-        <div className="grid grid-cols-4 px-[5%]">
+        <div className="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 sm:gap-12 mt-10 px-[5%]">
           {filteredGames.length > 0 ? (
             filteredGames.map((filteredGame: any, index: number) => (
               <div
                 key={"filteredGame_keys" + index.toString()}
                 className="flex flex-col overflow-hidden">
-                <Tabs
-                  aria-label="Options"
-                  variant="underlined"
-                  color="secondary">
-                  <Tab
-                    key="project"
-                    title={filteredGame.name}
-                    className="bg-transparent">
-                    <Card className="bg-transparent">
-                      <Link href={"/games/" + filteredGame.slug}>
-                        <CardBody className="h-[350px] w-full gap-2 flex flex-col justify-between ">
-                          <Image
-                            width={1650}
-                            height={350}
-                            isBlurred
-                            isZoomed
-                            className="h-[240px] w-full"
-                            src={filteredGame.image}
-                            alt="game"
-                          />
-                          <p className="text-[#a664fe] font-orbitron">
-                            {filteredGame.name}
-                          </p>
+                <Card className="bg-transparent">
+                  <Link href={"/games/" + filteredGame.slug}>
+                    <CardBody className="h-[350px] w-full gap-2 flex flex-col justify-between ">
+                      <Image
+                        width={1650}
+                        height={350}
+                        isBlurred
+                        isZoomed
+                        className="h-[240px] w-full"
+                        src={filteredGame.image}
+                        alt="game"
+                      />
+                      <p className="text-[#a664fe] font-Orbitron">
+                        {filteredGame.name}
+                      </p>
 
-                          <div className="w-full flex justify-between items-center text-white">
-                            <div className="flex gap-1">
-                              {filteredGame.genre.map(
-                                (item: any, index: number) => (
-                                  <div
-                                    key={"imageKey" + index.toString()}
-                                    className="font-normal text-sm px-2 rounded-md border border-gray-800/50">
-                                    {item}
-                                  </div>
-                                )
-                              )}
-                            </div>
-                            <div className="flex gap-1">
-                              <AvatarGroup
-                                key={"chainKey" + index.toString()}
-                                isBordered>
-                                {filteredGame.chains.map(
-                                  (item: any, index: number) => (
-                                    <Avatar
-                                      size="sm"
-                                      key={item.toString() + index.toString()}
-                                      src={item}
-                                    />
-                                  )
-                                )}
-                              </AvatarGroup>
-                            </div>
-                          </div>
-                        </CardBody>
-                      </Link>
-                    </Card>
-                  </Tab>
-                  <Tab key="description" title="Description">
-                    <Card className="bg-transparent">
-                      <CardBody className="h-[350px] w-[300px] text-white">
-                        {filteredGame.desc}
-                      </CardBody>
-                    </Card>
-                  </Tab>
-                </Tabs>
+                      <div className="w-full flex justify-between items-center text-white">
+                        <div className="flex gap-1">
+                          {filteredGame.genre.map(
+                            (item: any, index: number) => (
+                              <div
+                                key={"imageKey" + index.toString()}
+                                className="font-normal text-sm px-2 rounded-md border border-gray-800/50">
+                                {item}
+                              </div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex gap-1">
+                          <AvatarGroup
+                            key={"chainKey" + index.toString()}
+                            isBordered>
+                            {filteredGame.chains.map(
+                              (item: any, index: number) => (
+                                <Avatar
+                                  size="sm"
+                                  key={item.toString() + index.toString()}
+                                  src={item}
+                                />
+                              )
+                            )}
+                          </AvatarGroup>
+                        </div>
+                      </div>
+                    </CardBody>
+                  </Link>
+                </Card>
               </div>
             ))
           ) : (
