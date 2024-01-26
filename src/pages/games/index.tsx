@@ -5,6 +5,12 @@ import {
   Button,
   Card,
   CardBody,
+  Checkbox,
+  CheckboxGroup,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Image,
   Input,
   Link,
@@ -19,6 +25,8 @@ import {
 import { getStaticProps } from "@/framework/rest/games.ssr";
 import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
+import classNames from "classnames";
+import { base } from "viem/chains";
 
 export { getStaticProps };
 const Games: NextPageWithLayout<
@@ -78,9 +86,17 @@ const Games: NextPageWithLayout<
     filteredGames = games;
   }
 
+  const [filterActive, setFilterActive] = useState<boolean>(false);
+  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["new"]));
+
+  const selectedValue = React.useMemo(
+    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
+    [selectedKeys]
+  );
+  const [isInvalid, setIsInvalid] = React.useState(true);
   return (
     <>
-      <div className="flex flex-col w-full h-full sm:gap-0 md:gap-10">
+      <div className="flex flex-col w-full h-full pb-10">
         <div className="relative h-full w-full">
           <div
             style={{
@@ -130,91 +146,248 @@ const Games: NextPageWithLayout<
               onClick={() => prevGroup()}
               className="hover:bg-[#a664fe] hover:border-[#a664fe] rounded-full
               sm:w-9 sm:h-9 md:w-16 md:h-16 
-          border border-gray-500 p-3 transition-all duration-300 flex items-center justify-center"></PrevButton>
+          border border-gray-500 sm:p-2 md:p-4 transition-all duration-300 flex items-center justify-center"></PrevButton>
             <NextButton
               onClick={() => nextGroup()}
-              className="hover:bg-[#a664fe] p-3 hover:border-[#a664fe] sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-full transition-all duration-300 flex items-center justify-center"></NextButton>
+              className="hover:bg-[#a664fe] sm:p-2 md:p-4 hover:border-[#a664fe] sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-full transition-all duration-300 flex items-center justify-center"></NextButton>
             <div className="text-xl">
               {currentIndex + 1} / {games.length}
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:gap-5 text-white text-4xl font-semibold px-[5%] sm:w-full md:w-[35%]">
-          <p>Browse Games</p>
-          <Input
-            classNames={{
-              input: "text-white",
-              inputWrapper: " border-gray-800/50",
-            }}
-            value={filterGame}
-            radius="sm"
-            type=""
-            color="secondary"
-            label="Search game"
-            variant="underlined"
-            onChange={filter}
-          />
-        </div>
-        <div className="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 sm:gap-12 mt-10 px-[5%]">
-          {filteredGames.length > 0 ? (
-            filteredGames.map((filteredGame: any, index: number) => (
-              <div
-                key={"filteredGame_keys" + index.toString()}
-                className="flex flex-col overflow-hidden">
-                <Card className="bg-transparent">
-                  <Link href={"/games/" + filteredGame.slug}>
-                    <CardBody className="h-[350px] w-full gap-2 flex flex-col justify-between ">
-                      <Image
-                        width={1650}
-                        height={350}
-                        isBlurred
-                        isZoomed
-                        className="h-[240px] w-full"
-                        src={filteredGame.image}
-                        alt="game"
-                      />
-                      <p className="text-[#a664fe] font-Orbitron">
-                        {filteredGame.name}
-                      </p>
+        <div className="flex flex-col gap-5 text-white text-4xl font-semibold px-[5%] mt-10">
+          <div className="flex w-full justify-between">
+            <p>Games</p>
+            <Button radius="sm" color="secondary" className="font-semibold">
+              Add Game
+            </Button>
+          </div>
+          <div className="w-full flex items-center justify-between">
+            <div className="flex md:gap-5 items-center">
+              <Button
+                onPress={() => setFilterActive(!filterActive)}
+                className="bg-transparent text-white px-0 pr-5">
+                <Image
+                  src={
+                    filterActive === true
+                      ? "/icons/filter-x.svg"
+                      : "/icons/filter.svg"
+                  }
+                />
+                Filters
+              </Button>
+              <Button
+                radius="full"
+                className="bg-transparent text-white border border-gray-800/50">
+                Clear All
+              </Button>
+            </div>
 
-                      <div className="w-full flex justify-between items-center text-white">
-                        <div className="flex gap-1">
-                          {filteredGame.genre.map(
-                            (item: any, index: number) => (
-                              <div
-                                key={"imageKey" + index.toString()}
-                                className="font-normal text-sm px-2 rounded-md border border-gray-800/50">
-                                {item}
-                              </div>
-                            )
-                          )}
-                        </div>
-                        <div className="flex gap-1">
-                          <AvatarGroup
-                            key={"chainKey" + index.toString()}
-                            isBordered>
-                            {filteredGame.chains.map(
+            <Dropdown className="bg-dark-gray text-white">
+              <DropdownTrigger>
+                <Button
+                  radius="sm"
+                  variant="bordered"
+                  className="capitalize text-white px-10 border border-gray-800/50">
+                  {selectedValue}
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Single selection example"
+                variant="flat"
+                disallowEmptySelection
+                selectionMode="single"
+                selectedKeys={selectedKeys}
+                // @ts-ignore
+                onSelectionChange={setSelectedKeys}>
+                <DropdownItem key="new">New Games</DropdownItem>
+                <DropdownItem key="old">Old Games</DropdownItem>
+                <DropdownItem key="date">Date</DropdownItem>
+                <DropdownItem key="single_date">Single Date</DropdownItem>
+                <DropdownItem key="iteration">Iteration</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        </div>
+        <div className="flex sm:flex-col px-[5%] flex-row gap-5">
+          <div
+            className={classNames(
+              "bg-dark-gray sm:w-full md:w-[30%] p-5 transition-all duration-400 mt-10 rounded-lg flex flex-col gap-5",
+              filterActive === true ? "flex" : "hidden"
+            )}>
+            <Input
+              classNames={{
+                input: "text-white",
+                inputWrapper: " border-gray-800/50",
+              }}
+              value={filterGame}
+              radius="sm"
+              type=""
+              color="secondary"
+              label="Search game"
+              variant="underlined"
+              onChange={filter}
+            />
+            <div>
+              <CheckboxGroup label="Platform">
+                <Checkbox color="secondary" value="windows">
+                  <div className="text-white flex items-center gap-1">
+                    <Image src="/icons/windows.svg" />
+                    Windows
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="macos">
+                  <div className="text-white flex items-center gap-1">
+                    <Image src="/icons/macos.svg" />
+                    MacOS
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="android">
+                  <div className="text-white flex items-center gap-1">
+                    <Image src="/icons/android.svg" />
+                    Android
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="ios">
+                  <div className="text-white flex items-center gap-1">
+                    <Image src="/icons/ios.svg" />
+                    IOS
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="web">
+                  <div className="text-white flex items-center gap-1">
+                    <Image src="/icons/web.svg" />
+                    Web
+                  </div>
+                </Checkbox>
+              </CheckboxGroup>
+            </div>
+            <div>
+              <CheckboxGroup label="Network">
+                <Checkbox color="secondary" value="skale">
+                  <div className="text-white flex items-center gap-1">
+                    <Image width={20} src="/icons/skale-dark.svg" />
+                    Skale
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="eth">
+                  <div className="text-white flex items-center gap-1">
+                    <Image width={20} src="/chains/eth.svg" />
+                    Ethereum
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="polygon">
+                  <div className="text-white flex items-center gap-1">
+                    <Image width={20} src="/chains/polygon.svg" />
+                    Polygon
+                  </div>
+                </Checkbox>
+              </CheckboxGroup>
+            </div>
+            <div>
+              <CheckboxGroup label="Genres">
+                <Checkbox color="secondary" value="metaverse">
+                  <div className="text-white flex items-center gap-1">
+                    Metaverse
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="combat">
+                  <div className="text-white flex items-center gap-1">
+                    Combat
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="racing">
+                  <div className="text-white flex items-center gap-1">
+                    Racing
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="card">
+                  <div className="text-white flex items-center gap-1">Card</div>
+                </Checkbox>
+                <Checkbox color="secondary" value="board">
+                  <div className="text-white flex items-center gap-1">
+                    Board
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="rpg">
+                  <div className="text-white flex items-center gap-1">RPG</div>
+                </Checkbox>
+                <Checkbox color="secondary" value="strategy">
+                  <div className="text-white flex items-center gap-1">
+                    Strategy
+                  </div>
+                </Checkbox>
+                <Checkbox color="secondary" value="moba">
+                  <div className="text-white flex items-center gap-1">Moba</div>
+                </Checkbox>
+              </CheckboxGroup>
+            </div>
+          </div>
+          <div
+            className={classNames(
+              "grid  md:grid-cols-2 sm:grid-cols-1 sm:gap-12 xl:gap-4 mt-10",
+              filterActive === true ? "xl:grid-cols-3" : "xl:grid-cols-4"
+            )}>
+            {filteredGames.length > 0 ? (
+              filteredGames.map((filteredGame: any, index: number) => (
+                <div
+                  key={"filteredGame_keys" + index.toString()}
+                  className="flex flex-col overflow-hidden">
+                  <Card className="bg-dark-gray">
+                    <Link href={"/games/" + filteredGame.slug}>
+                      <CardBody className="h-[350px] w-full gap-2 flex flex-col justify-between ">
+                        <Image
+                          width={1650}
+                          height={350}
+                          isBlurred
+                          isZoomed
+                          className="h-[240px] w-full"
+                          src={filteredGame.image}
+                          alt="game"
+                        />
+                        <p className="text-white font-Orbitron">
+                          {filteredGame.name}
+                        </p>
+
+                        <div className="w-full flex justify-between items-center text-white">
+                          <div className="flex gap-1">
+                            {filteredGame.genre.map(
                               (item: any, index: number) => (
-                                <Avatar
-                                  size="sm"
-                                  key={item.toString() + index.toString()}
-                                  src={item}
-                                />
+                                <div
+                                  key={"imageKey" + index.toString()}
+                                  className="font-normal text-sm px-2 rounded-md border border-gray-800/50">
+                                  {item}
+                                </div>
                               )
                             )}
-                          </AvatarGroup>
+                          </div>
+                          <div className="flex gap-1">
+                            <AvatarGroup
+                              key={"chainKey" + index.toString()}
+                              isBordered>
+                              {filteredGame.chains.map(
+                                (item: any, index: number) => (
+                                  <Avatar
+                                    size="sm"
+                                    key={item.toString() + index.toString()}
+                                    src={item}
+                                  />
+                                )
+                              )}
+                            </AvatarGroup>
+                          </div>
                         </div>
-                      </div>
-                    </CardBody>
-                  </Link>
-                </Card>
+                      </CardBody>
+                    </Link>
+                  </Card>
+                </div>
+              ))
+            ) : (
+              <div className="w-full justify-center items-center p-12 text-white text-2xl whitespace-nowrap">
+                There is no accessible data!
               </div>
-            ))
-          ) : (
-            <div className="w-full justify-center items-center p-12 text-white text-2xl whitespace-nowrap">
-              There is no accessible data!
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>
