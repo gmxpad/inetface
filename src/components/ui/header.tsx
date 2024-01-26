@@ -26,11 +26,11 @@ export default function Header() {
     },
     {
       name: "Launchpad",
-      link: "/",
+      link: "/launchpads",
     },
     {
       name: "Stake",
-      link: "/",
+      link: "/stake",
     },
     {
       name: "Games",
@@ -38,7 +38,7 @@ export default function Header() {
     },
     {
       name: "X Hub",
-      link: "/",
+      link: "/x-hub",
     },
   ];
   const [lab, setLab] = useState<string>("Connect Wallet");
@@ -86,14 +86,14 @@ export default function Header() {
             as={Link}
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="#">
+            href="/launchpads">
             Launchpads
           </Button>
         </NavbarItem>
         <NavbarItem isActive>
           <Button
             as={Link}
-            href="#"
+            href="/stake"
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300"
             aria-current="page">
@@ -114,7 +114,7 @@ export default function Header() {
             as={Link}
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="#">
+            href="/x-hub">
             X Hub
           </Button>
         </NavbarItem>
