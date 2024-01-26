@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -41,21 +41,29 @@ export default function Header() {
       link: "/",
     },
   ];
+  const [lab, setLab] = useState<string>("Connect Wallet");
+  useEffect(() => {
+    windowWidth > 767 ? setLab("Connect Wallet") : setLab("Connect");
+  }, [windowWidth]);
 
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
       position="sticky"
-      className="bg-dark py-4 sm:px-1 md:px-1 lg:px-[8%] z-[999] w-screen">
+      className="bg-dark py-4 sm:px-1 md:px-1 lg:px-[8%] z-[9999] w-screen">
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:flex md:flex lg:hidden text-white"
         />
         <NavbarBrand>
-          <Button as={Link} href="/" className="bg-transparent h-full">
-            <Image radius="none" width={200} src="/logos/game-x-pad.svg" />
+          <Button
+            as={Link}
+            radius="sm"
+            href="/"
+            className="bg-transparent h-[50px] w-[150px] p-0">
+            <Image radius="none" width={300} src="/logos/game-x-pad.svg" />
           </Button>
         </NavbarBrand>
       </NavbarContent>
@@ -103,7 +111,7 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Web3Button />
+          <Web3Button label={lab} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="w-full flex gap-8 py-12 z-[999] bg-dark">
