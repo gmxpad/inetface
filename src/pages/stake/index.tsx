@@ -186,11 +186,12 @@ export default function Stake() {
                   </div>
                 </div>
                 <div className="relative text-white ">
-                  <Dropdown>
+                  <Dropdown className="bg-black text-white">
                     <DropdownTrigger>
                       <Button
                         size="lg"
                         radius="sm"
+                        variant="flat"
                         className={classNames(
                           "w-full",
                           selectedDays > 180
@@ -205,33 +206,39 @@ export default function Stake() {
                       variant="flat"
                       disallowEmptySelection
                       selectionMode="single"
+                      className="text-[#A566FD]"
                       selectedKeys={selectedKeys}
                       // @ts-ignore
                       onSelectionChange={setSelectedKeys}>
                       <DropdownItem
+                        color="secondary"
                         onPress={() => selectedTimeVeriable(365)}
                         key="1_Year">
-                        365 Days
+                        1 Year
                       </DropdownItem>
                       <DropdownItem
+                        color="secondary"
                         onPress={() => selectedTimeVeriable(730)}
                         key="2_Year">
-                        730 Days
+                        2 Year
                       </DropdownItem>
                       <DropdownItem
+                        color="secondary"
                         onPress={() => selectedTimeVeriable(1095)}
                         key="3_Year">
-                        1095 Days
+                        3 Year
                       </DropdownItem>
                       <DropdownItem
+                        color="secondary"
                         onPress={() => selectedTimeVeriable(1460)}
                         key="4_Year">
-                        1460 Days
+                        4 Year
                       </DropdownItem>
                       <DropdownItem
+                        color="secondary"
                         onPress={() => selectedTimeVeriable(1825)}
                         key="5_Year">
-                        1825 Days
+                        5 Year
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
@@ -246,22 +253,24 @@ export default function Stake() {
               </div>
               <div className="flex justify-between text-[#9d9d9d]">
                 <p>Staked Amount</p>
-                <div>{`0 $GMXP`}</div>
+                <div className="text-white">{`0 $GMXP`}</div>
               </div>
               <div className="flex justify-between text-[#9d9d9d]">
                 <p>Wallet Balance</p>
-                <div>{`0 $GMXP`}</div>
+                <div className="text-white">{`0 $GMXP`}</div>
               </div>
               <div className="flex justify-between text-[#9d9d9d]">
                 <p>Earned to Date</p>
                 <div className="flex items-center gap-2">
-                  <div>{`0 $GMXP`}</div>-<div>{`0 $SGMXP`}</div>
+                  <div className="text-white">{`0 $GMXP`}</div>-
+                  <div className="text-white">{`0 $SGMXP`}</div>
                 </div>
               </div>
               <div className="flex items-center justify-between w-full text-white border border-gray-800/50 rounded-lg p-2">
                 <p className="text-[#9d9d9d]">Claimable Rewards:</p>
                 <div className="flex gap-2">
-                  <div>{`0 $GMXP`}</div>-<div>{`0 $SGMXP`}</div>
+                  <div className="text-white">{`0 $GMXP`}</div>-
+                  <div className="text-white">{`0 $SGMXP`}</div>
                 </div>
 
                 <Button
@@ -287,12 +296,12 @@ export default function Stake() {
                     placeholder="Enter Stake Amount"
                     classNames={{
                       input:
-                        " bg-transparent text-white dark:text-white placeholder:text-white dark:placeholder:text-white/60",
+                        "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75",
                       inputWrapper:
-                        "dark:bg-[#a664fe] hover:bg-white  dark:hover:bg-[#a664fe] focus-within:!bg-[#a664fe] rounded-r-none",
+                        "dark:bg-black/70 dark:hover:bg-[#9d9d9d]/50 focus-within:!bg-[#9d9d9d] rounded-r-none",
                       innerWrapper: "bg-transparent",
                     }}
-                    className=" text-white w-[95%] whitespace-nowrap p-0 rounded-r-none"
+                    className="w-[95%] whitespace-nowrap p-0"
                   />
                   <div className="flex items-center">
                     <Button
