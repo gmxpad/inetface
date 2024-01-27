@@ -129,7 +129,7 @@ export default function Stake() {
             <div className="flex gap-2 sm:justify-center md:justify-center xl:justify-start">
               <Button
                 radius="sm"
-                className="max-w-[130px] bg-[#a664fe] text-white py-5 border-3 border-[#a664fe]">
+                className="max-w-[130px] bg-[#a664fe] text-white ">
                 Buy $GMXP
               </Button>
 
@@ -137,7 +137,7 @@ export default function Stake() {
                 as={Link}
                 isExternal={true}
                 radius="sm"
-                className="bg-transparent text-white font-bold  text-xl duration-300 border-3 py-5 border-white"
+                className="bg-transparent text-white border border-gray-800/50 py-5"
                 href="https://docs.gamexpad.io/">
                 Learn More
               </Button>
@@ -157,23 +157,26 @@ export default function Stake() {
           </div>
 
           <div className="sm:w-full md:w-full xl:w-[49%] bg-dark-gray rounded-lg flex flex-col z-10 sm:mt-12 md:mt-12 xl:mt-0  xl:scale-95 xl:-mr-5">
-            <div className=" flex gap-3 p-3 border-b border-gray-800/50 sm:justify-center md:justify-center xl:justify-start">
-              <Button
-                onPress={() => setActiveTab(0)}
-                className={classNames(
-                  "px-10 bg-transparent",
-                  activeTab === 0 ? " text-white" : " text-white/50"
-                )}>
-                Stake
-              </Button>
-              <Button
-                onPress={() => setActiveTab(1)}
-                className={classNames(
-                  "px-10 bg-transparent",
-                  activeTab === 1 ? " text-white" : " text-white/50"
-                )}>
-                My Pools
-              </Button>
+            <div className=" flex gap-3 p-3 border-b border-gray-800/50 sm:justify-between md:justify-center  whitespace-nowrap xl:justify-between items-center">
+              <div>
+                <Button
+                  onPress={() => setActiveTab(0)}
+                  className={classNames(
+                    "sm:px-0 xl:px-10 bg-transparent",
+                    activeTab === 0 ? " text-white" : " text-white/50"
+                  )}>
+                  Stake
+                </Button>
+                <Button
+                  onPress={() => setActiveTab(1)}
+                  className={classNames(
+                    "sm:px-0 xl:px-10 bg-transparent",
+                    activeTab === 1 ? " text-white" : " text-white/50"
+                  )}>
+                  My Pools
+                </Button>
+              </div>
+              <div className="text-white pr-5 sm:text-sm">{`APR: 102%`}</div>
             </div>
             {activeTab === 0 ? (
               <div className="p-5 flex flex-col gap-5">
@@ -386,11 +389,11 @@ export default function Stake() {
                   </p>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
-                  <p>Staked Amount</p>
+                  <p>Total Staked</p>
                   <div className="text-white">{`0 $GMXP`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
-                  <p>Wallet Balance</p>
+                  <p>Total Score</p>
                   <div className="text-white">{`0 $GMXP`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">

@@ -40,7 +40,7 @@ const Games: NextPageWithLayout<
                 </div>
                 <Button
                   radius="sm"
-                  className="bg-[#a664fe] text-3xl text-white sm:max-w-[50%] md:max-w-full xl:max-w-[20%]">
+                  className="bg-[#a664fe] text-3xl text-white font-Orbitron py-6 sm:px-24 sm:max-w-[80%] md:max-w-full xl:max-w-[20%]">
                   Play
                 </Button>
               </div>
@@ -74,20 +74,6 @@ const Games: NextPageWithLayout<
                   activeTab === 2 ? "text-white" : "text-white/50"
                 )}>
                 Activity
-              </Button>
-            </div>
-            <div className="flex sm:justify-between md:justify-between xl:justify-end">
-              <Button isIconOnly radius="full" className="bg-transparent">
-                <Image src="/icons/web.svg" />
-              </Button>
-              <Button isIconOnly radius="full" className="bg-transparent">
-                <Image src="/icons/web.svg" />
-              </Button>
-              <Button isIconOnly radius="full" className="bg-transparent">
-                <Image src="/icons/web.svg" />
-              </Button>
-              <Button isIconOnly radius="full" className="bg-transparent">
-                <Image src="/icons/web.svg" />
               </Button>
             </div>
           </div>
