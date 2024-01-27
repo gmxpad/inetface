@@ -61,7 +61,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">About us</p>
-              <div className="grid md:grid-cols-1 sm:grid-cols-3 sm:text-center gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-3 sm:text-start gap-2">
                 <p className="text-[#9d9d9d]">Company</p>
                 <p className="text-[#9d9d9d]">Press Kit</p>
                 <p className="text-[#9d9d9d]">Disclaimer</p>
@@ -82,7 +82,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Products</p>
-              <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-center whitespace-nowrap gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-start whitespace-nowrap gap-2">
                 <p className="text-[#9d9d9d]">IGO Launchpad</p>
                 <p className="text-[#9d9d9d]">INO Launchpad</p>
                 <p className="text-[#9d9d9d]">Staking</p>
@@ -95,7 +95,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Contacts</p>
-              <div className="grid md:grid-cols-1 sm:grid-cols-2 gap-2">
+              <div className="grid md:grid-cols-1 sm:grid-cols-2 gap-2 sm:text-start">
                 <Link
                   isExternal
                   className="text-[#9d9d9d]"

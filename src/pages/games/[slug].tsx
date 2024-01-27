@@ -35,10 +35,12 @@ const Games: NextPageWithLayout<
                 <p className=" text-4xl md:font-Orbitron md:text-5xl">
                   {game.name}
                 </p>
-                <div className="text-white w-[35%]">{game.desc}</div>
+                <div className="text-white sm:hidden md:hidden xl:flex w-[35%]">
+                  {game.desc}
+                </div>
                 <Button
                   radius="sm"
-                  className="bg-[#a664fe] text-3xl text-white max-w-[20%]">
+                  className="bg-[#a664fe] text-3xl text-white sm:max-w-[50%] md:max-w-full xl:max-w-[20%]">
                   Play
                 </Button>
               </div>
@@ -47,7 +49,7 @@ const Games: NextPageWithLayout<
           </div>
         </div>
         <div className="flex flex-col gap-12 px-[10%]">
-          <div className="flex justify-between w-full border-b border-gray-800/50">
+          <div className="flex  md:flex-col-reverse xl:flex-row sm:flex-col-reverse sm:gap-5 md:gap-5 xl:gap-0 xl:justify-between w-full border-b border-gray-800/50">
             <div className="flex gap-2">
               <Button
                 onPress={() => setActiveTab(0)}
@@ -74,7 +76,7 @@ const Games: NextPageWithLayout<
                 Activity
               </Button>
             </div>
-            <div>
+            <div className="flex sm:justify-between md:justify-between xl:justify-end">
               <Button isIconOnly radius="full" className="bg-transparent">
                 <Image src="/icons/web.svg" />
               </Button>
@@ -89,7 +91,7 @@ const Games: NextPageWithLayout<
               </Button>
             </div>
           </div>
-          <div className="flex justify-center items-center p-24 text-white">
+          <div className="flex justify-center items-center p-24 text-white whitespace-nowrap">
             No Available Data
           </div>
         </div>
