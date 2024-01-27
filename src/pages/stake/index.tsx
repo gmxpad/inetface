@@ -394,7 +394,7 @@ export default function Stake() {
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Score</p>
-                  <div className="text-white">{`0 $GMXP`}</div>
+                  <div className="text-white">{`0x`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Earned to Date</p>
