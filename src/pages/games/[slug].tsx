@@ -40,7 +40,8 @@ const Games: NextPageWithLayout<
                 </div>
                 <Button
                   radius="sm"
-                  className="bg-[#a664fe] text-3xl text-white font-Orbitron py-6 sm:px-24 sm:max-w-[80%] md:max-w-full xl:max-w-[20%]">
+                  size="sm"
+                  className="bg-[#a664fe] sm:max-w-[25%] md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-sm md:text-lg px-16">
                   Play
                 </Button>
               </div>

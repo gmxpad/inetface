@@ -176,7 +176,9 @@ export default function Stake() {
                   My Pools
                 </Button>
               </div>
-              <div className="text-white pr-5 sm:text-sm">{`APR: 102%`}</div>
+              <div className="text-white pr-5 sm:text-sm">
+                <span className="text-[#9d9d9d]">APR:</span> 102%
+              </div>
             </div>
             {activeTab === 0 ? (
               <div className="p-5 flex flex-col gap-5">
