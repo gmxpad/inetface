@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Image } from "@nextui-org/react";
 import { getStaticProps, getStaticPaths } from "@/framework/rest/game.ssr";
 import { NextPageWithLayout } from "@/types";
 import { InferGetStaticPropsType } from "next";
+import classNames from "classnames";
 export { getStaticPaths, getStaticProps };
 
 const Games: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ game }: any) => {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
   return (
     <>
       <div className="flex flex-col gap-10 h-full">
@@ -24,28 +27,72 @@ const Games: NextPageWithLayout<
               alt={game.name}
               draggable={false}
             />
-            <div className="absolute z-10 sm:bottom-5 sm:left-5 bottom-16 left-16  w-full flex justify-between   text-white">
-              <div className="flex items-center rounded-lg">
-                <Image
-                  className=" cover-logo sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 object-cover"
-                  width={250}
-                  height={350}
-                  radius="lg"
-                  src={game.logo}
-                  alt={game.name}
-                  draggable={false}
-                />
-                <div>
-                  <p className="mt-2 ml-2 p-1 px-2 text-4xl md:font-Orbitron md:text-5xl">
-                    {game.name}
-                  </p>
+            <div className="absolute z-10 sm:bottom-5 sm:left-5 bottom-16 left-[10%]  w-full flex justify-between   text-white">
+              <div className="flex flex-col gap-2">
+                <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
+                  {game.genre[0]}
                 </div>
+                <p className=" text-4xl md:font-Orbitron md:text-5xl">
+                  {game.name}
+                </p>
+                <div className="text-white w-[35%]">{game.desc}</div>
+                <Button
+                  radius="sm"
+                  className="bg-[#a664fe] text-3xl text-white max-w-[20%]">
+                  Play
+                </Button>
               </div>
             </div>
             <div className="absolute bot-5 h-[20%] w-full bg-gradient-to-t from-black  via-black/25 to-black/0 z-10"></div>
           </div>
         </div>
-        <div className="text-white px-[5%]">{game.desc}</div>
+        <div className="flex flex-col gap-12 px-[10%]">
+          <div className="flex justify-between w-full border-b border-gray-800/50">
+            <div className="flex gap-2">
+              <Button
+                onPress={() => setActiveTab(0)}
+                className={classNames(
+                  "bg-transparent text-lg",
+                  activeTab === 0 ? "text-white" : "text-white/50"
+                )}>
+                Overview
+              </Button>
+              <Button
+                onPress={() => setActiveTab(1)}
+                className={classNames(
+                  "bg-transparent text-lg",
+                  activeTab === 1 ? "text-white" : "text-white/50"
+                )}>
+                NFTs
+              </Button>
+              <Button
+                onPress={() => setActiveTab(2)}
+                className={classNames(
+                  "bg-transparent text-lg",
+                  activeTab === 2 ? "text-white" : "text-white/50"
+                )}>
+                Activity
+              </Button>
+            </div>
+            <div>
+              <Button isIconOnly radius="full" className="bg-transparent">
+                <Image src="/icons/web.svg" />
+              </Button>
+              <Button isIconOnly radius="full" className="bg-transparent">
+                <Image src="/icons/web.svg" />
+              </Button>
+              <Button isIconOnly radius="full" className="bg-transparent">
+                <Image src="/icons/web.svg" />
+              </Button>
+              <Button isIconOnly radius="full" className="bg-transparent">
+                <Image src="/icons/web.svg" />
+              </Button>
+            </div>
+          </div>
+          <div className="flex justify-center items-center p-24 text-white">
+            No Available Data
+          </div>
+        </div>
       </div>
     </>
   );
