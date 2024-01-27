@@ -29,53 +29,53 @@ export default function FAQ() {
   const FAQ_ITEMS = [
     {
       id: 0,
-      query: "What is GAMEXPAD?",
+      query: "What is GameXPad?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXPad is a blockchain-based platform that represents the convergence of the gaming world and finance. It offers a range of features for gamers, developers, and investors, facilitating interaction between game projects, players, and investors.",
     },
     {
       id: 1,
-      query: "What is GAMEXPAD?",
+      query: "What is GMXP Token and What is Its Purpose?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXPad offers features such as IDO Launchpad, INO Platform, NFT Marketplace, and Gaming Hub. The IDO Launchpad supports the launch of new game projects, while the INO Platform provides funding for independent developers. The NFT Marketplace allows gamers to buy and sell digital assets, and the Gaming Hub brings together a global gaming community.",
     },
     {
       id: 2,
-      query: "What is GAMEXPAD?",
+      query: "What Features Does GameXPad Offer?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXPad offers features such as IDO Launchpad, INO Platform, NFT Marketplace, and Gaming Hub. The IDO Launchpad supports the launch of new game projects, while the INO Platform provides funding for independent developers. The NFT Marketplace allows gamers to buy and sell digital assets, and the Gaming Hub brings together a global gaming community.",
     },
     {
       id: 3,
-      query: "What is GAMEXPAD?",
+      query: "What is the Relationship Between GameXPad and SKALE Network?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXPad has established a strategic partnership with SKALE Network. SKALE Network's scalability solutions enhance GameXPad's transaction speed and offer low transaction fees, helping GameXPad reach a wider user base.",
     },
   ];
   const FAQ_ITEMS_2 = [
     {
       id: 4,
-      query: "What is GAMEXPAD?",
+      query: "What Problems Does GameXPad Solve?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXPad addresses the limitations of traditional gaming platforms. It enables players to own real digital assets, provides funding to independent developers, and facilitates interaction between players, developers, and investors.",
     },
     {
       id: 5,
-      query: "What is GAMEXPAD?",
+      query: "How Do I Stake My Tokens?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "GameXpad's staking system allows users to stake their GMXP tokens to earn rewards in $GMXP and participate in upcoming projects launching on the platform. The Staking Score is calculated based on the number of staked tokens and multipliers for the amount and duration of staking.",
     },
     {
       id: 6,
-      query: "What is GAMEXPAD?",
+      query: "How Can I Participate in Launchpads?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "A certain GMXP Score grants guaranteed allocations in Launchpads. Staking more GMXP for longer periods results in larger allocation quotas.",
     },
     {
       id: 7,
-      query: "What is GAMEXPAD?",
+      query: "How Can I Purchase GMXP Tokens?",
       answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, necessitatibus delectus! Ad aspernatur rerum velit sunt nihil. Eius ullam, esse accusantium nesciunt quas id excepturi repellat totam, odio laborum minus quaerat, consequuntur aperiam illo iure ipsam doloremque quo amet incidunt soluta asperiores assumenda beatae blanditiis. Voluptas animi accusantium tempora necessitatibus!      ",
+        "You can purchase GameXPad (GMXP) tokens from various decentralized exchanges (DEXs) and centralized exchanges (CEXs). However, GMXP tokens have not yet been officially listed on specific exchanges. Please regularly check the official GameXPad website or GameXPad's official communication channels as this information may be updated.",
     },
   ];
 

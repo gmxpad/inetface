@@ -52,7 +52,7 @@ const PopulerGames = () => {
           <Button
             as={Link}
             className="bg-transparent text-white font-normal  text-xl duration-300 border-2 md:py-7 md:px-8 sm:w-[35%] border-white"
-            href="/">
+            href="/games">
             View All
           </Button>
         </div>

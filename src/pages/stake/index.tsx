@@ -138,7 +138,7 @@ export default function Stake() {
                 isExternal={true}
                 radius="sm"
                 className="bg-transparent text-white border border-gray-800/50 py-5"
-                href="https://docs.gamexpad.io/">
+                href="https://docs.gamexpad.io/introduction/ourproducts/staking-pool">
                 Learn More
               </Button>
             </div>

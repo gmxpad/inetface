@@ -108,7 +108,6 @@ const Games: NextPageWithLayout<
     [selectedKeys]
   );
   const [isInvalid, setIsInvalid] = React.useState(true);
-  console.log(selectedValue, "xdddd");
 
   return (
     <>

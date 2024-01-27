@@ -38,26 +38,26 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col sm:gap-20 md:gap-48 sm:px-[5%] md:px-[10%]">
-        <section>
+      <div className="flex flex-col sm:gap-20 md:gap-48 ">
+        <section className="sm:px-[5%] md:px-[10%]">
           <HeroHeader />
         </section>
-        <section>
+        <section className="sm:px-[5%] md:px-[10%]">
           <IgoAndIno />
         </section>
-        <section>
+        <section className="sm:px-[5%] md:px-[10%]">
           <HowToJoin />
         </section>
-        <section>
+        <section className="sm:px-[5%] md:px-[10%]">
           <AccessGames />
         </section>
-        <section>
+        <section className="sm:px-[5%] md:px-[10%]">
           <Features />
         </section>
-        <section>
+        <section className="sm:px-[5%] md:px-[10%]">
           <PopulerGames />
         </section>
-        <section>
+        <section className="sm:px-[1%] md:px-[8%]">
           <FAQ />
         </section>
       </div>

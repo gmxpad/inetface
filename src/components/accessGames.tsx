@@ -130,7 +130,7 @@ const AccessGames = () => {
             <Button
               as={Link}
               className="bg-transparent z-50 text-white font-bold  md:text-xl duration-300 border-3 md:py-7 sm:py-6 px-8 border-white"
-              href="/">
+              href="/games">
               Explore Games
             </Button>
           </div>
