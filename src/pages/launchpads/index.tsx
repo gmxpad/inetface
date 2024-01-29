@@ -1,78 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { Button, Image, Link } from "@nextui-org/react";
+import { Avatar, AvatarGroup, Button, Image, Link } from "@nextui-org/react";
 import {
   NextButton,
   PrevButton,
 } from "@/scripts/EmblaCarouselArrowsDotsButtons";
 
-export default function Launchpads() {
-  const SLIDES = [
+import { getStaticProps } from "@/framework/rest/launchpads.ssr";
+import { InferGetStaticPropsType } from "next";
+import { NextPageWithLayout } from "@/types";
+export { getStaticProps };
+
+interface LaunchpadsInterface {
+  name: string;
+  genre: string[];
+  desc: string;
+  image: string;
+  slug: string;
+  chains: string[];
+  logo: string;
+  status: string;
+  launchStatus: string;
+  eventName: string;
+  eventValue: string;
+  tokenAllo: string;
+  tokenPrice: string;
+}
+const Launchpads: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ launchpads }: any) => {
+  const [avaLaunchpads, setAvaLaunchpads] = useState<LaunchpadsInterface[]>([
     {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Upcoming",
-      launchStatus: "IDO",
-      chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Event Date",
-      eventValue: "TBA",
-      tokenAllo: "TBA",
-      tokenPrice: "TBA",
-      slug: "/",
-      genre: ["Open-World", "FPS"],
-      desc: "Red Dead Redemption 2 (RDR2) is an action-adventure game developed and published by Rockstar Games.",
+      name: "",
+      genre: ["", "", ""],
+      desc: "",
+      image: "",
+      slug: "",
+      chains: [""],
+      logo: "",
+      status: "",
+      launchStatus: "",
+      eventName: "",
+      eventValue: "",
+      tokenAllo: "",
+      tokenPrice: "",
     },
-    {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Upcoming",
-      launchStatus: "IDO",
-      chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Event Date",
-      eventValue: "01.01.2024",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
-      slug: "/",
-      genre: ["Open-World", "FPS"],
-      desc: "Red Dead Redemption 2 (RDR2) is an action-adventure game developed and published by Rockstar Games.",
-    },
-    {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Live",
-      launchStatus: "IDO",
-      chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Register Ends in",
-      eventValue: "19h:08m:17s",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
-      slug: "/",
-      genre: ["Open-World", "FPS"],
-      desc: "Red Dead Redemption 2 (RDR2) is an action-adventure game developed and published by Rockstar Games.",
-    },
-    {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Live",
-      launchStatus: "IDO",
-      chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Public Sale Ends in",
-      eventValue: "10h:08m:17s",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
-      slug: "/",
-      genre: ["Open-World", "FPS"],
-      desc: "Red Dead Redemption 2 (RDR2) is an action-adventure game developed and published by Rockstar Games.",
-    },
-  ];
+  ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    setAvaLaunchpads(launchpads);
+  }, []);
+
   const nextGroup = () => {
-    if (currentIndex < SLIDES.length - 1) {
+    if (currentIndex < avaLaunchpads.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
       setCurrentIndex(0);
@@ -82,18 +63,19 @@ export default function Launchpads() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      setCurrentIndex(SLIDES.length - 1);
+      setCurrentIndex(avaLaunchpads.length - 1);
     }
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % SLIDES.length;
+      const nextIndex = (currentIndex + 1) % avaLaunchpads.length;
       setCurrentIndex(nextIndex);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, SLIDES.length]);
+  }, [currentIndex, avaLaunchpads.length]);
+
   return (
     <>
       <div className="flex flex-col gap-12 pb-24">
@@ -104,7 +86,7 @@ export default function Launchpads() {
               transition: "transform 1s",
               transform: `translateX(-${currentIndex * 100}%)`,
             }}>
-            {SLIDES.map((item: any, index: number) => (
+            {avaLaunchpads.map((item: any, index: number) => (
               <div
                 key={"ihome_" + index.toString()}
                 className="relative z-0 text-white sm:h-[250px] md:h-[500px]"
@@ -131,7 +113,7 @@ export default function Launchpads() {
                   <p className=" sm:hidden md:flex md:w-[50%]">{item.desc}</p>
                   <Button
                     as={Link}
-                    href={`/games/${item.slug}`}
+                    href={`/launchpads/${item.slug}`}
                     radius="sm"
                     size="sm"
                     className="bg-[#a664fe] sm:max-w-[25%] md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-sm md:text-lg px-16">
@@ -151,7 +133,7 @@ export default function Launchpads() {
               onClick={() => nextGroup()}
               className="hover:bg-[#a664fe] sm:p-2 md:p-4 hover:border-[#a664fe] sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-full transition-all duration-300 flex items-center justify-center"></NextButton>
             <div className="text-xl">
-              {currentIndex + 1} / {SLIDES.length}
+              {currentIndex + 1} / {avaLaunchpads.length}
             </div>
           </div>
         </div>
@@ -160,10 +142,11 @@ export default function Launchpads() {
             <p>UPCOMING PROJECTS</p>
           </div>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
-            {SLIDES.map((item: any, index: number) => (
-              <div
+            {avaLaunchpads.map((item: any, index: number) => (
+              <a
+                href={`/launchpads/${item.slug}`}
                 key={"upcoming_projects_" + index.toString()}
-                className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
+                className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
                 <Image isBlurred radius="none" src={item.image} />
                 <div className="flex justify-between items-center relative px-5 pt-14">
                   <div className="absolute -top-9 left-5">
@@ -178,7 +161,17 @@ export default function Launchpads() {
                     </div>
                   </div>
                   <div className="w-1/3 flex justify-end">
-                    <Image width={35} radius="sm" src={item.chainImage} />
+                    <AvatarGroup
+                      key={"chainKey_2" + index.toString()}
+                      isBordered>
+                      {item.chains.map((item: any, index: number) => (
+                        <Avatar
+                          size="sm"
+                          key={item.toString() + index.toString()}
+                          src={item}
+                        />
+                      ))}
+                    </AvatarGroup>
                   </div>
                 </div>
                 <div className="px-5 flex flex-col gap-1 pb-5 pt-2">
@@ -198,11 +191,12 @@ export default function Launchpads() {
                     <p className="font-semibold">{item.tokenPrice}</p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
       </div>
     </>
   );
-}
+};
+export default Launchpads;
