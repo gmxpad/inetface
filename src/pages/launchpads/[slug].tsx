@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import {
+  Accordion,
+  AccordionItem,
   Avatar,
   AvatarGroup,
   Button,
@@ -72,7 +74,18 @@ const Launchpad: NextPageWithLayout<
   useEffect(() => {
     setAvaLaunchpads(launch);
   }, []);
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const FAQ_ITEMS = [
+    {
+      id: 0,
+      name: "Vesting/Unlock",
+      desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+    },
+    {
+      id: 1,
+      name: "Type of Sale/Round",
+      desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+    },
+  ];
 
   return (
     <>
@@ -113,38 +126,145 @@ const Launchpad: NextPageWithLayout<
           </div>
         </div>
         <div className="flex flex-col gap-12 px-[10%]">
+          <div className="text-3xl text-white">{avaLaunchpads.name}</div>
           <div className="bg-dark-gray p-5 flex flex-col gap-5 rounded-lg">
             <div className="flex justify-between">
-              <div className="w-[60%] relative flex justify-center">
+              <div className="w-[60%] flex flex-col justify-center">
                 <Image
                   src={avaLaunchpads.image}
                   className="w-full brightness-75"
                 />
-                <div className="absolute bottom-5 z-10 text-white flex gap-5">
-                  {avaLaunchpads.socials.map((item: any, index: number) => (
-                    <div>
-                      <Button
-                        as={Link}
-                        href={item.link}
-                        className="bg-gray-800/50 text-white">
-                        <Image
-                          width={20}
-                          src={
-                            item.name === "Twitter"
-                              ? "/socials/twitter-border.svg"
-                              : item.name === "Discord"
-                              ? "/socials/discord-border.svg"
-                              : item.name === "Telegram"
-                              ? "/socials/medium-border.svg"
-                              : "/icons/web.svg"
-                          }
-                        />
-                      </Button>
+                <div className="flex text-white justify-between items-center mt-5">
+                  <div>
+                    <p className="text-2xl">Official links</p>
+                  </div>
+                  <div className="flex gap-3">
+                    {avaLaunchpads.socials.map((item: any, index: number) => (
+                      <div>
+                        <Button
+                          as={Link}
+                          href={item.link}
+                          className="bg-gray-800/50 text-white">
+                          <Image
+                            width={20}
+                            src={
+                              item.name === "Twitter"
+                                ? "/socials/twitter-border.svg"
+                                : item.name === "Discord"
+                                ? "/socials/discord-border.svg"
+                                : item.name === "Telegram"
+                                ? "/socials/medium-border.svg"
+                                : "/icons/web.svg"
+                            }
+                          />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 text-white mt-10 gap-5 whitespace-nowrap">
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">23 Jan,2024</p>
+                    <p className="text-sm text-[#9d9d9d]">Event date</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">IDO</p>
+                    <p className="text-sm text-[#9d9d9d]">Event type</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">0.032 USD</p>
+                    <p className="text-sm text-[#9d9d9d]">Event token price</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">1000000 USD</p>
+                    <p className="text-sm text-[#9d9d9d]">Total allocation</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">$COD</p>
+                    <p className="text-sm text-[#9d9d9d]">Token symbol</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">SKALE</p>
+                    <p className="text-sm text-[#9d9d9d]">Network</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-SpaceGro">TBA</p>
+                    <p className="text-sm text-[#9d9d9d]">
+                      CEX Listing date/time
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-between w-full mt-10">
+                  <div className="w-[60%] border flex flex-col gap-4 p-3 overflow-hidden border-gray-800/50">
+                    <p className="text-xl text-white">Website</p>
+                    <Link href="/" isExternal>
+                      <Image isZoomed isBlurred src={avaLaunchpads.image} />
+                    </Link>
+                  </div>
+                  <div className="w-[39%] border flex flex-col gap-4 p-3 overflow-hidden relative border-gray-800/50">
+                    <p className="text-xl text-white">Roadmap</p>
+                    <Link
+                      href="/"
+                      isExternal
+                      className="absolute bottom-10 right-0">
+                      <Image isZoomed isBlurred src={avaLaunchpads.image} />
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex justify-between w-full mt-10">
+                  <div className="w-[39%] border flex flex-col gap-4 p-3 overflow-hidden relative border-gray-800/50">
+                    <p className="text-xl text-white">Team</p>
+                    <Link
+                      href="/"
+                      isExternal
+                      className="absolute bottom-10 right-0">
+                      <Image isZoomed isBlurred src={avaLaunchpads.image} />
+                    </Link>
+                  </div>
+                  <div className="w-[60%] border flex flex-col gap-4 p-3 overflow-hidden relative border-gray-800/50">
+                    <p className="text-xl text-white">Tokenomics</p>
+                    <Link href="/" isExternal>
+                      <Image isZoomed isBlurred src={avaLaunchpads.image} />
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex flex-col mt-10 gap-3 pb-12">
+                  <div className="text-2xl text-white">
+                    {avaLaunchpads.name} Games Token Sale FAQs
+                  </div>
+                  <div className="border border-gray-800/50 relative overflow-hidden">
+                    <div className="absolute top-3 left-3 z-10 text-white text-2xl font-SpaceGro">
+                      How to participate
                     </div>
-                  ))}
+                    <Image
+                      radius="none"
+                      className=" brightness-50 z-0"
+                      src={avaLaunchpads.image}
+                    />
+                  </div>
+                  <Accordion
+                    variant="light"
+                    showDivider={false}
+                    itemClasses={{
+                      base: "w-full py-2",
+                      heading:
+                        " data-[open=true]:bg-dark  bg-dark px-4 py-2 rounded",
+                      indicator: " text-white data-[open=true]:text-white",
+                      content: "px-3 rounded mt-2 bg-dark text-[#9d9d9d]",
+                      trigger: "mt-2",
+                      title: " text-white text-sm data-[open=true]:text-white",
+                    }}>
+                    {FAQ_ITEMS.map((item) => (
+                      <AccordionItem
+                        key={"key" + item.id.toString()}
+                        title={item.name}>
+                        <div>{item.desx}</div>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
               </div>
-              <div className="w-[37%] border border-gray-800/50 rounded-lg flex flex-col justify-between  overflow-hidden">
+              <div className="w-[37%] h-full border border-gray-800/50 rounded-lg flex flex-col justify-between  overflow-hidden">
                 <div>
                   <div className="p-5 text-white/75 text-xl font-sans border-b border-gray-800/50 bg-[#1d1d1d]">
                     <p>Strategic Sale</p>
