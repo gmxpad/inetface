@@ -19,15 +19,8 @@ import { ChevronDown } from "@/components/icons/Icons";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
 export default function Stake() {
   const { windowWidth } = useWindowDimensions();
-  const [isLoad, setLoad] = useState<boolean>(true);
+  const [isLoad, setLoad] = useState<boolean>(false);
   const [windowW, setWindowW] = useState<number>(0);
-  useEffect(() => {
-    setWindowW(windowWidth);
-    windowWidth > 1279
-      ? setSelectedKeys(new Set(["Select Time"]))
-      : setSelectedKeys(new Set(["30 Days"]));
-    setLoad(false);
-  }, [windowWidth]);
 
   const MOCK_POSITIONS = [
     {
@@ -52,11 +45,11 @@ export default function Stake() {
     },
   ];
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [selectedDays, setSelectedDays] = useState<number>(30);
-  const [selectedMultipler, setSelectedMultipler] = useState<number>(1);
+  const [selectedDays, setSelectedDays] = useState<number>(365);
+  const [selectedMultipler, setSelectedMultipler] = useState<number>(4);
   const [stakeInput, setStakeInput] = React.useState<string>("");
 
-  const [selectedKeys, setSelectedKeys] = useState(new Set());
+  const [selectedKeys, setSelectedKeys] = useState(new Set(["1_Year"]));
 
   const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
