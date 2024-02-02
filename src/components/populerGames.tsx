@@ -99,7 +99,12 @@ const PopulerGames = () => {
               className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-transparent">
               <div className="h-full items-end flex relative">
                 <div className="absolute bottom-0 right-0 w-full">
-                  <Image src="/games/katanainu/4.webp" />
+                  <video
+                    className="h-full w-full"
+                    src="/games/katanainu/cinematic.mp4"
+                    autoPlay
+                    muted
+                    loop></video>
                 </div>
                 <div className="flex items-center justify-between w-full">
                   <div className="absolute top-5 left-5">
