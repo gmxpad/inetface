@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Button, Image, Link } from "@nextui-org/react";
+import classNames from "classnames";
 
 const PopulerGames = () => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
@@ -96,9 +97,9 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between overflow-hidden rounded-xl sm:h-[160px] md:h-[160px] 2xl:h-[200px]  bg-transparent">
+              className="relative flex flex-col justify-between overflow-hidden rounded-xl sm:h-[160px] md:h-[160px] 2xl:h-[200px]   bg-transparent sm:bg-[url('/gamesGallery/katanainu/poster.png')] sm:bg-container">
               <div className="h-full items-end flex relative overflow-hidden">
-                <div className="absolute bottom-0 right-0 w-full">
+                <div className="md:absolute bottom-0 right-0 w-full sm:hidden">
                   <video
                     className="h-full w-full"
                     src="/gamesGallery/katanainu/cinematic.mp4"
@@ -106,6 +107,7 @@ const PopulerGames = () => {
                     muted
                     loop></video>
                 </div>
+                {/* bg-[url('/img/hero-pattern.svg')] */}
                 <div className="flex items-center justify-between w-full">
                   <div className="absolute top-5 sm:top-12 left-5">
                     <Image
@@ -132,9 +134,9 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[235px] 2xl:h-[200px] bg-dark-gray">
+              className="relative flex flex-col justify-between overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[235px] 2xl:h-[200px] bg-dark-gray sm:bg-[url('/gamesGallery/magicCraft/banner.png')] sm:bg-cover">
               <div className="flex flex-col justify-between h-full relative">
-                <div className="absolute left-4 top-4">
+                <div className="md:absolute left-4 top-4 sm:hidden">
                   <Image
                     width={100}
                     isBlurred
@@ -142,7 +144,7 @@ const PopulerGames = () => {
                     src="/gamesGallery/magicCraft/lolg.png"
                   />
                 </div>
-                <div className="absolute bottom-0 right-0 w-full">
+                <div className="md:absolute bottom-0 right-0 w-full sm:hidden">
                   <video
                     className="h-full w-full"
                     src="/gamesGallery/magicCraft/cinematic.mp4"
