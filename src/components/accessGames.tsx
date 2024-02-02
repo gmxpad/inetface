@@ -88,7 +88,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="absolute xl:left-24 md:top-[40%] sm:-top-32 sm:right-0 md:-left-12 z-50 text-white">
-          <Image src="/games/rocketleague.png" />
+          <Image width={120} src="/gamesGallery/bit-hotel-fi.png" />
         </div>
         <div
           ref={divRef7}
@@ -100,7 +100,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="xl:absolute xl:flex -left-12 bottom-[30%] z-50 text-white md:hidden sm:hidden">
-          <Image src="/games/cs2.png" />
+          <Image width={250} src="/gamesGallery/lussa/banner.png" />
         </div>
         <div
           ref={divRef6}
@@ -112,7 +112,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="absolute md:-right-12 md:top-1/2 sm:top-2/3 sm:right-0 z-50 text-white">
-          <Image src="/games/fortnite.png" />
+          <Image width={200} src="/gamesGallery/katanainu/4bg.png" />
         </div>
 
         <div
@@ -144,7 +144,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute md:left-6 md:top-[20%] sm:-left-6 sm:-top-[55%] z-50 text-white">
-            <Image src="/games/valo.png" />
+            <Image width={150} src="/gamesGallery/Untitled.jpg" />
           </div>
           <div
             ref={divRef2}
@@ -156,7 +156,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute left-12 bottom-0 z-50 text-white sm:hidden">
-            <Image src="/games/rdr2.png" />
+            <Image width={180} src="/gamesGallery/CryptoBlades.jpg" />
           </div>
           <div
             ref={divRef3}
@@ -168,7 +168,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute lg:-right-20 z-50 top-32 md:right-0 text-white sm:hidden">
-            <Image src="/games/forza.png" />
+            <Image width={250} src="/gamesGallery/magicCraft/banner.png" />
           </div>
           <div
             ref={divRef4}
@@ -179,8 +179,8 @@ const AccessGames = () => {
               scale: "0.9",
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
-            className="md:absolute -right-12 xl:bottom-32 md:bottom-12 z-50 text-white sm:hidden">
-            <Image src="/games/battlefront.png" />
+            className="md:absolute -right-16 xl:bottom-32 md:bottom-12 z-50 text-white sm:hidden">
+            <Image width={200} src="/gamesGallery/motodex.jpg" />
           </div>
 
           <div className="rounded-full border border-gray-800/50 sm:h-[200px] sm:w-[200px] md:h-[450px] md:w-[450px] xl:h-[500px] xl:w-[500px] flex items-center justify-center relative">
@@ -196,7 +196,7 @@ const AccessGames = () => {
                 transition: "scale 1s,transform 1s, opacity 1s",
               }}
               className="absolute xl:left-12 xl:top-28 sm:bottom-0 sm:-left-12 md:bottom-0 md:-left-12 z-50 text-white">
-              <Image src="/games/fifa.png" />
+              <Image width={100} src="/gamesGallery/rise-wallpaper.webp" />
             </div>
 
             <div className="rounded-full border border-gray-800/50 sm:h-[100px] sm:w-[100px] md:h-[200px] md:w-[200px] flex items-center justify-center"></div>

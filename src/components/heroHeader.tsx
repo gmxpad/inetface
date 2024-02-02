@@ -45,7 +45,7 @@ const HeroHeader = () => {
   return (
     <>
       <div className=" flex w-full h-full py-8 sm:flex-col-reverse md:flex-col-reverse lg:flex-row justify-between relative items-center">
-        <div className="absolute md:flex sm:hidden dual-gradient-background top-12 opacity-50 z-0"></div>
+        <div className="absolute md:flex sm:hidden dual-gradient-background top-12 -left-12 opacity-50 z-0"></div>
         <div
           ref={divRef}
           style={{
@@ -120,13 +120,12 @@ const HeroHeader = () => {
             scale: "0.9",
             transition: "scale 1s, opacity 1s",
           }}
-          className="lg:absolute sm:flex md:flex lg:bottom-12 xl:bottom-0 lg:right-0">
+          className="lg:absolute sm:flex md:flex lg:bottom-12 xl:bottom-0 xl:right-12 lg:right-0 h-full">
           <Image
-            width={1450}
+            width={550}
             height={550}
-            isBlurred
-            className="xl:w-full lg:w-[500px] md:w-[600px] sm:w-[300px]"
-            src="/games/character1.png"
+            className="xl:w-full lg:w-[500px] md:w-[600px] sm:w-[300px] "
+            src="/gamesGallery/katanainu/blockchain-pose.webp"
             alt="game"
           />
         </div>

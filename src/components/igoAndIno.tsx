@@ -30,8 +30,8 @@ const IgoAndIno = () => {
   };
   const SLIDES = [
     {
-      image: "/games/lussa/poster.webp",
-      profile: "/games/lussa/logo.png",
+      image: "/gamesGallery/lussa/poster.webp",
+      profile: "/gamesGallery/lussa/logo.png",
       status: "Upcoming",
       launchStatus: "IDO",
       chainImage: "/chains/skale.svg",
@@ -126,7 +126,7 @@ const IgoAndIno = () => {
               }}
               key={"upcoming_projects_" + index.toString()}
               className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
-              <div className="h-[200px] overflow-hidden">
+              <div className="sm:h-[300px] md:h-[190px] lg:h-[220px] xl:h-[150px] 2xl:h-[200px] overflow-hidden bg-white">
                 <Image
                   isBlurred
                   radius="none"
@@ -157,7 +157,11 @@ const IgoAndIno = () => {
                     {item.status}
                   </div>
                 </div>
-                <div className="w-1/3 flex justify-end">
+                <div
+                  className={classNames(
+                    "w-1/3 justify-end",
+                    item.status === "Coming Soon" ? "hidden" : "flex"
+                  )}>
                   <Image width={35} radius="sm" src={item.chainImage} />
                 </div>
               </div>
