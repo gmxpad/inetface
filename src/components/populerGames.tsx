@@ -98,6 +98,7 @@ const PopulerGames = () => {
               }}
               className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-transparent">
               <div className="h-full items-end flex relative">
+                {/* // video */}
                 <div className="absolute bottom-0 right-0 w-full">
                   <video
                     className="h-full w-full"
