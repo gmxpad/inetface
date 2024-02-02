@@ -6,22 +6,6 @@ const sponsors = [
     id: 0,
     path: "/chains/skale-name.svg",
   },
-  {
-    id: 1,
-    path: "/chains/skale-name.svg",
-  },
-  {
-    id: 2,
-    path: "/chains/skale-name.svg",
-  },
-  {
-    id: 3,
-    path: "/chains/skale-name.svg",
-  },
-  {
-    id: 4,
-    path: "/chains/skale-name.svg",
-  },
 ];
 
 const Footer = () => {

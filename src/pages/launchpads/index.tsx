@@ -104,7 +104,7 @@ const Launchpads: NextPageWithLayout<
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
-                  <div className="bg-white sm:hidden md:flex px-12 text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center max-w-[35%] rounded-md">
+                  <div className="bg-white sm:hidden md:flex px-12 text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center max-w-[20%] rounded-md">
                     {item.genre[0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
@@ -113,7 +113,7 @@ const Launchpads: NextPageWithLayout<
                   <p className=" sm:hidden md:flex md:w-[50%]">{item.desc}</p>
                   <Button
                     as={Link}
-                    href={`/launchpads/${item.slug}`}
+                    // href={`/launchpads/${item.slug}`}
                     radius="sm"
                     size="sm"
                     className="bg-[#a664fe] sm:max-w-[25%] md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-sm md:text-lg px-16">
@@ -144,10 +144,10 @@ const Launchpads: NextPageWithLayout<
           <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
             {avaLaunchpads.map((item: any, index: number) => (
               <a
-                href={`/launchpads/${item.slug}`}
+                // href={`/launchpads/${item.slug}`}
                 key={"upcoming_projects_" + index.toString()}
                 className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
-                <Image isBlurred radius="none" src={item.image} />
+                <Image isBlurred radius="none" src={item.coverImage} />
                 <div className="flex justify-between items-center relative px-5 pt-14">
                   <div className="absolute -top-9 left-5">
                     <Image width={70} radius="sm" src={item.profile} />
