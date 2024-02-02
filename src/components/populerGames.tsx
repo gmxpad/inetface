@@ -132,20 +132,32 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between  p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[235px] 2xl:h-[200px] bg-dark-gray">
+              className="relative flex flex-col justify-between overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[235px] 2xl:h-[200px] bg-dark-gray">
               <div className="flex flex-col justify-between h-full relative">
-                <Image
-                  width={170}
-                  isBlurred
-                  radius="none"
-                  src="/gamesGallery/magicCraft/lolg.png"
-                />
-                <Button
-                  as={Link}
-                  className="bg-transparent z-10 absolute bottom-0 right-0 text-white font-bold duration-300 border-2 py-5 px-8 border-white"
-                  href="/games/magic-craft">
-                  Explore
-                </Button>
+                <div className="absolute left-4 top-4">
+                  <Image
+                    width={100}
+                    isBlurred
+                    radius="none"
+                    src="/gamesGallery/magicCraft/lolg.png"
+                  />
+                </div>
+                <div className="absolute bottom-0 right-0 w-full">
+                  <video
+                    className="h-full w-full"
+                    src="/gamesGallery/magicCraft/cinematic.mp4"
+                    autoPlay
+                    muted
+                    loop></video>
+                </div>
+                <div className="absolute right-4 bottom-4">
+                  <Button
+                    as={Link}
+                    className="bg-transparent z-10 absolute bottom-0 right-0 text-white font-bold duration-300 border-2 py-5 px-8 border-white"
+                    href="/games/magic-craft">
+                    Explore
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
