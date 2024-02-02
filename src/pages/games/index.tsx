@@ -72,11 +72,11 @@ const Games: NextPageWithLayout<
 
   const [filterGame, setFilterGame] = useState<string>("");
   const [filteredCount, setFilteredCount] = useState<number>(0);
-  const [selectChainID, setSelectChainID] = useState<number>(0);
+  const [selectChainIDs, setSelectChainIDs] = useState<number[]>([0]);
 
   const filter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    setSelectChainID(0);
+    setSelectChainIDs([0]);
     setFilterGame(newValue);
 
     const matchingGames = games.filter((item: any) =>
@@ -102,12 +102,10 @@ const Games: NextPageWithLayout<
   const [selectedKeys, setSelectedKeys] = React.useState(
     new Set(["new_games"])
   );
-
   const selectedValue = React.useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
     [selectedKeys]
   );
-  const [isInvalid, setIsInvalid] = React.useState(true);
 
   return (
     <>
@@ -122,7 +120,7 @@ const Games: NextPageWithLayout<
             {games.map((item: any, index: number) => (
               <div
                 key={"ihome_" + index.toString()}
-                className="relative z-0 text-white sm:h-[250px] md:h-[500px]"
+                className="relative z-0 text-white sm:h-[250px] md:h-[400px]"
                 style={{
                   flex: "0 0 100%",
                   width: "100%",
@@ -137,7 +135,7 @@ const Games: NextPageWithLayout<
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
-                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
+                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
                     {item.genre[0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
@@ -330,6 +328,16 @@ const Games: NextPageWithLayout<
                     Ethereum
                   </div>
                 </Checkbox>
+                <Checkbox color="secondary" value="arbitrum">
+                  <div className="text-white flex items-center gap-1">
+                    <Image
+                      radius="none"
+                      width={20}
+                      src="/chains/arbitrum-logo.svg"
+                    />
+                    Arbitrum
+                  </div>
+                </Checkbox>
                 <Checkbox color="secondary" value="polygon">
                   <div className="text-white flex items-center gap-1">
                     <Image width={20} src="/chains/polygon.svg" />
@@ -396,14 +404,14 @@ const Games: NextPageWithLayout<
                           isBlurred
                           isZoomed
                           className="h-[240px] w-full"
-                          src={filteredGame.image}
+                          src={filteredGame.gameBanner}
                           alt="game"
                         />
                         <p className="text-white font-Orbitron">
                           {filteredGame.name}
                         </p>
 
-                        <div className="w-full flex justify-between items-center text-white">
+                        <div className="flex justify-between items-center text-white">
                           <div className="flex gap-1">
                             {filteredGame.genre.map(
                               (item: any, index: number) => (
@@ -416,13 +424,12 @@ const Games: NextPageWithLayout<
                             )}
                           </div>
                           <div className="flex gap-1">
-                            <AvatarGroup
-                              key={"chainKey" + index.toString()}
-                              isBordered>
+                            <AvatarGroup key={"chainKey_" + index.toString()}>
                               {filteredGame.chains.map(
                                 (item: any, index: number) => (
                                   <Avatar
                                     size="sm"
+                                    isBordered
                                     key={item.toString() + index.toString()}
                                     src={item}
                                   />

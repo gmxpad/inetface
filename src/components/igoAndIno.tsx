@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import { Image } from "@nextui-org/react";
+import classNames from "classnames";
 
 const IgoAndIno = () => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
@@ -29,12 +30,12 @@ const IgoAndIno = () => {
   };
   const SLIDES = [
     {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
+      image: "/games/lussa/poster.webp",
+      profile: "/games/lussa/logo.png",
       status: "Upcoming",
       launchStatus: "IDO",
       chainImage: "/chains/skale.svg",
-      name: "Valorant",
+      name: "Lussa",
       eventName: "Event Date",
       eventValue: "TBA",
       tokenAllo: "TBA",
@@ -42,42 +43,42 @@ const IgoAndIno = () => {
       slug: "/",
     },
     {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Upcoming",
+      image: "/comingsoon.webp",
+      profile: "",
+      status: "Coming Soon",
       launchStatus: "IDO",
       chainImage: "/chains/skale.svg",
-      name: "Valorant",
+      name: "Coming Soon",
       eventName: "Event Date",
-      eventValue: "01.01.2024",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
+      eventValue: "TBA",
+      tokenAllo: "TBA",
+      tokenPrice: "TBA",
       slug: "/",
     },
     {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Live",
+      image: "/comingsoon.webp",
+      profile: "",
+      status: "Coming Soon",
       launchStatus: "IDO",
       chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Register Ends in",
-      eventValue: "19h:08m:17s",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
+      name: "Coming Soon",
+      eventName: "Event Date",
+      eventValue: "TBA",
+      tokenAllo: "TBA",
+      tokenPrice: "TBA",
       slug: "/",
     },
     {
-      image: "/games/valo-purple.jpeg",
-      profile: "/games/cod-logo.jpeg",
-      status: "Live",
+      image: "/comingsoon.webp",
+      profile: "",
+      status: "Coming Soon",
       launchStatus: "IDO",
       chainImage: "/chains/skale.svg",
-      name: "Valorant",
-      eventName: "Public Sale Ends in",
-      eventValue: "10h:08m:17s",
-      tokenAllo: "$100.000",
-      tokenPrice: "$0.02",
+      name: "Coming Soon",
+      eventName: "Event Date",
+      eventValue: "TBA",
+      tokenAllo: "TBA",
+      tokenPrice: "TBA",
       slug: "/",
     },
   ];
@@ -125,16 +126,34 @@ const IgoAndIno = () => {
               }}
               key={"upcoming_projects_" + index.toString()}
               className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
-              <Image isBlurred radius="none" src={item.image} />
+              <div className="h-[200px] overflow-hidden">
+                <Image
+                  isBlurred
+                  radius="none"
+                  className="w-full h-full"
+                  src={item.image}
+                />
+              </div>
               <div className="flex justify-between items-center relative px-5 pt-14">
                 <div className="absolute -top-9 left-5">
-                  <Image width={70} radius="sm" src={item.profile} />
+                  <Image
+                    width={70}
+                    radius="sm"
+                    className="object-fill"
+                    src={item.profile}
+                  />
                 </div>
                 <div className="w-full flex gap-4">
                   <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 flex items-center">
                     {item.launchStatus}
                   </div>
-                  <div className="bg-[#212e1c] text-green-550 flex font-Orbitron items-center text-sm rounded-lg px-3 py-1">
+                  <div
+                    className={classNames(
+                      "bg-[#212e1c]  flex font-Orbitron items-center text-sm rounded-lg px-3 py-1",
+                      item.status === "Coming Soon"
+                        ? "text-white"
+                        : "text-green-550"
+                    )}>
                     {item.status}
                   </div>
                 </div>

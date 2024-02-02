@@ -9,16 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
     "@nextui-org/react": "^2.2.9",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@web3modal/ethereum": "^2.7.1",
+    "@web3modal/react": "^2.7.1",
     "classnames": "^2.3.2",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
+    "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.0.2",
+    "redux-persist": "^6.0.0",
     "viem": "^1.19.11",
-    "wagmi": "^1.4.10",
-    "@web3modal/ethereum": "^2.7.1",
-    "@web3modal/react": "^2.7.1"
+    "wagmi": "^1.4.10"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -27,6 +32,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "ethers": "^6.10.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

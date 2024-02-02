@@ -13,11 +13,33 @@ import {
 } from "@nextui-org/react";
 import { Web3Button } from "@web3modal/react";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { useAccount } from "wagmi";
+import { setAccount } from "@/store/slices/walletSlice";
 
 export default function Header() {
   const { windowWidth } = useWindowDimensions();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const {
+    address: userAddress,
+    isConnected: connect,
+    isDisconnected: disconnect,
+  } = useAccount();
+
+  useEffect(() => {
+    if (connect === true) {
+      dispatch(setAccount({ userAddress, connect }));
+    } else {
+      dispatch(setAccount({ userAddress: undefined, connect: false }));
+    }
+  }, [connect, disconnect, userAddress]);
 
   const menuItems = [
     {
@@ -83,17 +105,15 @@ export default function Header() {
         justify="center">
         <NavbarItem>
           <Button
-            as={Link}
+            onPress={() => router.push("/launchpads")}
             radius="none"
-            className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="/launchpads">
+            className="bg-transparent text-white font-normal  text-lg duration-300">
             Launchpads
           </Button>
         </NavbarItem>
         <NavbarItem isActive>
           <Button
-            as={Link}
-            href="/stake"
+            onPress={() => router.push("/stake")}
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300"
             aria-current="page">
@@ -102,19 +122,17 @@ export default function Header() {
         </NavbarItem>
         <NavbarItem>
           <Button
-            as={Link}
+            onPress={() => router.push("/games")}
             radius="none"
-            className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="/games">
+            className="bg-transparent text-white font-normal  text-lg duration-300">
             Games
           </Button>
         </NavbarItem>
         <NavbarItem>
           <Button
-            as={Link}
+            onPress={() => router.push("x-hub")}
             radius="none"
-            className="bg-transparent text-white font-normal  text-lg duration-300"
-            href="/x-hub">
+            className="bg-transparent text-white font-normal  text-lg duration-300">
             X Hub
           </Button>
         </NavbarItem>

@@ -29,7 +29,7 @@ const Games: NextPageWithLayout<
             />
             <div className="absolute z-10 sm:bottom-5 sm:left-5 bottom-16 left-[10%]  w-full flex justify-between   text-white">
               <div className="flex flex-col gap-2">
-                <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
+                <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
                   {game.genre[0]}
                 </div>
                 <p className=" text-4xl md:font-Orbitron md:text-5xl">

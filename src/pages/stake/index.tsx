@@ -17,9 +17,29 @@ import {
 import classNames from "classnames";
 import { ChevronDown } from "@/components/icons/Icons";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
+import { formatEther, parseEther } from "viem";
+import { selectConnect, selectUserAddress } from "@/store/slices/walletSlice";
+import { useSelector } from "react-redux";
+import { fetchGMXTokenContract } from "@/scripts/contracts";
+import {
+  CalculateScore,
+  GetBalance,
+  GetStakePool,
+  GetStaker,
+} from "@/scripts/scripts";
+import { skaleChaosTestnet } from "viem/chains";
+import { usePublicClient } from "wagmi";
+
+interface StakerInterface {
+  staker: boolean;
+  totalStakedAmount: number;
+  totalScore: number;
+  earnedToDateGMX: number;
+  earnedToDateSGMX: number;
+}
 export default function Stake() {
   const { windowWidth } = useWindowDimensions();
-  const [isLoad, setLoad] = useState<boolean>(false);
+  const [isLoad, setLoad] = useState<boolean>(true);
   const [windowW, setWindowW] = useState<number>(0);
 
   const MOCK_POSITIONS = [
@@ -45,9 +65,10 @@ export default function Stake() {
     },
   ];
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [selectedDays, setSelectedDays] = useState<number>(365);
+  const [selectedDays, setSelectedDays] = useState<number>(361);
   const [selectedMultipler, setSelectedMultipler] = useState<number>(4);
-  const [stakeInput, setStakeInput] = React.useState<string>("");
+  const [stakeInput, setStakeInput] = useState<string>("");
+  const [totalScore, setTotalScore] = useState<string>("0");
 
   const [selectedKeys, setSelectedKeys] = useState(new Set(["1_Year"]));
 
@@ -56,33 +77,73 @@ export default function Stake() {
     [selectedKeys]
   );
 
-  const selectedTimeVeriable = (time: number, isSM: boolean) => {
+  const selectedTimeVeriable = async (time: number, isSM: boolean) => {
     setSelectedDays(time);
-    if (time === 30) {
+    if (time === 31) {
       if (isSM === false) {
         setSelectedKeys(new Set(["Select Time"]));
       }
       setSelectedMultipler(1);
-    } else if (time === 90) {
+      const score: any | undefined = await CalculateScore(stakeInput, 31);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 91) {
       if (isSM === false) {
         setSelectedKeys(new Set(["Select Time"]));
       }
       setSelectedMultipler(1.5);
-    } else if (time === 180) {
+      const score: any | undefined = await CalculateScore(stakeInput, 91);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 181) {
       if (isSM === false) {
         setSelectedKeys(new Set(["Select Time"]));
       }
       setSelectedMultipler(2);
-    } else if (time === 365) {
+      const score: any | undefined = await CalculateScore(stakeInput, 181);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 361) {
       setSelectedMultipler(4);
-    } else if (time === 730) {
+      const score: any | undefined = await CalculateScore(stakeInput, 361);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 721) {
       setSelectedMultipler(8);
-    } else if (time === 1095) {
+      const score: any | undefined = await CalculateScore(stakeInput, 721);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 1081) {
       setSelectedMultipler(12);
-    } else if (time === 1460) {
+      const score: any | undefined = await CalculateScore(stakeInput, 1081);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 1441) {
       setSelectedMultipler(16);
-    } else if (time === 1825) {
+      const score: any | undefined = await CalculateScore(stakeInput, 1441);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
+    } else if (time === 1801) {
       setSelectedMultipler(20);
+      const score: any | undefined = await CalculateScore(stakeInput, 1801);
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
     }
   };
   const handleStakeInput = async (
@@ -91,11 +152,18 @@ export default function Stake() {
     const newValue = event.target.value.toString();
     setStakeInput(newValue);
     try {
+      const score: any | undefined = await CalculateScore(
+        newValue,
+        selectedDays
+      );
+      if (score && score[1] !== undefined) {
+        const scoreDiv = parseFloat(score[0]) / 1e6;
+        setTotalScore(scoreDiv.toString());
+      }
     } catch (error) {
     } finally {
     }
   };
-
   const icons = {
     chevron: (
       <ChevronDown
@@ -105,6 +173,51 @@ export default function Stake() {
         width={undefined}
       />
     ),
+  };
+
+  // User Veriables
+  const client = usePublicClient();
+  const connect = useSelector(selectConnect);
+  const userAddress = useSelector(selectUserAddress);
+
+  const [gmxBalance, setGmxBalance] = useState<string>("0.0");
+  const [stakerInfo, setStakerInfo] = useState<StakerInterface>({
+    staker: false,
+    totalStakedAmount: 0,
+    totalScore: 0,
+    earnedToDateGMX: 0,
+    earnedToDateSGMX: 0,
+  });
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const balanceGMX: any = await GetBalance(
+          userAddress,
+          fetchGMXTokenContract.address
+        );
+        const stakerInfo: any = await GetStaker(userAddress);
+        setStakerInfo(stakerInfo);
+        setGmxBalance(formatEther(balanceGMX.toString()));
+      } catch (error) {
+      } finally {
+        setLoad(false);
+      }
+    };
+    checkUser();
+  }, [userAddress, connect]);
+  console.log(stakerInfo, "sTAKER");
+
+  const maxBTN = async () => {
+    setStakeInput(gmxBalance);
+    const score: any | undefined = await CalculateScore(
+      gmxBalance,
+      selectedDays
+    );
+    if (score && score[1] !== undefined) {
+      const scoreDiv = parseFloat(score[0]) / 1e6;
+      setTotalScore(scoreDiv.toString());
+    }
   };
 
   return (
@@ -180,14 +293,14 @@ export default function Stake() {
                     <Button
                       size="lg"
                       radius="sm"
-                      onPress={() => selectedTimeVeriable(30, false)}
+                      onPress={() => selectedTimeVeriable(31, false)}
                       className={classNames(
                         "w-full px-5",
-                        selectedDays === 30
+                        selectedDays === 31
                           ? "bg-[#a664fe] text-white"
                           : "bg-gray-800/50 text-white/50"
                       )}>
-                      30 Days
+                      31 Days
                     </Button>
                     <div className="absolute -top-4 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       1x
@@ -197,14 +310,14 @@ export default function Stake() {
                     <Button
                       size="lg"
                       radius="sm"
-                      onPress={() => selectedTimeVeriable(90, false)}
+                      onPress={() => selectedTimeVeriable(91, false)}
                       className={classNames(
                         "w-full px-5",
-                        selectedDays === 90
+                        selectedDays === 91
                           ? "bg-[#a664fe] text-white"
                           : "bg-gray-800/50 text-white/50"
                       )}>
-                      90 Days
+                      91 Days
                     </Button>
                     <div className="absolute -top-4 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       1.5x
@@ -214,14 +327,14 @@ export default function Stake() {
                     <Button
                       size="lg"
                       radius="sm"
-                      onPress={() => selectedTimeVeriable(180, false)}
+                      onPress={() => selectedTimeVeriable(181, false)}
                       className={classNames(
                         "w-full px-5",
-                        selectedDays === 180
+                        selectedDays === 181
                           ? "bg-[#a664fe] text-white"
                           : "bg-gray-800/50 text-white/50"
                       )}>
-                      180 Days
+                      181 Days
                     </Button>
                     <div className="absolute -top-4 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       2x
@@ -237,7 +350,7 @@ export default function Stake() {
                           endContent={icons.chevron}
                           className={classNames(
                             "w-full",
-                            windowW > 1279 && selectedDays > 180
+                            windowW > 1279 && selectedDays > 181
                               ? "bg-[#a664fe] text-white"
                               : "bg-gray-800/50 text-white/50",
                             windowW < 1280 ? "bg-[#a664fe] text-white" : ""
@@ -256,46 +369,46 @@ export default function Stake() {
                         onSelectionChange={setSelectedKeys}>
                         <DropdownItem
                           color="secondary"
-                          onPress={() => selectedTimeVeriable(30, true)}
+                          onPress={() => selectedTimeVeriable(31, true)}
                           className={classNames(
                             "sm:flex md:flex xl:hidden",
-                            selectedValue === "30 Days"
+                            selectedValue === "31 Days"
                               ? "text-white"
                               : "text-white/50"
                           )}
-                          key="30_days">
-                          {`30 days (1x)`}
+                          key="31_days">
+                          {`31 days (1x)`}
                         </DropdownItem>
                         <DropdownItem
                           color="secondary"
-                          onPress={() => selectedTimeVeriable(90, true)}
+                          onPress={() => selectedTimeVeriable(91, true)}
                           className={classNames(
                             "sm:flex md:flex xl:hidden",
-                            selectedValue === "90 Days"
+                            selectedValue === "91 Days"
                               ? "text-white"
                               : "text-white/50"
                           )}
-                          key="90_days">
-                          {`90 days (1.5x)`}
+                          key="91_days">
+                          {`91 days (1.5x)`}
                         </DropdownItem>
                         <DropdownItem
                           color="secondary"
-                          onPress={() => selectedTimeVeriable(180, true)}
+                          onPress={() => selectedTimeVeriable(181, true)}
                           className={classNames(
                             "sm:flex md:flex xl:hidden",
-                            selectedValue === "180 Days"
+                            selectedValue === "181 Days"
                               ? "text-white"
                               : "text-white/50"
                           )}
-                          key="180_days">
-                          {`180 days (2x)`}
+                          key="181_days">
+                          {`181 days (2x)`}
                         </DropdownItem>
                         <DropdownItem
                           color="secondary"
                           onPress={() =>
                             windowW > 1279
-                              ? selectedTimeVeriable(365, false)
-                              : selectedTimeVeriable(365, true)
+                              ? selectedTimeVeriable(361, false)
+                              : selectedTimeVeriable(361, true)
                           }
                           className={classNames(
                             selectedValue === "1 Year"
@@ -309,8 +422,8 @@ export default function Stake() {
                           color="secondary"
                           onPress={() =>
                             windowW > 1279
-                              ? selectedTimeVeriable(730, false)
-                              : selectedTimeVeriable(730, true)
+                              ? selectedTimeVeriable(721, false)
+                              : selectedTimeVeriable(721, true)
                           }
                           className={classNames(
                             selectedValue === "2 Year"
@@ -324,8 +437,8 @@ export default function Stake() {
                           color="secondary"
                           onPress={() =>
                             windowW > 1279
-                              ? selectedTimeVeriable(1095, false)
-                              : selectedTimeVeriable(1095, true)
+                              ? selectedTimeVeriable(1081, false)
+                              : selectedTimeVeriable(1081, true)
                           }
                           className={classNames(
                             selectedValue === "3 Year"
@@ -339,8 +452,8 @@ export default function Stake() {
                           color="secondary"
                           onPress={() =>
                             windowW > 1279
-                              ? selectedTimeVeriable(1460, false)
-                              : selectedTimeVeriable(1460, true)
+                              ? selectedTimeVeriable(1441, false)
+                              : selectedTimeVeriable(1441, true)
                           }
                           className={classNames(
                             selectedValue === "4 Year"
@@ -354,8 +467,8 @@ export default function Stake() {
                           color="secondary"
                           onPress={() =>
                             windowW > 1279
-                              ? selectedTimeVeriable(1825, false)
-                              : selectedTimeVeriable(1825, true)
+                              ? selectedTimeVeriable(1801, false)
+                              : selectedTimeVeriable(1801, true)
                           }
                           className={classNames(
                             selectedValue === "5 Year"
@@ -385,11 +498,11 @@ export default function Stake() {
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Staked</p>
-                  <div className="text-white">{`0 $GMXP`}</div>
+                  <div className="text-white">{`${stakerInfo?.totalStakedAmount} $GMXP`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Score</p>
-                  <div className="text-white">{`0x`}</div>
+                  <div className="text-white">{`x`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Earned to Date</p>
@@ -401,8 +514,8 @@ export default function Stake() {
                 <div className="flex sm:flex-col sm:gap-2 md:flex-col md:gap-2 xl:flex-row xl:gap-0 items-center md:justify-between w-full text-white border border-gray-800/50 rounded-lg p-2  sm:text-sm md:text-base">
                   <p className="text-[#9d9d9d]">Claimable Rewards:</p>
                   <div className="flex gap-2">
-                    <div className="text-white">{`0 $GMXP`}</div>-
-                    <div className="text-white">{`0 $SGMXP`}</div>
+                    <div className="text-white">{` $GMXP`}</div>-
+                    <div className="text-white">{` $SGMXP`}</div>
                   </div>
 
                   <Button
@@ -414,33 +527,47 @@ export default function Stake() {
                 <div className="flex flex-col gap-5 border border-gray-800/50 p-3 rounded-lg">
                   <div className="flex sm:flex-col md:flex-col xl:flex-row justify-between">
                     <p className="text-white">Create New Pool</p>
-                    <div className="text-white">
-                      Total Score: {selectedMultipler}x
-                    </div>
+                    <div className="text-white">Total Score: {totalScore}x</div>
                   </div>
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex gap-3 items-center">
+                    <p className="text-[#9d9d9d] text-lg">Balance:</p>
+                    <div className="text-white">{gmxBalance} $GMX</div>
+                  </div>
+                  <div className="flex justify-between relative items-center w-full h-[65px]">
                     <Input
                       size="sm"
                       value={stakeInput}
                       radius="sm"
                       onInput={handleStakeInput}
                       type="text"
-                      color="success"
                       placeholder="Enter Stake Amount"
                       classNames={{
                         input:
                           "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75 dark:text-white ",
                         inputWrapper:
                           "dark:bg-transparent dark:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
-                        innerWrapper: "bg-transparent text-white ",
+                        innerWrapper: "bg-transparent text-white",
                       }}
-                      className="w-full whitespace-nowrap p-0 text-white"
+                      color={
+                        parseFloat(stakeInput.toString()) < 40000 &&
+                        parseFloat(stakeInput.toString()) > 0
+                          ? "danger"
+                          : "success"
+                      }
+                      errorMessage={
+                        parseFloat(stakeInput.toString()) < 40000 &&
+                        parseFloat(stakeInput.toString()) > 0
+                          ? "Minimum stake amount 40K."
+                          : ""
+                      }
+                      className="w-[98%] whitespace-nowrap absolute top-0 p-0 text-white"
                     />
                     <div className="flex items-center">
                       <Button
                         size="lg"
+                        onPress={() => maxBTN()}
                         radius="sm"
-                        className="bg-[#a664fe] rounded-l-none border-l border-gray-800/50 text-white bottom-0 right-0">
+                        className="bg-[#a664fe] rounded-l-none border-l border-gray-800/50 text-white absolute top-0 right-0">
                         MAX
                       </Button>
                     </div>

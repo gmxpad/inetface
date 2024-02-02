@@ -140,7 +140,7 @@ const Launchpad: NextPageWithLayout<
                   </div>
                   <div className="flex gap-3">
                     {avaLaunchpads.socials.map((item: any, index: number) => (
-                      <div>
+                      <div key={"ava_s_launch_" + index.toString()}>
                         <Button
                           as={Link}
                           href={item.link}

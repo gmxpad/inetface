@@ -49,12 +49,6 @@ const PopulerGames = () => {
           }}
           className="xl:text-4xl flex justify-between whitespace-nowrap sm:text-2xl items-center md:text-2xl text-white font-semibold sm:pb-5 md:pb-5 xl:pb-0">
           <p>POPULAR GAMES</p>
-          <Button
-            as={Link}
-            className="bg-transparent text-white font-normal  text-xl duration-300 border-2 md:py-7 md:px-8 sm:w-[35%] border-white"
-            href="/games">
-            View All
-          </Button>
         </div>
         <div className="flex xl:flex-row md:flex-col sm:flex-col sm:gap-10 md:gap-10 xl:gap-0 w-full h-full xl:justify-between">
           <div
@@ -65,19 +59,24 @@ const PopulerGames = () => {
               transition: "scale 1s, opacity 1s",
             }}
             className="rounded-xl bg-dark-gray xl:w-[65%] sm:w-full md:w-full relative">
-            <div className="xl:absolute sm:flex md:flex xl:-top-12 xl:right-0 sm:-translate-y-12 sm:translate-x-16 md:-translate-y-12 md:translate-x-[50%] xl:-translate-y-0 xl:translate-x-0">
+            <div className="xl:absolute sm:flex md:flex xl:-bottom-0 xl:right-0 sm:-translate-y-12 sm:translate-x-16 md:-translate-y-12 md:translate-x-[50%] xl:-translate-y-0 xl:translate-x-0">
               <Image
                 isBlurred
-                className="sm:w-[300px] md:w-[300px] xl:w-full"
-                src="/games/populerGame-1.png"
+                className="sm:w-[300px] md:w-[300px] xl:w-[550px]"
+                src="/games/lussa/chracter.png"
               />
             </div>
             <div className="xl:w-2/3 flex flex-col gap-8 justify-center p-5 xl:h-[440px] overflow-hidden text-white">
               <div className="flex flex-col gap-3">
-                <p>18 million players</p>
-                <Image isBlurred radius="none" src="/icons/valorant.png" />
+                <p>10K+ players</p>
+                <Image
+                  width={350}
+                  isBlurred
+                  radius="none"
+                  src="/games/lussa/lussa-logo-green.png"
+                />
                 <p className="xl:w-[50%] sm:w-[75%] md:w-[75%]">
-                  Tactical shooter with 5v5 matches and unique characters.
+                  The Final Frontier
                 </p>
               </div>
 
@@ -97,20 +96,35 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-[#a664fe]/50">
-              <div className="absolute -top-3">
-                <Image isBlurred src="/games/forza-car.png" />
-              </div>
-              <div className="h-full items-end flex">
+              className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-[#a664fe]">
+              {/* <div className="absolute -top-[87%] right-0">
+                <Image
+                  width={300}
+                  isBlurred
+                  src="/games/katanainu/chracter.png"
+                />
+              </div> */}
+
+              <div className="h-full items-end flex relative">
+                <div className="absolute bottom-0 right-0 w-full">
+                  <video
+                    src="/games/katanainu/cinematic.mp4"
+                    autoPlay
+                    muted></video>
+                </div>
                 <div className="flex items-center justify-between w-full">
-                  <Image
-                    isBlurred
-                    radius="none"
-                    src="/icons/forza-horizon.png"
-                  />
+                  <div className="absolute top-5 left-5">
+                    <Image
+                      width={70}
+                      isBlurred
+                      radius="none"
+                      className=""
+                      src="/games/katanainu/logo.png"
+                    />
+                  </div>
                   <Button
                     as={Link}
-                    className="bg-transparent text-white font-bold duration-300 border-2 py-5 px-8 border-white"
+                    className="bg-transparent absolute bottom-5 right-5 text-white font-bold duration-300 border-2 py-5 px-8 border-white"
                     href="#">
                     Explore
                   </Button>
@@ -124,12 +138,14 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px] bg-dark-gray">
-              <div className="absolute -top-5 -right-1">
-                <Image isBlurred src="/games/soldier.png" />
-              </div>
+              className="relative flex flex-col justify-between bg-[url('/games/magiccraft/banner6.png')] bg-center p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px] bg-dark-gray">
               <div className="flex flex-col justify-between h-full">
-                <Image isBlurred radius="none" src="/icons/cod-name.png" />
+                <Image
+                  width={170}
+                  isBlurred
+                  radius="none"
+                  src="/games/magiccraft/lolg.png"
+                />
                 <Button
                   as={Link}
                   className="bg-transparent text-white font-bold duration-300 max-w-28 border-2 py-5 px-8 border-white"

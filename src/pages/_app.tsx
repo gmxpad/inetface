@@ -1,8 +1,8 @@
+"use client";
 import type { AppProps } from "next/app";
 import { NextUIProvider } from "@nextui-org/react";
-import Header from "@/components/ui/header";
+import Layout from "@/providers/layout";
 import "@/assets/globals.css";
-import Footer from "@/components/ui/footer";
 
 import { skaleChaosTestnet } from "wagmi/chains";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -12,10 +12,15 @@ import {
   w3mProvider,
 } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
+import { Provider as ReduxProvider } from "react-redux";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import { NextPageWithLayout } from "@/types";
+import { wrapper } from "@/store/store";
 
-const chains = [skaleChaosTestnet];
-const projectId: string =
-  process.env.PROJECT_ID_WC || "bf329c0050689f9c83bf06a7d4016bb6";
+const chains = [skaleChaosTestnet, skaleChaosTestnet];
+
+const projectId: string = "bf329c0050689f9c83bf06a7d4016bb6";
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
@@ -25,17 +30,24 @@ const wagmiConfig = createConfig({
 });
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
-export default function App({ Component, pageProps }: AppProps) {
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, ...rest }: AppPropsWithLayout) {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
+
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
-        <NextUIProvider>
-          <div className="bg-dark">
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </div>
-        </NextUIProvider>
+        <ReduxProvider store={store}>
+          <NextUIProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </NextUIProvider>
+        </ReduxProvider>
       </WagmiConfig>
       <Web3Modal
         themeVariables={{
