@@ -126,7 +126,7 @@ const IgoAndIno = () => {
               }}
               key={"upcoming_projects_" + index.toString()}
               className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
-              <div className="sm:h-[300px] md:h-[190px] lg:h-[220px] xl:h-[150px] 2xl:h-[200px] overflow-hidden bg-white">
+              <div className="sm:h-[200px] md:h-[190px] lg:h-[220px] xl:h-[150px] 2xl:h-[200px] overflow-hidden bg-white">
                 <Image
                   isBlurred
                   radius="none"
