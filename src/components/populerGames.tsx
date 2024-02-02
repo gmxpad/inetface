@@ -96,7 +96,7 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-[#a664fe]">
+              className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-transparent">
               {/* <div className="absolute -top-[87%] right-0">
                 <Image
                   width={300}
@@ -107,10 +107,7 @@ const PopulerGames = () => {
 
               <div className="h-full items-end flex relative">
                 <div className="absolute bottom-0 right-0 w-full">
-                  <video
-                    src="/games/katanainu/cinematic.mp4"
-                    autoPlay
-                    muted></video>
+                  <Image src="/games/katanainu/4.webp" />
                 </div>
                 <div className="flex items-center justify-between w-full">
                   <div className="absolute top-5 left-5">
@@ -124,7 +121,7 @@ const PopulerGames = () => {
                   </div>
                   <Button
                     as={Link}
-                    className="bg-transparent absolute bottom-5 right-5 text-white font-bold duration-300 border-2 py-5 px-8 border-white"
+                    className="bg-transparent z-10 absolute bottom-5 right-5 text-white font-bold duration-300 border-2 py-5 px-8 border-white"
                     href="#">
                     Explore
                   </Button>
