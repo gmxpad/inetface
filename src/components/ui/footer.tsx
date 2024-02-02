@@ -6,6 +6,10 @@ const sponsors = [
     id: 0,
     path: "/chains/skale-name.svg",
   },
+  {
+    id: 1,
+    path: "/logos/hoopx-logo.png",
+  },
 ];
 
 const Footer = () => {
@@ -16,10 +20,14 @@ const Footer = () => {
           <p className="text-white">Trusted by Global Platforms</p>
         </div>
 
-        <div className="xl:flex md:grid md:grid-cols-5 sm:grid sm:grid-cols-3 w-full justify-evenly border-b border-gray-800/50 pb-12">
+        <div className="xl:flex xl:items-center md:grid md:grid-cols-5 sm:grid sm:grid-cols-2 items-center w-full justify-evenly border-b border-gray-800/50 pb-12">
           {sponsors.map((item: any, index: number) => (
-            <div className=" sm:col-start-2 " key={`SPONSOR_${index}`}>
-              <Image width={180} src={item.path} alt="spon" />
+            <div className="sm:w-[95%]" key={`SPONSOR_${index}`}>
+              <Image
+                width={item.path === "/logos/hoopx-logo.png" ? 130 : 170}
+                src={item.path}
+                alt="spon"
+              />
             </div>
           ))}
         </div>
