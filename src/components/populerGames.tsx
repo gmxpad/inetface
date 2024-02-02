@@ -97,14 +97,6 @@ const PopulerGames = () => {
                 transition: "scale 1s, opacity 1s",
               }}
               className="relative flex flex-col justify-between sm:mt-40 overflow-hidden rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px]  bg-transparent">
-              {/* <div className="absolute -top-[87%] right-0">
-                <Image
-                  width={300}
-                  isBlurred
-                  src="/games/katanainu/chracter.png"
-                />
-              </div> */}
-
               <div className="h-full items-end flex relative">
                 <div className="absolute bottom-0 right-0 w-full">
                   <Image src="/games/katanainu/4.webp" />
@@ -135,13 +127,13 @@ const PopulerGames = () => {
                 scale: "0.9",
                 transition: "scale 1s, opacity 1s",
               }}
-              className="relative flex flex-col justify-between bg-[url('/games/magiccraft/banner6.png')] bg-center p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px] bg-dark-gray">
+              className="relative flex flex-col justify-between bg-[url('/games/magicCraft/banner6.png')] bg-center p-5 rounded-xl sm:h-[200px] md:h-[200px] xl:h-[200px] bg-dark-gray">
               <div className="flex flex-col justify-between h-full">
                 <Image
                   width={170}
                   isBlurred
                   radius="none"
-                  src="/games/magiccraft/lolg.png"
+                  src="/games/magicCraft/lolg.png"
                 />
                 <Button
                   as={Link}
