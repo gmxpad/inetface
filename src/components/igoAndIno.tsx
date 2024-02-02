@@ -149,10 +149,10 @@ const IgoAndIno = () => {
                   </div>
                   <div
                     className={classNames(
-                      "bg-[#212e1c]  flex font-Orbitron items-center text-sm rounded-lg px-3 py-1",
+                      " flex font-Orbitron items-center text-sm rounded-lg px-3 py-1",
                       item.status === "Coming Soon"
-                        ? "text-white"
-                        : "text-green-550"
+                        ? "text-white border border-gray-800/50"
+                        : "text-green-550 bg-[#212e1c]"
                     )}>
                     {item.status}
                   </div>
