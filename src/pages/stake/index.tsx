@@ -483,7 +483,7 @@ export default function Stake() {
                     <div className="absolute -top-4 z-10 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       {windowW > 1279 && selectedMultipler > 3
                         ? `${selectedMultipler}x`
-                        : windowW < 1280
+                        : windowW < 1280 && selectedMultipler > 3
                         ? `${selectedMultipler}x`
                         : ""}
                     </div>
@@ -498,7 +498,7 @@ export default function Stake() {
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Staked</p>
-                  <div className="text-white">{`${stakerInfo?.totalStakedAmount} $GMXP`}</div>
+                  <div className="text-white">{`0 $GMXP`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Score</p>
@@ -526,7 +526,7 @@ export default function Stake() {
                 </div>
                 <div className="flex flex-col gap-5 border border-gray-800/50 p-3 rounded-lg">
                   <div className="flex sm:flex-col md:flex-col xl:flex-row justify-between">
-                    <p className="text-white">Create New Pool</p>
+                    <p className="text-white">Stake $GMXP Token</p>
                     <div className="text-white">Total Score: {totalScore}x</div>
                   </div>
                   <div className="flex gap-3 items-center">

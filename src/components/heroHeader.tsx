@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Link, Button, Image } from "@nextui-org/react";
-import classNames from "classnames";
-import {
-  applyAnimationTop,
-  applyAnimationTopDuration,
-} from "@/scripts/applyAnimationTop";
 
 const HeroHeader = () => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
@@ -126,7 +121,7 @@ const HeroHeader = () => {
             height={550}
             className="xl:w-full lg:w-[500px] md:w-[600px] sm:w-[300px] "
             src="/gamesGallery/katanainu/blockchain-pose.webp"
-            alt="game"
+            alt="game-chracter"
           />
         </div>
       </div>

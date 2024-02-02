@@ -96,13 +96,15 @@ const Launchpad: NextPageWithLayout<
             <div className="absolute h-full right-0 w-[10%] bg-gradient-to-l from-dark  via-black/50 to-dark/0 z-10"></div>
             <div className="absolute h-[5%] bottom-0 w-full bg-gradient-to-t from-dark  via-dark/50 to-black/0 z-10"></div>
             <div className="absolute h-[5%] top-0 w-full  bg-gradient-to-b from-dark  via-dark/50 to-black/0 z-10"></div>
-            <Image
-              className="w-screen sm:h-[250px] h-[500px]  object-cover z-0 brightness-75"
-              height={280}
-              src={avaLaunchpads.image}
-              alt={avaLaunchpads.name}
-              draggable={false}
-            />
+            <div className="overflow-hidden sm:h-[250px] h-[400px]">
+              <Image
+                className="w-screen z-0 brightness-75"
+                height={280}
+                src={avaLaunchpads.image}
+                alt={avaLaunchpads.name}
+                draggable={false}
+              />
+            </div>
             <div className="absolute z-10 sm:bottom-5 sm:left-5 bottom-16 left-[10%]  w-full flex justify-between   text-white">
               <div className="flex flex-col gap-2">
                 <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">

@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="xl:flex md:grid md:grid-cols-5 sm:grid sm:grid-cols-3 w-full justify-evenly border-b border-gray-800/50 pb-12">
           {sponsors.map((item: any, index: number) => (
             <div className="" key={`SPONSOR_${index}`}>
-              <Image width={180} src={item.path} />
+              <Image width={180} src={item.path} alt="spon" />
             </div>
           ))}
         </div>
@@ -32,6 +32,7 @@ const Footer = () => {
                     radius="none"
                     width={390}
                     src="/logos/footerlogo.png"
+                    alt="logo"
                   />
                 </Link>
               </div>
