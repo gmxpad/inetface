@@ -1,31 +1,31 @@
-import { getContract } from "@wagmi/core";
 import DiamondABI from "./DiamondABI.json";
 import ERC20ABI from "./ERC20ABI.json";
-import { Contract, JsonRpcProvider } from "ethers";
+import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
+
 interface contractInterfaces {
   address: `0x${string}`;
   abi: object[];
   chainId: number;
 }
 
-const SkaleChaosTestnet = {
-  id: 1351057110,
-  rpc: "https://staging-v3.skalenodes.com/v1/staging-fast-active-bellatrix",
+export const SkaleChaosTestnet = {
+  id: 37084624,
+  rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
 };
 
 // FETCH CONTRACTS
 export const fetchDiamondContract: contractInterfaces = {
-  address: "0x132b09ed4e69d1dC563cC6cb916bc9Cc1Ab403d6",
+  address: "0xF1dA369F44e612dAf62C14141Af2B0b01375fD48",
   abi: DiamondABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
 export const fetchGMXTokenContract: contractInterfaces = {
-  address: "0x89861cedD8c7AB630ef9C150d609e2264a87Fe1a",
+  address: "0xc7a1568b9e05eb49B48D18D923e26A7936a105E9",
   abi: ERC20ABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
 export const fetchXXTokenContract: contractInterfaces = {
-  address: "0x3C689afF79B3e53dE387b1663b19D0C4084444A6",
+  address: "0xc60Dd8B0FC103190cA3D85C26B2e78F3aE05De2D",
   abi: ERC20ABI.abi,
   chainId: SkaleChaosTestnet.id,
 };

@@ -13,6 +13,7 @@ import {
   Image,
   Tabs,
   CircularProgress,
+  ScrollShadow,
 } from "@nextui-org/react";
 import classNames from "classnames";
 import { ChevronDown } from "@/components/icons/Icons";
@@ -20,15 +21,31 @@ import useWindowDimensions from "@/scripts/useWindowDimensions";
 import { formatEther, parseEther } from "viem";
 import { selectConnect, selectUserAddress } from "@/store/slices/walletSlice";
 import { useSelector } from "react-redux";
-import { fetchGMXTokenContract } from "@/scripts/contracts";
 import {
+  GetContract,
+  fetchDiamondContract,
+  fetchGMXTokenContract,
+} from "@/scripts/contracts";
+import {
+  AllowanceCheck,
   CalculateScore,
   GetBalance,
   GetStakePool,
   GetStaker,
+  calculateRewards,
+  getSigner,
+  getStakeList,
 } from "@/scripts/scripts";
-import { skaleChaosTestnet } from "viem/chains";
 import { usePublicClient } from "wagmi";
+import {
+  useWeb3ModalAccount,
+  useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+import { BrowserProvider } from "ethers";
+import WaitModal from "@/components/modals/waitModal";
+import ErrorModal from "@/components/modals/errorModal";
+import SuccessModal from "@/components/modals/successModal";
+import ApproveModal from "@/components/modals/approveModal";
 
 interface StakerInterface {
   staker: boolean;
@@ -37,9 +54,23 @@ interface StakerInterface {
   earnedToDateGMX: number;
   earnedToDateSGMX: number;
 }
+interface RewardsInterface {
+  rewardGMXP: string;
+  rewardSGMXP: string;
+}
+interface StakeListInterface {
+  isRequest: boolean;
+  amount: string;
+  multipler: number;
+  score: number;
+  indexID: number;
+  remainingTime: string;
+  stakeEndTime: number;
+  requestEndTime: number;
+}
 export default function Stake() {
   const { windowWidth } = useWindowDimensions();
-  const [isLoad, setLoad] = useState<boolean>(true);
+  const [isLoad, setLoad] = useState<boolean>(false);
   const [windowW, setWindowW] = useState<number>(0);
 
   const MOCK_POSITIONS = [
@@ -175,12 +206,12 @@ export default function Stake() {
     ),
   };
 
-  // User Veriables
-  const client = usePublicClient();
-  const connect = useSelector(selectConnect);
-  const userAddress = useSelector(selectUserAddress);
+  const { address, chainId, isConnected } = useWeb3ModalAccount();
+  const { walletProvider } = useWeb3ModalProvider();
 
   const [gmxBalance, setGmxBalance] = useState<string>("0.0");
+  const [gmxAllowanceForUser, setGmxAllowanceForUser] = useState<string>("0.0");
+
   const [stakerInfo, setStakerInfo] = useState<StakerInterface>({
     staker: false,
     totalStakedAmount: 0,
@@ -188,25 +219,94 @@ export default function Stake() {
     earnedToDateGMX: 0,
     earnedToDateSGMX: 0,
   });
+  const [userStakeData, setUserStakeData] = useState<StakeListInterface[]>([]);
+  const [rewards, setRewards] = useState<RewardsInterface>({
+    rewardGMXP: "0.0",
+    rewardSGMXP: "0.0",
+  });
+  const rewardsCal = async () => {
+    try {
+      const userRewards: any = await calculateRewards(address);
+      setRewards(userRewards);
+    } catch (error) {}
+  };
+  const allowanceCheckForUser = async () => {
+    try {
+      const allowance: any = await AllowanceCheck(
+        address,
+        fetchGMXTokenContract.address
+      );
+      setGmxAllowanceForUser(allowance);
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const balanceGMX: any = await GetBalance(
-          userAddress,
-          fetchGMXTokenContract.address
-        );
-        const stakerInfo: any = await GetStaker(userAddress);
-        setStakerInfo(stakerInfo);
-        setGmxBalance(formatEther(balanceGMX.toString()));
+        setLoad(true);
+
+        const [balanceGMX, stakeData, stakerInfo, rewards] = await Promise.all([
+          GetBalance(address, fetchGMXTokenContract.address),
+          getStakeList(address),
+          GetStaker(address),
+          calculateRewards(address),
+          allowanceCheckForUser(),
+        ]);
+        if (rewards !== undefined) {
+          // @ts-ignore
+          setRewards(rewards);
+        }
+        if (stakeData !== undefined) {
+          setUserStakeData(stakeData);
+        }
+        if (stakerInfo !== undefined) {
+          setStakerInfo(stakerInfo);
+        } else {
+          setStakerInfo({
+            staker: false,
+            totalStakedAmount: 0,
+            totalScore: 0,
+            earnedToDateGMX: 0,
+            earnedToDateSGMX: 0,
+          });
+        }
+        if (balanceGMX !== undefined) {
+          setGmxBalance(Number(formatEther(balanceGMX)).toFixed(1));
+        }
+        setLoad(false);
       } catch (error) {
+        setLoad(false);
       } finally {
         setLoad(false);
       }
     };
+
     checkUser();
-  }, [userAddress, connect]);
-  console.log(stakerInfo, "sTAKER");
+  }, [address, isConnected, chainId]);
+
+  const [loadingRewards, setLoadingRewards] = useState<boolean>(false);
+  useEffect(() => {
+    const calReward = async () => {
+      try {
+        if (stakerInfo.staker === true) {
+          setLoadingRewards(true);
+          await rewardsCal();
+        }
+      } catch (error) {
+      } finally {
+        setLoadingRewards(false);
+      }
+    };
+    calReward();
+    if (stakerInfo.staker === true) {
+      const a = setInterval(() => {
+        calReward();
+      }, 15000);
+      return () => {
+        clearInterval(a);
+      };
+    }
+  }, [address, isConnected, chainId]);
 
   const maxBTN = async () => {
     setStakeInput(gmxBalance);
@@ -220,8 +320,177 @@ export default function Stake() {
     }
   };
 
+  const [waitModalOpen, setWaitModalOpen] = useState<boolean>(false);
+  const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
+  const [successModalOpenForClaim, setSuccessModalOpenForClaim] =
+    useState<boolean>(false);
+  const [successModalOpenForWithdraw, setSuccessModalOpenForWithdraw] =
+    useState<boolean>(false);
+  const [
+    successModalOpenForWithdrawRequest,
+    setSuccessModalOpenForWithdrawRequest,
+  ] = useState<boolean>(false);
+  const [successModalOpenForStake, setSuccessModalOpenForStake] =
+    useState<boolean>(false);
+  const [approveModalOpen, setApproveModalOpen] = useState<boolean>(false);
+
+  const handleWaitModalOpen = () => {
+    setWaitModalOpen(true);
+  };
+  const handleWaitModalClose = () => {
+    setWaitModalOpen(false);
+  };
+
+  const handleErrorModalOpen = () => {
+    setErrorModalOpen(true);
+  };
+  const handleErrorModalClose = () => {
+    setErrorModalOpen(false);
+  };
+  const handleSuccessModalOpenForClaim = () => {
+    setSuccessModalOpenForClaim(true);
+  };
+  const handleSuccessModalOpenForWithdraw = () => {
+    setSuccessModalOpenForWithdraw(true);
+  };
+  const handleSuccessModalOpenForWithdrawRequest = () => {
+    setSuccessModalOpenForWithdrawRequest(true);
+  };
+  const handleSuccessModalOpenForStake = () => {
+    setSuccessModalOpenForStake(true);
+  };
+  const handleApproveModalOpen = () => {
+    setApproveModalOpen(true);
+  };
+  const handleApproveModalClose = () => {
+    setApproveModalOpen(false);
+  };
+
+  const approveBTN = async () => {
+    try {
+      handleWaitModalOpen();
+      const signer = await getSigner(walletProvider);
+      const contract = GetContract(fetchGMXTokenContract.address);
+      const tx = await contract
+        ?.connect(signer)
+        // @ts-ignore
+        .approve(fetchDiamondContract.address, parseEther(stakeInput));
+      await tx.wait();
+      handleWaitModalClose();
+      handleApproveModalOpen();
+    } catch (error) {
+      handleWaitModalClose();
+      handleErrorModalOpen();
+    }
+  };
+
+  const stakeBTN = async () => {
+    try {
+      handleWaitModalOpen();
+      const signer = await getSigner(walletProvider);
+      const contract = GetContract(fetchDiamondContract.address);
+
+      const tx = await contract
+        ?.connect(signer)
+        // @ts-ignore
+        .stake(parseEther(stakeInput.toString()), BigInt(selectedDays * 86400));
+      await tx.wait();
+      handleWaitModalClose();
+      handleSuccessModalOpenForStake();
+    } catch (error) {
+      handleWaitModalClose();
+      handleErrorModalOpen();
+    }
+  };
+
+  const claimBTN = async () => {
+    if (isConnected === true) {
+      try {
+        handleWaitModalOpen();
+        const signer = await getSigner(walletProvider);
+        const contract = GetContract(fetchDiamondContract.address);
+        const tx = await contract
+          ?.connect(signer)
+          // @ts-ignore
+          .claimRewards();
+        await tx.wait();
+        handleWaitModalClose();
+        handleSuccessModalOpenForClaim();
+      } catch (error) {
+        handleWaitModalClose();
+        handleErrorModalOpen();
+      }
+    }
+  };
+
+  const withdrawRequestBTN = async (index: number) => {
+    if (isConnected === true) {
+      try {
+        handleWaitModalOpen();
+        const signer = await getSigner(walletProvider);
+        const contract = GetContract(fetchDiamondContract.address);
+        const tx = await contract
+          ?.connect(signer)
+          // @ts-ignore
+          .withdrawRequest(index);
+        await tx.wait();
+        handleWaitModalClose();
+        handleSuccessModalOpenForWithdrawRequest();
+      } catch (error) {
+        handleWaitModalClose();
+        handleErrorModalOpen();
+      }
+    }
+  };
+
+  const withdrawBTN = async (index: number) => {
+    if (isConnected === true) {
+      try {
+        handleWaitModalOpen();
+        const signer = await getSigner(walletProvider);
+        const contract = GetContract(fetchDiamondContract.address);
+        const tx = await contract
+          ?.connect(signer)
+          // @ts-ignore
+          .withdraw(index);
+        handleWaitModalClose();
+        handleSuccessModalOpenForWithdraw();
+        await tx.wait();
+      } catch (error) {
+        handleWaitModalClose();
+        handleErrorModalOpen();
+      }
+    }
+  };
+
   return (
     <>
+      <WaitModal isOpen={waitModalOpen} onClose={handleWaitModalClose} />
+      <ErrorModal isOpen={errorModalOpen} onClose={handleErrorModalClose} />
+      <SuccessModal
+        isOpen={successModalOpenForClaim}
+        desc={"You have successfully claimed your tokens."}
+      />
+      <SuccessModal
+        isOpen={successModalOpenForStake}
+        desc={"You have successfully staked your $GMXP tokens."}
+      />
+      <SuccessModal
+        isOpen={successModalOpenForWithdraw}
+        desc={"You have successfully withdraw your $GMXP tokens."}
+      />
+      <SuccessModal
+        isOpen={successModalOpenForWithdrawRequest}
+        desc={"You have successfully unstaked your $GMXP tokens."}
+      />
+      <ApproveModal
+        isOpen={approveModalOpen}
+        onClose={handleApproveModalClose}
+        deposit={() => stakeBTN()}
+        desc={"You have successfully approved $GMXP tokens."}
+        desc2={"Please continue to stake your $GMXP tokens..."}
+      />
+
       {isLoad === false ? (
         <div className="flex sm:flex-col md:flex-col xl:flex-row justify-between w-full sm:h-full md:h-full xl:h-full sm:px-5 md:px-5 xl:px-[10%] relative overflow-hidden py-12">
           <div
@@ -262,7 +531,7 @@ export default function Stake() {
             </div>
           </div>
 
-          <div className="sm:w-full md:w-full xl:w-[49%] bg-dark-gray rounded-lg flex flex-col z-10 sm:mt-12 md:mt-12 xl:mt-0  xl:scale-95 xl:-mr-5">
+          <div className="sm:w-full md:w-full xl:w-[49%] xl:min-h-[670px] bg-dark-gray rounded-lg flex flex-col z-10 sm:mt-12 md:mt-12 xl:mt-0  xl:scale-95 xl:-mr-5">
             <div className=" flex gap-3 p-3 border-b border-gray-800/50 sm:justify-between md:justify-center  whitespace-nowrap xl:justify-between items-center">
               <div>
                 <Button
@@ -498,27 +767,41 @@ export default function Stake() {
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Staked</p>
-                  <div className="text-white">{`0 $GMXP`}</div>
+                  <div className="text-white">{`${stakerInfo.totalStakedAmount} $GMXP`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Total Score</p>
-                  <div className="text-white">{`x`}</div>
+                  <div className="text-white">{`${stakerInfo.totalScore}x`}</div>
                 </div>
                 <div className="flex justify-between text-[#9d9d9d] sm:text-sm md:text-sm xl:text-base">
                   <p>Earned to Date</p>
                   <div className="flex items-center gap-2 sm:text-sm md:text-sm xl:text-base">
-                    <div className="text-white">{`0 $GMXP`}</div>-
-                    <div className="text-white">{`0 $SGMXP`}</div>
+                    <div className="text-white">{`${stakerInfo.earnedToDateGMX} $GMXP`}</div>
+                    -
+                    <div className="text-white">{`${stakerInfo.earnedToDateSGMX} $SGMXP`}</div>
                   </div>
                 </div>
                 <div className="flex sm:flex-col sm:gap-2 md:flex-col md:gap-2 xl:flex-row xl:gap-0 items-center md:justify-between w-full text-white border border-gray-800/50 rounded-lg p-2  sm:text-sm md:text-base">
                   <p className="text-[#9d9d9d]">Claimable Rewards:</p>
                   <div className="flex gap-2">
-                    <div className="text-white">{` $GMXP`}</div>-
-                    <div className="text-white">{` $SGMXP`}</div>
+                    <div
+                      className={classNames(
+                        loadingRewards === true
+                          ? "text-green-550"
+                          : "text-white"
+                      )}>{`${rewards.rewardGMXP} $GMXP`}</div>
+                    -
+                    <div
+                      className={classNames(
+                        loadingRewards === true
+                          ? "text-green-550"
+                          : "text-white"
+                      )}>{`${rewards.rewardSGMXP} $SGMXP`}</div>
                   </div>
 
                   <Button
+                    isDisabled={!isConnected}
+                    onClick={() => claimBTN()}
                     radius="sm"
                     className="bg-transparent text-white border sm:w-full md:w-full xl:w-[20%] border-gray-800/50 px-7">
                     Claim
@@ -560,50 +843,103 @@ export default function Stake() {
                           ? "Minimum stake amount 40K."
                           : ""
                       }
-                      className="w-[98%] whitespace-nowrap absolute top-0 p-0 text-white"
+                      className="w-[98%] xl:w-[77%] 2xl:w-[82%] whitespace-nowrap absolute top-0 p-0 text-white"
                     />
                     <div className="flex items-center">
                       <Button
                         size="lg"
+                        isDisabled={!isConnected}
                         onPress={() => maxBTN()}
                         radius="sm"
-                        className="bg-[#a664fe] rounded-l-none border-l border-gray-800/50 text-white absolute top-0 right-0">
+                        className="bg-[#a664fe] rounded-l-none border-l border-gray-800/50 text-white absolute top-0 z-10 right-0">
                         MAX
                       </Button>
                     </div>
                   </div>
                   <Button
+                    isDisabled={!isConnected}
+                    onPress={() =>
+                      Number(gmxAllowanceForUser) >=
+                      Number(parseEther(stakeInput))
+                        ? stakeBTN()
+                        : approveBTN()
+                    }
                     radius="sm"
                     className="bg-[#a664fe] text-white text-lg">
-                    Stake
+                    {Number(gmxAllowanceForUser) >=
+                    Number(parseEther(stakeInput))
+                      ? "Stake"
+                      : "Approve"}
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-5 p-5">
-                {MOCK_POSITIONS.map((item: any, index: number) => (
-                  <div key={"positions_" + index.toString()}>
-                    <div className="rounded-lg border border-gray-800/50 p-3 flex sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
-                      <div className="flex items-center gap-1 text-white">
-                        <Image width={20} src="/logos/gmx-logo.svg" />
-                        {item.amount}
+              <div className="flex flex-col xl:justify-between gap-5 p-5 h-full">
+                <ScrollShadow className="w-full xl:h-[400px] flex flex-col gap-5">
+                  {userStakeData.map(
+                    (item: StakeListInterface, index: number) => (
+                      <div key={"positions_" + index.toString()}>
+                        <div className="rounded-lg border border-gray-800/50 p-3 flex sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
+                          <div className="flex items-center gap-1 text-white">
+                            <Image width={20} src="/logos/gmx-logo.svg" />
+                            {item.amount}
+                          </div>
+                          <div className="flex items-center gap-1 text-white">
+                            <p className="text-[#9d9d9d]">Multipler:</p>
+                            {item.multipler}
+                          </div>
+                          <div className="flex items-center gap-1 text-white">
+                            <p className="text-[#9d9d9d]">Score:</p>
+                            {item.score}
+                          </div>
+                          <div className="flex items-center gap-1 text-white">
+                            <p className="text-[#9d9d9d]">Release in:</p>
+                            {item.remainingTime}
+                          </div>
+                          {Number(item.stakeEndTime) > 0 && (
+                            <Button
+                              radius="sm"
+                              disabled
+                              className="bg-transparent border border-gray-800/50 text-white">
+                              Locked
+                            </Button>
+                          )}
+                          {Number(item.stakeEndTime) === 0 &&
+                            item.isRequest === false && (
+                              <Button
+                                radius="sm"
+                                onClick={() =>
+                                  withdrawRequestBTN(Number(item.indexID))
+                                }
+                                className="bg-transparent border border-gray-800/50 text-white">
+                                Unstake
+                              </Button>
+                            )}
+                          {Number(item.requestEndTime) > 0 &&
+                            item.isRequest === true && (
+                              <Button
+                                radius="sm"
+                                disabled
+                                className="bg-transparent border border-gray-800/50 text-white">
+                                Unstake
+                              </Button>
+                            )}
+                          {Number(item.requestEndTime) === 0 &&
+                            item.isRequest === true && (
+                              <Button
+                                radius="sm"
+                                onClick={() =>
+                                  withdrawBTN(Number(item.indexID))
+                                }
+                                className="bg-transparent border border-gray-800/50 text-white">
+                                Withdraw
+                              </Button>
+                            )}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1 text-white">
-                        <p className="text-[#9d9d9d]">Multipler:</p>
-                        {item.multipler}
-                      </div>
-                      <div className="flex items-center gap-1 text-white">
-                        <p className="text-[#9d9d9d]">Release in:</p>
-                        {item.time}
-                      </div>
-                      <Button
-                        radius="sm"
-                        className="bg-transparent border border-gray-800/50 text-white">
-                        Unstake
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                    )
+                  )}
+                </ScrollShadow>
                 <div className="flex justify-between">
                   <div className="flex flex-col w-[33%] gap-3 text-white items-center justify-center border-r border-gray-800/50">
                     <p>APR Rate</p>
@@ -611,11 +947,15 @@ export default function Stake() {
                   </div>
                   <div className="flex flex-col gap-3 w-[33%] sm:text-center md:text-center xl:text-start text-white items-center justify-center border-r border-gray-800/50">
                     <p>Earned to Date</p>
-                    <p className="text-[#9d9d9d]">$0</p>
+
+                    <div className="flex flex-col items-center gap-2 sm:text-sm md:text-sm xl:text-base text-[#9d9d9d]">
+                      <div>{`${stakerInfo.earnedToDateGMX} $GMXP`}</div>
+                      <div>{`${stakerInfo.earnedToDateSGMX} $SGMXP`}</div>
+                    </div>
                   </div>
                   <div className="flex flex-col gap-3 w-[33%] text-white items-center justify-center">
                     <p>Total Score</p>
-                    <p className="text-[#9d9d9d]">80x</p>
+                    <div className="text-[#9d9d9d]">{`${stakerInfo.totalScore}x`}</div>
                   </div>
                 </div>
               </div>

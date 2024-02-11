@@ -10,36 +10,33 @@ import {
   NavbarMenu,
   Image,
   NavbarMenuItem,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
-import { Web3Button } from "@web3modal/react";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { useAccount } from "wagmi";
-import { setAccount } from "@/store/slices/walletSlice";
+import { ChevronDown } from "../icons/Icons";
+import classNames from "classnames";
 
 export default function Header() {
   const { windowWidth } = useWindowDimensions();
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const router = useRouter();
 
-  const dispatch = useDispatch();
-
-  const {
-    address: userAddress,
-    isConnected: connect,
-    isDisconnected: disconnect,
-  } = useAccount();
-
-  useEffect(() => {
-    if (connect === true) {
-      dispatch(setAccount({ userAddress, connect }));
-    } else {
-      dispatch(setAccount({ userAddress: undefined, connect: false }));
-    }
-  }, [connect, disconnect, userAddress]);
+  const icons = {
+    chevron: (
+      <ChevronDown
+        fill="currentColor"
+        size={16}
+        height={undefined}
+        width={undefined}
+      />
+    ),
+  };
 
   const menuItems = [
     {
@@ -47,8 +44,12 @@ export default function Header() {
       link: "/",
     },
     {
-      name: "Launchpad",
-      link: "/launchpads",
+      name: "IDO Launchpads",
+      link: "/launchpads/ido",
+    },
+    {
+      name: "INO Launchpads",
+      link: "/launchpads/ino",
     },
     {
       name: "Stake",
@@ -104,12 +105,53 @@ export default function Header() {
         className="sm:hidden md:hidden lg:flex gap-4 "
         justify="center">
         <NavbarItem>
-          <Button
-            onPress={() => router.push("/launchpads")}
-            radius="none"
-            className="bg-transparent text-white font-normal  text-lg duration-300">
-            Launchpads
-          </Button>
+          <Dropdown className="bg-dark-gray text-white p-0">
+            <DropdownTrigger>
+              <Button
+                radius="sm"
+                endContent={icons.chevron}
+                className="font-normal text-white bg-transparent text-lg  ">
+                Launchpads
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Single selection example"
+              disallowEmptySelection
+              selectionMode="single"
+              // @ts-ignore
+            >
+              <DropdownItem
+                key="ido_key"
+                color="secondary"
+                className={classNames("p-0")}>
+                <Button
+                  onPress={() => router.push("/launchpads/ido")}
+                  className={classNames(
+                    "w-full bg-transparent flex justify-start hover:text-white",
+                    router.asPath === "/launchpads/ido"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  IDO Launchpads
+                </Button>
+              </DropdownItem>
+              <DropdownItem
+                key="ino_key"
+                color="secondary"
+                className={classNames("p-0")}>
+                <Button
+                  onPress={() => router.push("/launchpads/ino")}
+                  className={classNames(
+                    "w-full bg-transparent flex justify-start hover:text-white",
+                    router.asPath === "/launchpads/ino"
+                      ? "text-white"
+                      : "text-white/50"
+                  )}>
+                  INO Launchpads
+                </Button>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </NavbarItem>
         <NavbarItem isActive>
           <Button
@@ -139,15 +181,19 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Web3Button label={lab} />
+          <w3m-button label={lab} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="w-full flex gap-8 py-12 z-[999] bg-dark">
         {menuItems.map((item, index) => (
           <NavbarMenuItem className="flex" key={`${item}-${index}`}>
-            <Link className="w-full text-white py-2" href={item.link} size="lg">
+            <Button
+              as={Link}
+              href={item.link}
+              className="w-full text-white flex px-3 justify-start bg-transparent"
+              size="lg">
               {item.name}
-            </Link>
+            </Button>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

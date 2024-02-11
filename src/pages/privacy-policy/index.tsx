@@ -10,17 +10,17 @@ export default function PrivacyPolicy() {
           <h2 className="text-[25px]">Last Updated: February 1, 2023</h2>
           <br />
           <p>
-            GMX PAD Technologies, Inc. d/b/a GMX PAD (“GMX PAD,” “we”, “us”, or
-            “our”) is committed to protecting your privacy. We have prepared
-            this Privacy Policy to describe to you our practices regarding the
-            Personal Data (as defined below) we collect, use, and share in
-            connection with the GMX PAD website, mobile app, and other software
-            provided on or in connection with our services, as described in our
-            Terms of Service (collectively, the “Service”). “NFT” in this
-            Privacy Policy means a non-fungible token or similar digital item
-            implemented on a blockchain (such as the Ethereum blockchain), which
-            uses smart contracts to link to or otherwise be associated with
-            certain content or data.
+            GAME X PAD Technologies, Inc. d/b/a GAME X PAD (“GAME X PAD,” “we”,
+            “us”, or “our”) is committed to protecting your privacy. We have
+            prepared this Privacy Policy to describe to you our practices
+            regarding the Personal Data (as defined below) we collect, use, and
+            share in connection with the GAME X PAD website, mobile app, and
+            other software provided on or in connection with our services, as
+            described in our Terms of Service (collectively, the “Service”).
+            “NFT” in this Privacy Policy means a non-fungible token or similar
+            digital item implemented on a blockchain (such as the Ethereum
+            blockchain), which uses smart contracts to link to or otherwise be
+            associated with certain content or data.
           </p>
           <br />
           <p>
@@ -237,12 +237,12 @@ export default function PrivacyPolicy() {
           <br />
           <p>
             Legal Rights. Regardless of any choices you make regarding your
-            Personal Data (as described below), GMX PAD may disclose Personal
+            Personal Data (as described below), GAME X PAD may disclose Personal
             Data if it believes in good faith that such disclosure is necessary:
             (a) in connection with any legal investigation; (b) to comply with
             relevant laws or to respond to subpoenas, warrants, or other legal
-            process served on GMX PAD; (c) to protect or defend the rights or
-            property of GMX PAD or users of the Service; and/or (d) to
+            process served on GAME X PAD; (c) to protect or defend the rights or
+            property of GAME X PAD or users of the Service; and/or (d) to
             investigate or assist in preventing any violation or potential
             violation of the law, this Privacy Policy, or our Terms of Service.
           </p>
@@ -381,9 +381,9 @@ export default function PrivacyPolicy() {
             Minors. We do not intentionally gather Personal Data from visitors
             who are under the age of 13. Our Terms of Service require all users
             to be at least 18 years old. Minors who are at least 13 years old
-            but are under 18 years old may use a parent or guardian’s GMX PAD
+            but are under 18 years old may use a parent or guardian’s GAME X PAD
             account, but only with the involvement of the account holder. If a
-            child under 13 submits Personal Data to GMX PAD and we learn that
+            child under 13 submits Personal Data to GAME X PAD and we learn that
             the Personal Data is the information of a child under 13, we will
             attempt to delete the information as soon as possible. If you
             believe that we might have any Personal Data from a child under 13,
@@ -407,19 +407,19 @@ export default function PrivacyPolicy() {
             Changes to This Privacy Policy. This Privacy Policy may be updated
             from time to time for any reason. We will notify you of any changes
             to our Privacy Policy by posting the new Privacy Policy at
-            https://gmxpad.io/privacy-policy The date the Privacy Policy was
+            https://gamexpad.io/privacy-policy The date the Privacy Policy was
             last revised is identified at the beginning of this Privacy Policy.
             You are responsible for periodically visiting our Service and this
             Privacy Policy to check for any changes.
           </p>
           <br />
           <p>
-            Questions; Contacting GMX PAD; Reporting Violations. If you have any
-            questions or concerns or complaints about our Privacy Policy or our
-            data collection or processing practices, or if you want to report
-            any security violations to us, please contact us via;
+            Questions; Contacting GAME X PAD; Reporting Violations. If you have
+            any questions or concerns or complaints about our Privacy Policy or
+            our data collection or processing practices, or if you want to
+            report any security violations to us, please contact us via;
           </p>
-          <p className="text-green-550 text-[20px]">social@GMX PAD.io</p>
+          <p className="text-green-550 text-[20px]">social@gamexpad.io</p>
         </div>
       </div>
     </>

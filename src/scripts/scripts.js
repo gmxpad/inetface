@@ -4,7 +4,9 @@ import {
   fetchDiamondContract,
   fetchGMXTokenContract,
   fetchXXTokenContract,
+  SkaleChaosTestnet,
 } from "./contracts";
+import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
 export async function AllowanceCheck(userAddress, tokenAddress) {
   try {
@@ -43,12 +45,10 @@ export async function CalculateScore(amount, time) {
     const contract = GetContract(fetchDiamondContract.address);
     const score = await contract.calculateScore(
       parseEther(amount),
-      parseFloat(Number(time) * 86401)
+      parseFloat(Number(time) * 86400)
     );
     return score;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 export async function GetStaker(userAddress) {
@@ -63,11 +63,13 @@ export async function GetStaker(userAddress) {
       const contract = GetContract(fetchDiamondContract.address);
       const result = await contract.getUserInfo(userAddress);
       staker = result[0];
-      // totalStakedAmount = formatEther(result[2].toString());
-      totalStakedAmount = parseEther("2001");
-      totalScore = parseFloat(result[3]) / 1e6;
-      earnedToDateGMX = formatEther(result[5].toString());
-      earnedToDateSGMX = formatEther(result[6].toString());
+      totalStakedAmount = Number(formatEther(result[2].toString()))
+        .toFixed(1)
+        .toString();
+      totalScore = Number(parseFloat(result[3]) / 1e6).toFixed(0);
+      earnedToDateGMX = Number(formatEther(result[5].toString())).toFixed(3);
+      earnedToDateSGMX = Number(formatEther(result[6].toString())).toFixed(3);
+
       return {
         staker,
         totalStakedAmount,
@@ -85,4 +87,118 @@ export async function GetStaker(userAddress) {
       earnedToDateSGMX,
     };
   }
+}
+
+export async function calculateRewards(address) {
+  let rewardGMXP = 0;
+  let rewardSGMXP = 0;
+
+  if (address && address.length === 42) {
+    const contract = GetContract(fetchDiamondContract.address);
+    const results = await contract.calculateRewards(address);
+
+    if (Number(results[0]) > 0) {
+      rewardGMXP = Number(formatEther(results[0].toString())).toFixed(3);
+    }
+    if (Number(results[1]) > 0) {
+      rewardSGMXP = Number(formatEther(results[1].toString())).toFixed(3);
+    }
+  }
+  return {
+    rewardGMXP,
+    rewardSGMXP,
+  };
+}
+
+function calculateLockTimes(unlockTimes, requestTime, requaribles) {
+  if (requaribles === false && unlockTimes === 0) {
+    return "Requestable";
+  } else if (requaribles === true && requestTime === 0) {
+    return "Withdrawable";
+  }
+
+  let result = "";
+
+  const formatTimeUnit = (value, unit) => {
+    if (value > 0) {
+      result += `${value}${unit} `;
+    }
+  };
+
+  const formatTime = (seconds, units) => {
+    units.forEach(([unit, divisor]) => {
+      formatTimeUnit(Math.floor(seconds / divisor), unit);
+      seconds %= divisor;
+    });
+
+    if (seconds < 60 && seconds > 0) {
+      result += `${seconds}s`;
+    }
+  };
+
+  formatTime(unlockTimes, [
+    ["M", 3600 * 24 * 30],
+    ["D", 3600 * 24],
+    ["H", 3600],
+    ["m", 60],
+  ]);
+  formatTime(requestTime, [
+    ["D", 3600 * 24],
+    ["H", 3600],
+    ["m", 60],
+  ]);
+
+  return result.trim();
+}
+
+export async function getStakeList(address) {
+  try {
+    if (address && address.length === 42) {
+      const contract = GetContract(fetchDiamondContract.address);
+      const tierSections = await contract.getUserStakeList(address);
+
+      const stakeInfos = tierSections.map(async (index) => {
+        const [stakerInfo, stakeEndTime, requestEndTime] = await Promise.all([
+          contract.getUserStakePeriod(index, address),
+          contract.getStakeEndTime(index, address),
+          contract.getRequestEndTime(index, address),
+        ]);
+        let amount = Number(formatEther(stakerInfo[4].toString())).toFixed(0);
+        let multipler = Number(stakerInfo[7]) / 10e1;
+        let score = parseFloat(Number(stakerInfo[5]) / 10e5).toFixed(0);
+
+        let isRequest = stakerInfo[0];
+        let indexID = Number(stakerInfo[1]);
+
+        const remainingTime = calculateLockTimes(
+          Number(stakeEndTime),
+          Number(requestEndTime),
+          isRequest
+        );
+        return {
+          isRequest,
+          amount,
+          multipler,
+          score,
+          indexID,
+          remainingTime,
+          stakeEndTime,
+          requestEndTime,
+        };
+      });
+
+      const listStakeInfo = await Promise.all(stakeInfos);
+      return listStakeInfo.reverse();
+    } else {
+      return [];
+    }
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function getSigner(walletProvider) {
+  const provider = new BrowserProvider(walletProvider);
+  const signer = await provider.getSigner();
+  return signer;
 }
