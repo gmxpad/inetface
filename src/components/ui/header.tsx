@@ -19,6 +19,7 @@ import useWindowDimensions from "@/scripts/useWindowDimensions";
 import { useRouter } from "next/router";
 import { ChevronDown } from "../icons/Icons";
 import classNames from "classnames";
+import ConnectButton from "@/providers/connectButton";
 
 export default function Header() {
   const { windowWidth } = useWindowDimensions();
@@ -181,7 +182,7 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <w3m-button label={lab} />
+          <ConnectButton />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="w-full flex gap-8 py-12 z-[999] bg-dark">
