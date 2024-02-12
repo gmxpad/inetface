@@ -552,7 +552,7 @@ export default function Stake() {
                 </Button>
               </div>
               <div className="text-white pr-5 sm:text-sm">
-                <span className="text-[#9d9d9d]">APR:</span> 102%
+                <span className="text-[#9d9d9d]">APR:</span> NaN%
               </div>
             </div>
             {activeTab === 0 ? (
@@ -875,24 +875,21 @@ export default function Stake() {
               </div>
             ) : (
               <div className="flex flex-col xl:justify-between gap-5 p-5 h-full">
-                <ScrollShadow className="w-full xl:h-[400px] flex flex-col gap-5">
+                <ScrollShadow className="w-full xl:h-[560px] flex flex-col gap-5">
                   {userStakeData.map(
                     (item: StakeListInterface, index: number) => (
                       <div key={"positions_" + index.toString()}>
                         <div className="rounded-lg border border-gray-800/50 p-3 flex sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
-                          <div className="flex items-center gap-1 text-white">
+                          <div className="flex items-center gap-1 w-[15%]  text-white">
                             <Image width={20} src="/logos/gmx-logo.svg" />
                             {item.amount}
                           </div>
-                          <div className="flex items-center gap-1 text-white">
-                            <p className="text-[#9d9d9d]">Multipler:</p>
-                            {item.multipler}
-                          </div>
-                          <div className="flex items-center gap-1 text-white">
+
+                          <div className="flex items-center gap-1 text-white w-[15%] ">
                             <p className="text-[#9d9d9d]">Score:</p>
                             {item.score}
                           </div>
-                          <div className="flex items-center gap-1 text-white">
+                          <div className="flex items-center gap-1 text-white w-[35%] ">
                             <p className="text-[#9d9d9d]">Release in:</p>
                             {item.remainingTime}
                           </div>
@@ -940,24 +937,6 @@ export default function Stake() {
                     )
                   )}
                 </ScrollShadow>
-                <div className="flex justify-between">
-                  <div className="flex flex-col w-[33%] gap-3 text-white items-center justify-center border-r border-gray-800/50">
-                    <p>APR Rate</p>
-                    <p className="text-[#9d9d9d]">1%</p>
-                  </div>
-                  <div className="flex flex-col gap-3 w-[33%] sm:text-center md:text-center xl:text-start text-white items-center justify-center border-r border-gray-800/50">
-                    <p>Earned to Date</p>
-
-                    <div className="flex flex-col items-center gap-2 sm:text-sm md:text-sm xl:text-base text-[#9d9d9d]">
-                      <div>{`${stakerInfo.earnedToDateGMX} $GMXP`}</div>
-                      <div>{`${stakerInfo.earnedToDateSGMX} $SGMXP`}</div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-3 w-[33%] text-white items-center justify-center">
-                    <p>Total Score</p>
-                    <div className="text-[#9d9d9d]">{`${stakerInfo.totalScore}x`}</div>
-                  </div>
-                </div>
               </div>
             )}
           </div>

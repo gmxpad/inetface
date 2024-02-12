@@ -37,14 +37,14 @@ export const MOCK_LAUNCHPADS = [
 
 export const MOCK_LAUNCHPADS_INO = [
   {
-    name: "Coming Soon",
-    genre: ["FPS", "RPG", "PVP"],
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of.",
+    name: "XPass Card",
+    genre: [""],
+    desc: "GameXPad offers a unique experience at the intersection of gaming and Web3 finance, providing users with exceptional advantages through our NFT membership cards.",
     image: "/NFT.gif",
-    slug: "coming-soon",
+    slug: "game-x-pass",
     chains: ["/chains/skale.svg"],
-    profile: "/comingsoon.webp",
-    coverImage: "/comingsoon.webp",
+    profile: "/logos/gmx-logo.svg",
+    coverImage: "/NFT.gif",
     status: "Upcoming",
     launchStatus: "INO",
     eventName: "Event Date",

@@ -10,26 +10,25 @@ export default function TermsOfUse() {
           <h2 className="text-[25px]">1.Introduction</h2>
           <br />
           <p>
-            Welcome to GAME X PAD, owned and operated by GAME X PAD
-            Technologies, Inc. d/b/a GAME X PAD (“GAME X PAD,” “we,” “us”, or
-            “our”). <br /> These Terms of Service (“Terms”) govern your access
-            to and use of the GAME X PAD website(s), our APIs, mobile app (the
-            “App”), and any other software, tools, features, or functionalities
-            provided on or in connection with our services; including without
-            limitation using our services to view, explore, and create NFTs and
-            use our tools, at your own discretion, to connect directly with
-            others to purchase, sell, or transfer NFTs on public blockchains
-            (collectively, the “Service”). “NFT” in these Terms means a
-            non-fungible token or similar digital item implemented on a
-            blockchain (such as the Ethereum blockchain), which uses smart
-            contracts to link to or otherwise be associated with certain content
-            or data. For purposes of these Terms, “user”, “you”, and “your”
-            means you as the user of the Service. If you use the Service on
-            behalf of a company or other entity then “you” includes you and that
-            entity, and you represent and warrant that (a) you are an authorized
-            representative of the entity with the authority to bind the entity
-            to these Terms, and (b) you agree to these Terms on the entity’s
-            behalf.
+            Welcome to GAMEXPAD, owned and operated by GAMEXPAD Technologies,
+            Inc. d/b/a GAMEXPAD (“GAMEXPAD,” “we,” “us”, or “our”). <br /> These
+            Terms of Service (“Terms”) govern your access to and use of the
+            GAMEXPAD website(s), our APIs, mobile app (the “App”), and any other
+            software, tools, features, or functionalities provided on or in
+            connection with our services; including without limitation using our
+            services to view, explore, and create NFTs and use our tools, at
+            your own discretion, to connect directly with others to purchase,
+            sell, or transfer NFTs on public blockchains (collectively, the
+            “Service”). “NFT” in these Terms means a non-fungible token or
+            similar digital item implemented on a blockchain (such as the
+            Ethereum blockchain), which uses smart contracts to link to or
+            otherwise be associated with certain content or data. For purposes
+            of these Terms, “user”, “you”, and “your” means you as the user of
+            the Service. If you use the Service on behalf of a company or other
+            entity then “you” includes you and that entity, and you represent
+            and warrant that (a) you are an authorized representative of the
+            entity with the authority to bind the entity to these Terms, and (b)
+            you agree to these Terms on the entity’s behalf.
           </p>
           <br />
           <p>
@@ -46,62 +45,61 @@ export default function TermsOfUse() {
           <br />
           <p>
             {" "}
-            GAME X PAD is not a wallet provider, exchange, broker, financial
-            institution, money services business, or creditor. GAME X PAD
-            provides a peer-to-peer web3 service that helps users discover and
-            directly interact with each other and NFTs available on public
-            blockchains. We do not have custody or control over the NFTs or
-            blockchains you are interacting with and we do not execute or
-            effectuate purchases, transfers, or sales of NFTs. To use our
-            Service, you must use a third-party wallet which allows you to
-            engage in transactions on blockchains. GAME X PAD is not party to
-            any agreement between any users. You bear full responsibility for
-            verifying the identity, legitimacy, and authenticity of NFTs that
-            you purchase from third-party sellers using the Service and we make
-            no claims about the identity, legitimacy, functionality, or
-            authenticity of users or NFTs (and any content associated with such
-            NFTs) visible on the Service. Because we have a growing number of
-            services, we sometimes need to provide additional terms for specific
-            services (and such services are deemed part of the “Service”
-            hereunder and shall also be subject to these Terms). Those
-            additional terms and conditions, which are available with the
-            relevant service, then become part of your agreement with us if you
-            use those services. In the event of a conflict between these Terms
-            and any additional applicable terms we may provide for a specific
-            service, such additional terms shall control for that specific
-            service. GAME X PAD reserves the right to change or modify these
-            Terms at any time and in our sole discretion. If we make material
-            changes to these Terms, we will use reasonable efforts to provide
-            notice of such changes, such as by providing notice through the
-            Service or updating the “Last Updated” date at the beginning of
-            these Terms. By continuing to access or use the Service, you confirm
-            your acceptance of the revised Terms and all of the terms
-            incorporated therein by reference effective as of the date these
-            Terms are updated. It is your sole responsibility to review the
-            Terms from time to time to view such changes and to ensure that you
-            understand the terms and conditions that apply when you access or
-            use the Service.
+            GAMEXPAD is not a wallet provider, exchange, broker, financial
+            institution, money services business, or creditor. GAMEXPAD provides
+            a peer-to-peer web3 service that helps users discover and directly
+            interact with each other and NFTs available on public blockchains.
+            We do not have custody or control over the NFTs or blockchains you
+            are interacting with and we do not execute or effectuate purchases,
+            transfers, or sales of NFTs. To use our Service, you must use a
+            third-party wallet which allows you to engage in transactions on
+            blockchains. GAMEXPAD is not party to any agreement between any
+            users. You bear full responsibility for verifying the identity,
+            legitimacy, and authenticity of NFTs that you purchase from
+            third-party sellers using the Service and we make no claims about
+            the identity, legitimacy, functionality, or authenticity of users or
+            NFTs (and any content associated with such NFTs) visible on the
+            Service. Because we have a growing number of services, we sometimes
+            need to provide additional terms for specific services (and such
+            services are deemed part of the “Service” hereunder and shall also
+            be subject to these Terms). Those additional terms and conditions,
+            which are available with the relevant service, then become part of
+            your agreement with us if you use those services. In the event of a
+            conflict between these Terms and any additional applicable terms we
+            may provide for a specific service, such additional terms shall
+            control for that specific service. GAMEXPAD reserves the right to
+            change or modify these Terms at any time and in our sole discretion.
+            If we make material changes to these Terms, we will use reasonable
+            efforts to provide notice of such changes, such as by providing
+            notice through the Service or updating the “Last Updated” date at
+            the beginning of these Terms. By continuing to access or use the
+            Service, you confirm your acceptance of the revised Terms and all of
+            the terms incorporated therein by reference effective as of the date
+            these Terms are updated. It is your sole responsibility to review
+            the Terms from time to time to view such changes and to ensure that
+            you understand the terms and conditions that apply when you access
+            or use the Service.
           </p>
           <br />
           <p className="text-[25px]">2. Accessing the Service</p>
           <br />
           <p>
             Like much of web3, your blockchain address functions as your
-            identity on GAME X PAD. Accordingly, you will need a blockchain
+            identity on GAMEXPAD. Accordingly, you will need a blockchain
             address and a third-party wallet to access the Service. Your account
             on the service (“Account”) will be associated with your blockchain
-            address; however, if you want to add some flair to your GAME X PAD
+            address; however, if you want to add some flair to your GAMEXPAD
             persona, you can add additional information, such as a profile
-            picture, to your Account. Your Account on GAME X PAD will be
+            picture, to your Account. Your Account on GAMEXPAD will be
             associated with your linked blockchain address and display the NFTs
             for that blockchain address (and, if applicable, any content
             associated with such NFTs). By using your wallet in connection with
             the Service, you agree that you are using that wallet under the
             terms and conditions of the applicable provider of the wallet.
             Wallets are not operated by, maintained by, or affiliated with GAME
-            X PAD, and GAME X PAD does not have custody or control over the
+            X PAD, and GAMEXPAD does not have custody or control over the
             contents of your wallet and has no ability to retrieve or transfer
-            its contents. GAME X PAD accepts no responsibility for, or liability
+            its contents. GAMEXPAD accepts no responsibility for, or liability
             to you, in connection with your use of a wallet and makes no
             representations or warranties regarding how the Service will operate
             with any specific wallet. You are solely responsible for keeping
@@ -137,30 +135,29 @@ export default function TermsOfUse() {
             of this agreement. If you access or use the Service outside the
             United States, you are solely responsible for ensuring that your
             access and use of the Service in such country, territory or
-            jurisdiction does not violate any applicable laws. GAME X PAD may
+            jurisdiction does not violate any applicable laws. GAMEXPAD may
             require you to provide additional information and documents in
             certain circumstances, such as at the request of any government
             authority, as any applicable law or regulation dictates, or to
             investigate a potential violation of these Terms. In such cases,
-            GAME X PAD, in its sole discretion, may disable your Account and
-            block your ability to access the Service until such additional
-            information and documents are processed by GAME X PAD. If you do not
-            provide complete and accurate information in response to such a
-            request, GAME X PAD may refuse to restore your access to the
-            Service. Your access and use of the Service may be interrupted from
-            time to time for any of several reasons, including, without
-            limitation, the malfunction of equipment, periodic updating,
-            maintenance, or repair of the Service or other actions that GAME X
-            PAD, in its sole discretion, may elect to take. If your Account
-            becomes inactive for six months or longer, as determined by GAME X
-            PAD in its sole discretion, you understand that GAME X PAD may
-            disable your Account or reassign your username or associated url. We
-            require all users to be at least 18 years old. If you are at least
-            13 years old but under 18 years old, you may only use GAME X PAD
-            through a parent or guardian’s Account and with their approval and
-            oversight. That account holder is responsible for your actions using
-            the Account. It is prohibited to use our Service if you are under 13
-            years old.
+            GAMEXPAD, in its sole discretion, may disable your Account and block
+            your ability to access the Service until such additional information
+            and documents are processed by GAMEXPAD. If you do not provide
+            complete and accurate information in response to such a request,
+            GAMEXPAD may refuse to restore your access to the Service. Your
+            access and use of the Service may be interrupted from time to time
+            for any of several reasons, including, without limitation, the
+            malfunction of equipment, periodic updating, maintenance, or repair
+            of the Service or other actions that GAME X PAD, in its sole
+            discretion, may elect to take. If your Account becomes inactive for
+            six months or longer, as determined by GAME X PAD in its sole
+            discretion, you understand that GAMEXPAD may disable your Account or
+            reassign your username or associated url. We require all users to be
+            at least 18 years old. If you are at least 13 years old but under 18
+            years old, you may only use GAMEXPAD through a parent or guardian’s
+            Account and with their approval and oversight. That account holder
+            is responsible for your actions using the Account. It is prohibited
+            to use our Service if you are under 13 years old.
           </p>
           <br />
           <p className="text-[25px]">3.Ownership</p>
@@ -172,41 +169,40 @@ export default function TermsOfUse() {
             materials contained therein, including, without limitation, the GAME
             X PAD logo and all designs, text, graphics, pictures, data,
             software, sound files, other files, and the selection and
-            arrangement thereof are the proprietary property of GAME X PAD or
-            our affiliates, licensors, or users, as applicable, and you agree
-            not to take any action(s) inconsistent with such ownership
-            interests. We and our affiliates, licensors, and users, as
-            applicable, reserve all rights in connection with the Service and
-            its content, including, without limitation, the exclusive right to
-            create derivative works. GAME X PAD’s name, logo, trademarks, and
-            any GAME X PAD product or service names, designs, logos, and slogans
-            are the intellectual property of GAME X PAD or our affiliates or
-            licensors and may not be copied, imitated or used, in whole or in
-            part, without our prior written permission in each instance. You may
-            not use any metatags or other “hidden text” utilizing “GAME X PAD”
-            or any other name, trademark or product or service name of GAME X
-            PAD or our affiliates or licensors without our prior written
-            permission. In addition, the “look and feel” of the Service
-            constitutes the service mark, trademark or trade dress of GAME X PAD
-            and may not be copied, imitated or used, in whole or in part,
-            without our prior written permission. All other third-party
-            trademarks, registered trademarks, and product names mentioned on
-            the Service or contained in the content linked to or associated with
-            any NFTs displayed on the Service are the property of their
-            respective owners and may not be copied, imitated or used, in whole
-            or in part, without the permission of the applicable intellectual
-            property rights holder. Reference to any products, services,
-            processes or other information by name, trademark, manufacturer,
-            supplier or otherwise does not constitute or imply endorsement,
-            sponsorship, or recommendation by GAME X PAD. We welcome feedback,
-            comments, and suggestions for improvements to the Service
-            (“Feedback”). You acknowledge and expressly agree that any
+            arrangement thereof are the proprietary property of GAMEXPAD or our
+            affiliates, licensors, or users, as applicable, and you agree not to
+            take any action(s) inconsistent with such ownership interests. We
+            and our affiliates, licensors, and users, as applicable, reserve all
+            rights in connection with the Service and its content, including,
+            without limitation, the exclusive right to create derivative works.
+            GAMEXPAD’s name, logo, trademarks, and any GAMEXPAD product or
+            service names, designs, logos, and slogans are the intellectual
+            property of GAMEXPAD or our affiliates or licensors and may not be
+            copied, imitated or used, in whole or in part, without our prior
+            written permission in each instance. You may not use any metatags or
+            other “hidden text” utilizing “GAMEXPAD” or any other name,
+            trademark or product or service name of GAME X PAD or our affiliates
+            or licensors without our prior written permission. In addition, the
+            “look and feel” of the Service constitutes the service mark,
+            trademark or trade dress of GAMEXPAD and may not be copied, imitated
+            or used, in whole or in part, without our prior written permission.
+            All other third-party trademarks, registered trademarks, and product
+            names mentioned on the Service or contained in the content linked to
+            or associated with any NFTs displayed on the Service are the
+            property of their respective owners and may not be copied, imitated
+            or used, in whole or in part, without the permission of the
+            applicable intellectual property rights holder. Reference to any
+            products, services, processes or other information by name,
+            trademark, manufacturer, supplier or otherwise does not constitute
+            or imply endorsement, sponsorship, or recommendation by GAMEXPAD. We
+            welcome feedback, comments, and suggestions for improvements to the
+            Service (“Feedback”). You acknowledge and expressly agree that any
             contribution of Feedback does not and will not give or grant you any
             right, title, or interest in the Service or in any such Feedback.
-            You agree that GAME X PAD may use and disclose Feedback in any
-            manner and for any purpose whatsoever without further notice or
+            You agree that GAMEXPAD may use and disclose Feedback in any manner
+            and for any purpose whatsoever without further notice or
             compensation to you and without retention by you of any proprietary
-            or other right or claim. You hereby assign to GAME X PAD any and all
+            or other right or claim. You hereby assign to GAMEXPAD any and all
             right, title, and interest (including, but not limited to, any
             patent, copyright, trade secret, trademark, show-how, know-how,
             moral rights and any and all other intellectual property right) that
@@ -238,41 +234,41 @@ export default function TermsOfUse() {
           <p className="text-[25px]">5.Third-Party Content and Services</p>
           <br />
           <p>
-            As a peer-to-peer web3 service, GAME X PAD helps you explore NFTs
+            As a peer-to-peer web3 service, GAMEXPAD helps you explore NFTs
             created by third parties and interact with different blockchains.
-            GAME X PAD does not make any representations or warranties about
-            this third-party content visible through our Service, including any
+            GAMEXPAD does not make any representations or warranties about this
+            third-party content visible through our Service, including any
             content associated with NFTs displayed on the Service, and you bear
             responsibility for verifying the legitimacy, authenticity, and
             legality of NFTs that you purchase from third-party sellers. We also
-            cannot guarantee that any NFTs visible on GAME X PAD will always
+            cannot guarantee that any NFTs visible on GAMEXPAD will always
             remain visible and/or available to be bought, sold, or transferred.
             NFTs may be subject to terms directly between buyers and sellers
             with respect to the use of the NFT content and benefits associated
             with a given NFT (“Purchase Terms”). For example, when you click to
-            get more details about any of the NFTs visible on GAME X PAD, you
-            may notice a third party link to the creator’s website. Such website
-            may include Purchase Terms governing the use of the NFT that you
-            will be required to comply with. GAME X PAD is not a party to any
-            such Purchase Terms, which are solely between the buyer and the
-            seller. The buyer and seller are entirely responsible for
-            communicating, promulgating, agreeing to, and enforcing Purchase
-            Terms. You are solely responsible for reviewing such Purchase Terms.
-            The Service may also contain links or functionality to access or use
-            third-party websites (“Third-Party Websites”) and applications
-            (“Third-Party Applications”), or otherwise display, include, or make
-            available content, data, information, services, applications, or
-            materials from third parties (“Third-Party Materials”). When you
-            click on a link to, or access and use, a Third-Party Website or
-            Third-Party Application, though we may not warn you that you have
-            left our Service, you are subject to the terms and conditions
-            (including privacy policies) of another website or destination. Such
+            get more details about any of the NFTs visible on GAMEXPAD, you may
+            notice a third party link to the creator’s website. Such website may
+            include Purchase Terms governing the use of the NFT that you will be
+            required to comply with. GAMEXPAD is not a party to any such
+            Purchase Terms, which are solely between the buyer and the seller.
+            The buyer and seller are entirely responsible for communicating,
+            promulgating, agreeing to, and enforcing Purchase Terms. You are
+            solely responsible for reviewing such Purchase Terms. The Service
+            may also contain links or functionality to access or use third-party
+            websites (“Third-Party Websites”) and applications (“Third-Party
+            Applications”), or otherwise display, include, or make available
+            content, data, information, services, applications, or materials
+            from third parties (“Third-Party Materials”). When you click on a
+            link to, or access and use, a Third-Party Website or Third-Party
+            Application, though we may not warn you that you have left our
+            Service, you are subject to the terms and conditions (including
+            privacy policies) of another website or destination. Such
             Third-Party Websites, Third-Party Applications, and Third-Party
-            Materials are not under the control of GAME X PAD, and may be “open”
-            applications for which no recourse is possible. GAME X PAD is not
+            Materials are not under the control of GAMEXPAD, and may be “open”
+            applications for which no recourse is possible. GAMEXPAD is not
             responsible or liable for any Third-Party Websites, Third-Party
-            Applications, and Third-Party Materials. GAME X PAD provides links
-            to these Third-Party Websites and Third-Party Applications only as a
+            Applications, and Third-Party Materials. GAMEXPAD provides links to
+            these Third-Party Websites and Third-Party Applications only as a
             convenience and does not review, approve, monitor, endorse, warrant,
             or make any representations with respect to Third-Party Websites or
             Third-Party Applications, or their products or services or
@@ -308,12 +304,12 @@ export default function TermsOfUse() {
           <p>
             {" "}
             • Pose as another person or entity, or use a wallet to engage in a
-            transaction on GAME X PAD that is owned or controlled, in whole or
-            in part, by any other person;
+            transaction on GAMEXPAD that is owned or controlled, in whole or in
+            part, by any other person;
           </p>
           <p>
             {" "}
-            • Claim an GAME X PAD username for the purpose of reselling it,
+            • Claim an GAMEXPAD username for the purpose of reselling it,
             confusing others, deriving others’ goodwill, or otherwise engage in
             name squatting;
           </p>
@@ -340,7 +336,7 @@ export default function TermsOfUse() {
             including attempting to circumvent any rate limiting systems by
             using multiple API keys, directing traffic through multiple IP
             addresses, or otherwise obfuscating the source of traffic you send
-            to GAME X PAD;
+            to GAMEXPAD;
           </p>
           <p>
             {" "}
@@ -364,7 +360,7 @@ export default function TermsOfUse() {
           </p>
           <p>
             {" "}
-            • Sell or resell the Service or attempt to circumvent any GAME X PAD
+            • Sell or resell the Service or attempt to circumvent any GAMEXPAD
             fee systems;
           </p>
           <p>
@@ -372,7 +368,7 @@ export default function TermsOfUse() {
             • Engage in behaviors that have the intention or the effect of
             artificially causing an item or collection to appear at the top of
             search results, or artificially increasing view counts, favorites,
-            or other metrics that GAME X PAD might use to sort search results;
+            or other metrics that GAMEXPAD might use to sort search results;
           </p>
           <p>
             {" "}
@@ -385,7 +381,7 @@ export default function TermsOfUse() {
             • Use the Service for or in connection with money laundering,
             terrorist financing, or other illicit financial activity, or in any
             way in connection with the violation of any law or regulation that
-            applies to you or to GAME X PAD;
+            applies to you or to GAMEXPAD;
           </p>
           <p>
             {" "}
@@ -473,7 +469,7 @@ export default function TermsOfUse() {
             rules, and regulations, as well as these Terms, including the User
             Conduct requirements outlined above. By using the Service in
             conjunction with creating, submitting, posting, promoting, or
-            displaying content, or by complying with GAME X PAD’s metadata
+            displaying content, or by complying with GAMEXPAD’s metadata
             standards in your metadata API responses, you grant us a worldwide,
             non-exclusive, sublicensable, royalty-free license to use, copy,
             modify, and display any content, including but not limited to text,
@@ -483,9 +479,9 @@ export default function TermsOfUse() {
             future business purposes, including to provide, promote, and improve
             the Service. This includes any digital file, art, or other material
             linked to or associated with any NFTs that are displayed on the
-            Service. GAME X PAD does not claim that submitting, posting, or
-            displaying this content on or through the Service gives GAME X PAD
-            any ownership of the content. We re not saying we own it. We re just
+            Service. GAMEXPAD does not claim that submitting, posting, or
+            displaying this content on or through the Service gives GAMEXPAD any
+            ownership of the content. We re not saying we own it. We re just
             saying we might use it and show it off a bit. You represent and
             warrant that you have, or have obtained, all rights, licenses,
             consents, permissions, power and/or authority necessary to grant the
@@ -496,7 +492,7 @@ export default function TermsOfUse() {
             property rights, unless you have necessary permission or are
             otherwise legally entitled to post the material and to grant GAME X
             PAD the license described above, and that the content does not
-            violate any laws. GAME X PAD will take down works in response to
+            violate any laws. GAMEXPAD will take down works in response to
             Digital Millennium Copyright Act (“DMCA”) takedown notices and/or
             other intellectual property infringement claims and will terminate a
             users access to the Service if the user is determined to be a repeat
@@ -504,7 +500,7 @@ export default function TermsOfUse() {
             that constitutes copyright or trademark infringement, or violates
             your publicity or other intellectual property rights, please fill
             out our form here or you may submit written notice to our designated
-            copyright agent at: GAME X PAD Technologies, Inc. , partner@GAME X
+            copyright agent at: GAMEXPAD Technologies, Inc. , partner@GAME X
             PAD.io , 1309 Coffeen Avenue Ste, #1200, Wyoming, USA. For us to
             process your infringement claim regarding content on the Service,
             you must be the rightsholder or someone authorized to act on behalf
@@ -555,7 +551,7 @@ export default function TermsOfUse() {
             Please note that we will forward your notice of intellectual
             property infringement, including your contact information, to the
             party who will have their content removed so they understand why it
-            is no longer available on GAME X PAD and can also contact you to
+            is no longer available on GAMEXPAD and can also contact you to
             resolve any dispute.
           </p>
           <br />
@@ -563,7 +559,7 @@ export default function TermsOfUse() {
           <br />
           <p>
             By creating an Account, you consent to receive electronic
-            communications from GAME X PAD (e.g., via email, push notification,
+            communications from GAMEXPAD (e.g., via email, push notification,
             text messages, or other types of messages). These communications may
             include notices about your Account (e.g., transactional information)
             and are part of your relationship with us. We may also send you
@@ -593,7 +589,7 @@ export default function TermsOfUse() {
             terms and conditions in this paragraph apply, but solely with
             respect to your use of the App from the Apple App Store. You
             acknowledge and agree that these Terms are solely between you and
-            GAME X PAD, not Apple, and that Apple has no responsibility for the
+            GAMEXPAD, not Apple, and that Apple has no responsibility for the
             App or content thereof. Your use of the App must comply with the App
             Store’s applicable terms of use. You acknowledge that Apple has no
             obligation whatsoever to furnish any maintenance and support
@@ -613,7 +609,7 @@ export default function TermsOfUse() {
             protection or similar legislation. You acknowledge that, in the
             event of any third-party claim that the App or your possession and
             use of that App infringes that third party’s intellectual property
-            rights, GAME X PAD, not Apple, will be solely responsible for the
+            rights, GAMEXPAD, not Apple, will be solely responsible for the
             investigation, defense, settlement and discharge of any such
             intellectual property infringement claim to the extent required by
             these Terms. You must comply with applicable third-party terms of
@@ -630,12 +626,12 @@ export default function TermsOfUse() {
           <p>
             By agreeing to these Terms and accessing the Service, you agree, to
             the fullest extent permitted by applicable law, to indemnify,
-            defend, and hold harmless GAME X PAD, and our respective past,
+            defend, and hold harmless GAMEXPAD, and our respective past,
             present, and future employees, officers, directors, contractors,
             consultants, equity holders, suppliers, vendors, service providers,
             parent companies, subsidiaries, affiliates, agents, representatives,
             predecessors, successors, and assigns (individually and
-            collectively, the “GAME X PAD Parties”), from and against all actual
+            collectively, the “GAMEXPAD Parties”), from and against all actual
             or alleged claims, damages, awards, judgments, losses, liabilities,
             obligations, taxes, penalties, interest, fees, expenses (including,
             without limitation, attorneys’ fees and expenses), and costs
@@ -652,7 +648,7 @@ export default function TermsOfUse() {
             applicable law, and (d) your violation of the rights of or
             obligations to a third party, including another user or third-party,
             and (e) your negligence or wilful misconduct. You agree to promptly
-            notify GAME X PAD of any Claims and cooperate with the GAME X PAD
+            notify GAMEXPAD of any Claims and cooperate with the GAMEXPAD
             Parties in defending such Claims. You further agree that the GAME X
             PAD Parties shall have control of the defense or settlement of any
             Claims.{" "}
@@ -669,29 +665,29 @@ export default function TermsOfUse() {
           <p>
             YOUR ACCESS TO AND USE OF THE SERVICE IS AT YOUR OWN RISK. YOU
             UNDERSTAND AND AGREE THAT THE SERVICE IS PROVIDED ON AN “AS IS” AND
-            “AS AVAILABLE” BASIS AND GAME X PAD EXPRESSLY DISCLAIMS WARRANTIES
-            OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED. GAME X PAD
-            (AND ITS SUPPLIERS) MAKE NO WARRANTY OR REPRESENTATION AND DISCLAIM
-            ALL RESPONSIBILITY FOR WHETHER THE SERVICE: (A) WILL MEET YOUR
+            “AS AVAILABLE” BASIS AND GAMEXPAD EXPRESSLY DISCLAIMS WARRANTIES OR
+            CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED. GAMEXPAD (AND ITS
+            SUPPLIERS) MAKE NO WARRANTY OR REPRESENTATION AND DISCLAIM ALL
+            RESPONSIBILITY FOR WHETHER THE SERVICE: (A) WILL MEET YOUR
             REQUIREMENTS; (B) WILL BE AVAILABLE ON AN UNINTERRUPTED, TIMELY,
             SECURE, OR ERROR-FREE BASIS; OR (C) WILL BE ACCURATE, RELIABLE,
-            COMPLETE, LEGAL, OR SAFE. GAME X PAD DISCLAIMS ALL OTHER WARRANTIES
-            OR CONDITIONS, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION,
+            COMPLETE, LEGAL, OR SAFE. GAMEXPAD DISCLAIMS ALL OTHER WARRANTIES OR
+            CONDITIONS, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION,
             IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A
-            PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. GAME X PAD WILL NOT
-            BE LIABLE FOR ANY LOSS OF ANY KIND FROM ANY ACTION TAKEN OR TAKEN IN
+            PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. GAMEXPAD WILL NOT BE
+            LIABLE FOR ANY LOSS OF ANY KIND FROM ANY ACTION TAKEN OR TAKEN IN
             RELIANCE ON MATERIAL OR INFORMATION, CONTAINED ON THE SERVICE. WHILE
-            GAME X PAD ATTEMPTS TO MAKE YOUR ACCESS TO AND USE OF THE SERVICE
-            SAFE, GAME X PAD CANNOT AND DOES NOT REPRESENT OR WARRANT THAT THE
+            GAMEXPAD ATTEMPTS TO MAKE YOUR ACCESS TO AND USE OF THE SERVICE
+            SAFE, GAMEXPAD CANNOT AND DOES NOT REPRESENT OR WARRANT THAT THE
             SERVICE, CONTENT, CONTENT LINKED TO OR ASSOCIATED WITH ANY NFTS, OR
             ANY NFTS YOU INTERACT WITH USING OUR SERVICE OR OUR SERVICE
             PROVIDERS’ SERVERS ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
             WE CANNOT GUARANTEE THE SECURITY OF ANY DATA THAT YOU DISCLOSE
             ONLINE. NO ADVICE OR INFORMATION, WHETHER ORAL OR OBTAINED FROM THE
-            GAME X PAD PARTIES OR THROUGH THE SERVICE, WILL CREATE ANY WARRANTY
-            OR REPRESENTATION NOT EXPRESSLY MADE HEREIN. YOU ACCEPT THE INHERENT
+            GAMEXPAD PARTIES OR THROUGH THE SERVICE, WILL CREATE ANY WARRANTY OR
+            REPRESENTATION NOT EXPRESSLY MADE HEREIN. YOU ACCEPT THE INHERENT
             SECURITY RISKS OF PROVIDING INFORMATION AND DEALING ONLINE OVER THE
-            INTERNET AND WILL NOT HOLD GAME X PAD RESPONSIBLE FOR ANY BREACH OF
+            INTERNET AND WILL NOT HOLD GAMEXPAD RESPONSIBLE FOR ANY BREACH OF
             SECURITY. WE WILL NOT BE RESPONSIBLE OR LIABLE TO YOU FOR ANY LOSS
             AND TAKE NO RESPONSIBILITY FOR, AND WILL NOT BE LIABLE TO YOU FOR,
             ANY USE OF NFTS, CONTENT, AND/OR CONTENT LINKED TO OR ASSOCIATED
@@ -704,17 +700,17 @@ export default function TermsOfUse() {
             SERVICE OR NFTS. NFTS EXIST ONLY BY VIRTUE OF THE OWNERSHIP RECORD
             MAINTAINED IN THE ASSOCIATED BLOCKCHAIN (E.G., ETHEREUM NETWORK).
             ANY TRANSFERS OR SALES OCCUR ON THE ASSOCIATED BLOCKCHAIN (E.G.,
-            ETHEREUM). GAME X PAD AND/OR ANY OTHER GAME X PAD PARTY CANNOT
-            EFFECT OR OTHERWISE CONTROL THE TRANSFER OF TITLE OR RIGHT IN ANY
-            NFTS OR UNDERLYING OR ASSOCIATED CONTENT OR ITEMS. NO GAME X PAD
-            PARTY IS RESPONSIBLE OR LIABLE FOR ANY SUSTAINED LOSSES OR INJURY
-            DUE TO VULNERABILITY OR ANY KIND OF FAILURE, ABNORMAL BEHAVIOR OF
-            SOFTWARE (E.G., WALLET, SMART CONTRACT), BLOCKCHAINS OR ANY OTHER
-            FEATURES OF THE NFTS. NO GAME X PAD PARTY IS RESPONSIBLE FOR LOSSES
-            OR INJURY DUE TO LATE REPORTS BY DEVELOPERS OR REPRESENTATIVES (OR
-            NO REPORT AT ALL) OF ANY ISSUES WITH THE BLOCKCHAIN SUPPORTING THE
-            NFTS, INCLUDING FORKS, TECHNICAL NODE ISSUES OR ANY OTHER ISSUES
-            HAVING LOSSES OR INJURY AS A RESULT.
+            ETHEREUM). GAMEXPAD AND/OR ANY OTHER GAMEXPAD PARTY CANNOT EFFECT OR
+            OTHERWISE CONTROL THE TRANSFER OF TITLE OR RIGHT IN ANY NFTS OR
+            UNDERLYING OR ASSOCIATED CONTENT OR ITEMS. NO GAMEXPAD PARTY IS
+            RESPONSIBLE OR LIABLE FOR ANY SUSTAINED LOSSES OR INJURY DUE TO
+            VULNERABILITY OR ANY KIND OF FAILURE, ABNORMAL BEHAVIOR OF SOFTWARE
+            (E.G., WALLET, SMART CONTRACT), BLOCKCHAINS OR ANY OTHER FEATURES OF
+            THE NFTS. NO GAMEXPAD PARTY IS RESPONSIBLE FOR LOSSES OR INJURY DUE
+            TO LATE REPORTS BY DEVELOPERS OR REPRESENTATIVES (OR NO REPORT AT
+            ALL) OF ANY ISSUES WITH THE BLOCKCHAIN SUPPORTING THE NFTS,
+            INCLUDING FORKS, TECHNICAL NODE ISSUES OR ANY OTHER ISSUES HAVING
+            LOSSES OR INJURY AS A RESULT.
           </p>
           <br />
           <p>
@@ -741,9 +737,9 @@ export default function TermsOfUse() {
             development of the Service and the utility of NFTs. • You are solely
             responsible for determining what, if any, taxes apply to your
             transactions and to withhold, collect, report, and remit the correct
-            amounts of taxes to the appropriate tax authorities. GAME X PAD is
-            not responsible for determining, withholding, collecting, reporting,
-            or remitting the taxes that apply to your NFTs. • There are risks
+            amounts of taxes to the appropriate tax authorities. GAMEXPAD is not
+            responsible for determining, withholding, collecting, reporting, or
+            remitting the taxes that apply to your NFTs. • There are risks
             associated with purchasing items associated with content created by
             third parties through peer-to-peer transactions, including but not
             limited to, the risk of purchasing counterfeit items, mislabeled
@@ -756,13 +752,13 @@ export default function TermsOfUse() {
             control certain smart contracts and protocols that may be integral
             to your ability to complete transactions on these public
             blockchains. Additionally, blockchain transactions are irreversible
-            and GAME X PAD has no ability to reverse any transactions on the
+            and GAMEXPAD has no ability to reverse any transactions on the
             blockchain. • There are risks associated with using Internet and
             blockchain based products, including, but not limited to, the risk
             associated with hardware, software, and Internet connections, the
             risk of malicious software introduction, and the risk that third
             parties may obtain unauthorized access to your third-party wallet or
-            Account. You accept and acknowledge that GAME X PAD will not be
+            Account. You accept and acknowledge that GAMEXPAD will not be
             responsible for any communication failures, disruptions, errors,
             distortions or delays you may experience when using the Service or
             any Blockchain network, however caused. • The Service relies on
@@ -773,57 +769,56 @@ export default function TermsOfUse() {
             and conditions of such platforms and/or vendors; or if any of such
             platforms and/or vendors loses market share or falls out of favor or
             is unavailable for a prolonged period of time, access to and use of
-            the Service will suffer. • GAME X PAD reserves the right to hide
+            the Service will suffer. • GAMEXPAD reserves the right to hide
             collections, contracts, and items affected by any of these issues or
             by other issues. Items you purchase may become inaccessible on GAME
             X PAD. Under no circumstances shall the inability to view items on
-            GAME X PAD or an inability to use the Service in conjunction with
-            the purchase, sale, or transfer of items available on any
-            blockchains serve as grounds for a claim against GAME X PAD. • If
-            you have a dispute with one or more users, YOU RELEASE US FROM
-            CLAIMS, DEMANDS, AND DAMAGES OF EVERY KIND AND NATURE, KNOWN AND
-            UNKNOWN, ARISING OUT OF OR IN ANY WAY CONNECTED WITH SUCH DISPUTES.
-            IN ENTERING INTO THIS RELEASE YOU EXPRESSLY WAIVE ANY PROTECTIONS
-            (WHETHER STATUTORY OR OTHERWISE) THAT WOULD OTHERWISE LIMIT THE
-            COVERAGE OF THIS RELEASE TO INCLUDE THOSE CLAIMS WHICH YOU MAY KNOW
-            OR SUSPECT TO EXIST IN YOUR FAVOR AT THE TIME OF AGREEING TO THIS
-            RELEASE.
+            GAMEXPAD or an inability to use the Service in conjunction with the
+            purchase, sale, or transfer of items available on any blockchains
+            serve as grounds for a claim against GAMEXPAD. • If you have a
+            dispute with one or more users, YOU RELEASE US FROM CLAIMS, DEMANDS,
+            AND DAMAGES OF EVERY KIND AND NATURE, KNOWN AND UNKNOWN, ARISING OUT
+            OF OR IN ANY WAY CONNECTED WITH SUCH DISPUTES. IN ENTERING INTO THIS
+            RELEASE YOU EXPRESSLY WAIVE ANY PROTECTIONS (WHETHER STATUTORY OR
+            OTHERWISE) THAT WOULD OTHERWISE LIMIT THE COVERAGE OF THIS RELEASE
+            TO INCLUDE THOSE CLAIMS WHICH YOU MAY KNOW OR SUSPECT TO EXIST IN
+            YOUR FAVOR AT THE TIME OF AGREEING TO THIS RELEASE.
           </p>
           <br />
           <p className="text-[25px]">13.Limitation of Liabilty</p>
           <br />
           <p>
             TO THE FULLEST EXTENT PERMITTED BY LAW, YOU AGREE THAT IN NO EVENT
-            WILL GAME X PAD OR ITS SERVICE PROVIDERS BE LIABLE TO YOU OR ANY
-            THIRD PARTY FOR ANY LOST PROFIT OR ANY INDIRECT, CONSEQUENTIAL,
-            EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES ARISING FROM
-            THESE TERMS OR THE SERVICE, PRODUCTS OR THIRD-PARTY SITES AND
-            PRODUCTS, OR FOR ANY DAMAGES RELATED TO LOSS OF REVENUE, LOSS OF
-            PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS
-            OF GOODWILL, OR LOSS OF DATA, AND WHETHER CAUSED BY STRICT LIABILITY
-            OR TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE,
-            EVEN IF FORESEEABLE AND EVEN IF GAME X PAD OR ITS SERVICE PROVIDERS
-            HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES; OR (B) FOR ANY
-            OTHER CLAIM, DEMAND, OR DAMAGES WHATSOEVER RESULTING FROM OR ARISING
-            OUT OF OR IN CONNECTION WITH THESE TERMS OF THE DELIVERY, USE, OR
+            WILL GAMEXPAD OR ITS SERVICE PROVIDERS BE LIABLE TO YOU OR ANY THIRD
+            PARTY FOR ANY LOST PROFIT OR ANY INDIRECT, CONSEQUENTIAL, EXEMPLARY,
+            INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES ARISING FROM THESE TERMS OR
+            THE SERVICE, PRODUCTS OR THIRD-PARTY SITES AND PRODUCTS, OR FOR ANY
+            DAMAGES RELATED TO LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF
+            BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, OR
+            LOSS OF DATA, AND WHETHER CAUSED BY STRICT LIABILITY OR TORT
+            (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE, EVEN IF
+            FORESEEABLE AND EVEN IF GAMEXPAD OR ITS SERVICE PROVIDERS HAVE BEEN
+            ADVISED OF THE POSSIBILITY OF SUCH DAMAGES; OR (B) FOR ANY OTHER
+            CLAIM, DEMAND, OR DAMAGES WHATSOEVER RESULTING FROM OR ARISING OUT
+            OF OR IN CONNECTION WITH THESE TERMS OF THE DELIVERY, USE, OR
             PERFORMANCE OF THE SERVICE. ACCESS TO, AND USE OF, THE SERVICE,
             PRODUCTS OR THIRD-PARTY SITES, AND PRODUCTS ARE AT YOUR OWN
             DISCRETION AND RISK, AND YOU WILL BE SOLELY RESPONSIBLE FOR ANY
             DAMAGE TO YOUR COMPUTER SYSTEM OR MOBILE DEVICE OR LOSS OF DATA
             RESULTING THEREFROM. NOTWITHSTANDING ANYTHING TO THE CONTRARY
             CONTAINED HEREIN, IN NO EVENT SHALL THE MAXIMUM AGGREGATE LIABILITY
-            OF GAME X PAD ARISING OUT OF OR IN ANY WAY RELATED TO THESE TERMS,
-            THE ACCESS TO AND USE OF THE SERVICE, CONTENT, NFTS, OR ANY GAME X
-            PAD PRODUCTS OR SERVICES EXCEED THE GREATER OF (A) $100 OR (B) THE
-            AMOUNT RECEIVED BY GAME X PAD FOR ITS SERVICE DIRECTLY RELATING TO
-            THE ITEMS THAT ARE THE SUBJECT OF THE CLAIM. THE FOREGOING
-            LIMITATIONS WILL APPLY EVEN IF THE ABOVE STATED REMEDY FAILS OF ITS
-            ESSENTIAL PURPOSE. Some jurisdictions do not allow the exclusion or
-            limitation of incidental or consequential damages, so the above
-            limitation or exclusion may not apply to you. Some jurisdictions
-            also limit disclaimers or limitations of liability for personal
-            injury from consumer products, so this limitation may not apply to
-            personal injury claims.
+            OF GAMEXPAD ARISING OUT OF OR IN ANY WAY RELATED TO THESE TERMS, THE
+            ACCESS TO AND USE OF THE SERVICE, CONTENT, NFTS, OR ANY GAME X PAD
+            PRODUCTS OR SERVICES EXCEED THE GREATER OF (A) $100 OR (B) THE
+            AMOUNT RECEIVED BY GAMEXPAD FOR ITS SERVICE DIRECTLY RELATING TO THE
+            ITEMS THAT ARE THE SUBJECT OF THE CLAIM. THE FOREGOING LIMITATIONS
+            WILL APPLY EVEN IF THE ABOVE STATED REMEDY FAILS OF ITS ESSENTIAL
+            PURPOSE. Some jurisdictions do not allow the exclusion or limitation
+            of incidental or consequential damages, so the above limitation or
+            exclusion may not apply to you. Some jurisdictions also limit
+            disclaimers or limitations of liability for personal injury from
+            consumer products, so this limitation may not apply to personal
+            injury claims.
           </p>
           <br />
           <p className="text-[25px]">14.Privacy Policy</p>
@@ -851,26 +846,26 @@ export default function TermsOfUse() {
           <p>
             • Dispute Resolution. Please read the following arbitration
             agreement in this Section (“Arbitration Agreement”) carefully. It
-            requires you to arbitrate disputes with GAME X PAD and limits the
+            requires you to arbitrate disputes with GAMEXPAD and limits the
             manner in which you can seek relief from us. This section does not
             govern disputes between users or between users and third parties.
-            GAME X PAD does not provide dispute resolution services for such
+            GAMEXPAD does not provide dispute resolution services for such
             disagreements and the parties must resolve those disputes directly.
             • Applicability of Arbitration Agreement. You agree that any
             dispute, controversy, or claim relating in any way to your access or
             use of the Service, to any products sold or distributed through the
-            Service, or to any aspect of your relationship with GAME X PAD, will
+            Service, or to any aspect of your relationship with GAMEXPAD, will
             be resolved by binding arbitration, rather than in court, including
             threshold questions of the arbitrability of such dispute,
-            controversy, or claim except that (1) you or GAME X PAD may assert
+            controversy, or claim except that (1) you or GAMEXPAD may assert
             claims in small claims court, but only if the claims qualify, the
             claims remain only in such court, and the claims remain on an
             individual, non-representative, and non-class basis; and (2) you or
-            GAME X PAD may seek injunctive or equitable relief in a court of
+            GAMEXPAD may seek injunctive or equitable relief in a court of
             proper jurisdiction if the claim relates to intellectual property
             infringement or other misuse of intellectual property rights. •
-            Dispute resolution process. You and GAME X PAD both agree to engage
-            in good-faith efforts to resolve disputes prior to either party
+            Dispute resolution process. You and GAMEXPAD both agree to engage in
+            good-faith efforts to resolve disputes prior to either party
             initiating an arbitration, small claims court proceeding, or
             equitable relief for intellectual property infringement. You must
             initiate this dispute resolution process by sending a letter
@@ -882,9 +877,9 @@ export default function TermsOfUse() {
             beneficial outcome that avoids the expenses of arbitration or, where
             applicable, litigation. If you are represented by counsel, your
             counsel may participate in the Conference as well, but you agree to
-            fully participate in the Conference. Likewise, if GAME X PAD is
+            fully participate in the Conference. Likewise, if GAMEXPAD is
             represented by counsel, its counsel may participate in the
-            Conference as well, but GAME X PAD agrees to have a company
+            Conference as well, but GAMEXPAD agrees to have a company
             representative fully participate in the Conference. The statute of
             limitations and any filing fee deadlines shall be tolled while the
             parties engage in the informal dispute resolution process and
@@ -901,8 +896,8 @@ export default function TermsOfUse() {
             enforceability, or formation of this Arbitration Agreement
             including, but not limited to, any claim that all or any part of
             this Arbitration Agreement is void or voidable. The arbitration will
-            decide the rights and liabilities, if any, of you and GAME X PAD.
-            The arbitration proceeding will not be consolidated with any other
+            decide the rights and liabilities, if any, of you and GAMEXPAD. The
+            arbitration proceeding will not be consolidated with any other
             matters or joined with any other cases or parties. The arbitrator
             shall have the authority to grant motions dispositive of all or part
             of any claim. The arbitrator shall have the authority to award
@@ -914,12 +909,12 @@ export default function TermsOfUse() {
             calculation of any damages awarded. The arbitrator has the same
             authority to award relief on an individual basis that a judge in a
             court of law would have. The award of the arbitrator is final and
-            binding upon you and us. • Waiver of Jury Trial. YOU AND GAME X PAD
+            binding upon you and us. • Waiver of Jury Trial. YOU AND GAMEXPAD
             HEREBY WAIVE ANY CONSTITUTIONAL AND STATUTORY RIGHTS TO SUE IN COURT
-            AND HAVE A TRIAL IN FRONT OF A JUDGE OR A JURY. You and GAME X PAD
-            are instead electing that all claims and disputes shall be resolved
-            by arbitration under this Arbitration Agreement, except as specified
-            in the second bullet of this Section 16, above (“Applicability of
+            AND HAVE A TRIAL IN FRONT OF A JUDGE OR A JURY. You and GAMEXPAD are
+            instead electing that all claims and disputes shall be resolved by
+            arbitration under this Arbitration Agreement, except as specified in
+            the second bullet of this Section 16, above (“Applicability of
             Arbitration Agreement”). An arbitrator can award on an individual
             basis the same damages and relief as a court and must follow these
             Terms as a court would. However, there is no judge or jury in
@@ -935,27 +930,27 @@ export default function TermsOfUse() {
             section, an arbitrator shall not combine or consolidate more than
             one party’s claims without the written consent of all affected
             parties to an arbitration proceeding. Without limiting the
-            generality of the foregoing, you and GAME X PAD agree that no
-            dispute shall proceed by way of class arbitration without the
-            written consent of all affected parties. If a decision is issued
-            stating that applicable law precludes enforcement of any part of
-            this subsection’s limitations as to a given claim for relief, then
-            that claim must be severed from the arbitration and brought in the
-            state or federal courts located in Wyoming in the State of Wyoming.
-            All other claims shall be arbitrated. • Severability. Except as
-            provided in this Section, if any part or parts of this Arbitration
-            Agreement are found under the law to be invalid or unenforceable,
-            then such specific part or parts shall be of no force and effect and
-            shall be severed and the remainder of the Arbitration Agreement
-            shall continue in full force and effect. • Survival of Agreement.
-            This Arbitration Agreement will survive the termination of your
-            relationship with GAME X PAD. • Modification. Notwithstanding any
+            generality of the foregoing, you and GAMEXPAD agree that no dispute
+            shall proceed by way of class arbitration without the written
+            consent of all affected parties. If a decision is issued stating
+            that applicable law precludes enforcement of any part of this
+            subsection’s limitations as to a given claim for relief, then that
+            claim must be severed from the arbitration and brought in the state
+            or federal courts located in Wyoming in the State of Wyoming. All
+            other claims shall be arbitrated. • Severability. Except as provided
+            in this Section, if any part or parts of this Arbitration Agreement
+            are found under the law to be invalid or unenforceable, then such
+            specific part or parts shall be of no force and effect and shall be
+            severed and the remainder of the Arbitration Agreement shall
+            continue in full force and effect. • Survival of Agreement. This
+            Arbitration Agreement will survive the termination of your
+            relationship with GAMEXPAD. • Modification. Notwithstanding any
             provision in these Terms to the contrary, we agree that if GAME X
             PAD makes any future material change to this Arbitration Agreement,
             you may reject that change within thirty (30) days of such change
-            becoming effective by writing to GAME X PAD at the following
-            address: GAME X PAD, Attn: Legal Department, 1309 Coffeen Avenue
-            Ste, #1200, Wyoming, USA.
+            becoming effective by writing to GAMEXPAD at the following address:
+            GAMEXPAD, Attn: Legal Department, 1309 Coffeen Avenue Ste, #1200,
+            Wyoming, USA.
           </p>
           <br />
           <p className="text-[25px]">17.Governing Law and Venue</p>
@@ -976,7 +971,7 @@ export default function TermsOfUse() {
           <br />
           <p>
             If you breach any of the provisions of these Terms, all licenses
-            granted by GAME X PAD will terminate automatically. Additionally,
+            granted by GAMEXPAD will terminate automatically. Additionally,
             notwithstanding anything contained in these Terms, we reserve the
             right, with or without notice and in our sole discretion, to
             suspend, disable, terminate, or delete your Account and/or your
@@ -1001,8 +996,8 @@ export default function TermsOfUse() {
           <br />
           <p>
             You agree that a breach of these Terms will cause irreparable injury
-            to GAME X PAD for which monetary damages would not be an adequate
-            remedy and GAME X PAD shall be entitled to equitable relief in
+            to GAMEXPAD for which monetary damages would not be an adequate
+            remedy and GAMEXPAD shall be entitled to equitable relief in
             addition to any remedies it may have hereunder or at law without a
             bond, other security, or proof of damages.
           </p>
@@ -1012,8 +1007,8 @@ export default function TermsOfUse() {
           <p>
             You agree that you will not export or re-export, directly or
             indirectly, the Service, and/or other information or materials
-            provided by GAME X PAD hereunder, to any country for which the
-            United States or any other relevant jurisdiction requires any export
+            provided by GAMEXPAD hereunder, to any country for which the United
+            States or any other relevant jurisdiction requires any export
             license or other governmental approval at the time of export without
             first obtaining such license or approval. In particular, but without
             limitation, the Service may not be exported or re-exported (a) into
@@ -1034,8 +1029,8 @@ export default function TermsOfUse() {
           <p>
             All sections which by their nature should survive the termination of
             these Terms shall continue in full force and effect subsequent to
-            and notwithstanding any termination of these Terms by GAME X PAD or
-            you. Termination will not limit any of GAME X PAD’s other rights or
+            and notwithstanding any termination of these Terms by GAMEXPAD or
+            you. Termination will not limit any of GAMEXPAD’s other rights or
             remedies at law or in equity.
           </p>
           <br />
@@ -1046,16 +1041,16 @@ export default function TermsOfUse() {
             PAD relating to your access to and use of the Service. These Terms,
             and any rights and licenses granted hereunder, may not be
             transferred or assigned by you without the prior written consent of
-            GAME X PAD, and GAME X PAD’s failure to assert any right or
-            provision under these Terms shall not constitute a waiver of such
-            right or provision. No waiver by either party of any breach or
-            default hereunder shall be deemed to be a waiver of any preceding or
+            GAMEXPAD, and GAMEXPAD’s failure to assert any right or provision
+            under these Terms shall not constitute a waiver of such right or
+            provision. No waiver by either party of any breach or default
+            hereunder shall be deemed to be a waiver of any preceding or
             subsequent breach or default. The section headings used herein are
             for reference only and shall not be read to have any legal effect.
             The Service is operated by us in the United States. Those who choose
             to access the Service from locations outside the United States do so
             at their own initiative and are responsible for compliance with
-            applicable local laws. You and GAME X PAD agree that the United
+            applicable local laws. You and GAMEXPAD agree that the United
             Nations Convention on Contracts for the International Sale of Goods
             will not apply to the interpretation or construction of these Terms.
             Except as otherwise provided herein, these Terms are intended solely

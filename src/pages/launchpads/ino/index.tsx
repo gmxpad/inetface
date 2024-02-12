@@ -8,6 +8,7 @@ import {
 import { getStaticProps } from "@/framework/rest/inoLaunchpads.ssr";
 import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
+import classNames from "classnames";
 export { getStaticProps };
 
 interface LaunchpadsInterface {
@@ -103,14 +104,20 @@ const Launchpads: NextPageWithLayout<
                   className="w-screen brightness-50 "
                   alt={`Slide ${index + 1}`}
                 />
-                <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
-                  <div className="bg-white sm:hidden md:flex px-12 text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center max-w-[20%] rounded-md">
+                <div className="absolute sm:bottom-[25%] gap-3 md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
+                  <div
+                    className={classNames(
+                      "bg-white px-12 text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center max-w-[20%] rounded-md",
+                      item.genre[0] === ""
+                        ? "sm:hidden md:hidden"
+                        : "sm:hidden md:flex"
+                    )}>
                     {item.genre[0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
                     {item.name}
                   </p>
-                  <p className=" sm:hidden md:flex md:w-[50%] xl:w-[30%]">
+                  <p className=" sm:hidden md:flex md:w-[50%] xl:w-[40%]">
                     {item.desc}
                   </p>
                   <Button

@@ -55,9 +55,20 @@ const Footer = () => {
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">About us</p>
               <div className="grid md:grid-cols-1 sm:grid-cols-3 sm:text-start gap-2">
-                <p className="text-[#9d9d9d]">Company</p>
-                <p className="text-[#9d9d9d]">Press Kit</p>
-                <p className="text-[#9d9d9d]">Disclaimer</p>
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://docs.gamexpad.io/about-us/company">
+                  Company
+                </Link>
+
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://drive.google.com/drive/folders/1vnBagyB2FuYDHl5o0vhL6Amy8fJ4HoVe?usp=sharing">
+                  Press Kit
+                </Link>
+
                 <Link className="text-[#9d9d9d]" href="/privacy-policy">
                   Privacy Policy
                 </Link>
@@ -76,14 +87,18 @@ const Footer = () => {
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Products</p>
               <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-start whitespace-nowrap gap-2">
-                <p className="text-[#9d9d9d]">IGO Launchpad</p>
-                <p className="text-[#9d9d9d]">INO Launchpad</p>
-                <p className="text-[#9d9d9d]">Staking</p>
+                <Link className="text-[#9d9d9d]" href="/launchpads/igo">
+                  IGO Launchpad
+                </Link>
+                <Link className="text-[#9d9d9d]" href="/launchpads/ino">
+                  INO Launchpad
+                </Link>
+                <Link className="text-[#9d9d9d]" href="/stake">
+                  Staking
+                </Link>
                 <Link className="text-[#9d9d9d]" href="/games">
                   Games
                 </Link>
-
-                <p className="text-[#9d9d9d]">Game Hub</p>
               </div>
             </div>
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
@@ -115,8 +130,12 @@ const Footer = () => {
                   Github
                 </Link>
 
-                <p className="text-[#9d9d9d]">Help Center</p>
-                <p className="text-[#9d9d9d]">Submit Project</p>
+                <Link
+                  isExternal
+                  className="text-[#9d9d9d]"
+                  href="https://tl2s7cdikdk.typeform.com/to/k7QUQDdh">
+                  Submit Project
+                </Link>
               </div>
             </div>
           </div>

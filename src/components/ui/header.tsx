@@ -45,8 +45,8 @@ export default function Header() {
       link: "/",
     },
     {
-      name: "IDO Launchpads",
-      link: "/launchpads/ido",
+      name: "IGO Launchpads",
+      link: "/launchpads/igo",
     },
     {
       name: "INO Launchpads",
@@ -59,10 +59,6 @@ export default function Header() {
     {
       name: "Games",
       link: "/games",
-    },
-    {
-      name: "X Hub",
-      link: "/x-hub",
     },
   ];
   const [lab, setLab] = useState<string>("Connect Wallet");
@@ -122,18 +118,18 @@ export default function Header() {
               // @ts-ignore
             >
               <DropdownItem
-                key="ido_key"
+                key="igo_key"
                 color="secondary"
                 className={classNames("p-0")}>
                 <Button
-                  onPress={() => router.push("/launchpads/ido")}
+                  onPress={() => router.push("/launchpads/igo")}
                   className={classNames(
                     "w-full bg-transparent flex justify-start hover:text-white",
-                    router.asPath === "/launchpads/ido"
+                    router.asPath === "/launchpads/igo"
                       ? "text-white"
                       : "text-white/50"
                   )}>
-                  IDO Launchpads
+                  IGO Launchpads
                 </Button>
               </DropdownItem>
               <DropdownItem
@@ -169,14 +165,6 @@ export default function Header() {
             radius="none"
             className="bg-transparent text-white font-normal  text-lg duration-300">
             Games
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            onPress={() => router.push("x-hub")}
-            radius="none"
-            className="bg-transparent text-white font-normal  text-lg duration-300">
-            X Hub
           </Button>
         </NavbarItem>
       </NavbarContent>

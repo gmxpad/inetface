@@ -102,8 +102,9 @@ const HeroHeader = () => {
             </Button>
             <Button
               as={Link}
+              isExternal={true}
               className="bg-[#a664fe] text-white font-bold  text-xl duration-300 border-3 py-7 md:px-8 sm:w-[45%] border-[#a664fe]"
-              href="#">
+              href="https://tl2s7cdikdk.typeform.com/to/k7QUQDdh">
               Submit Project
             </Button>
           </div>
