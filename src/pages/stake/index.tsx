@@ -386,14 +386,17 @@ export default function Stake() {
 
   const stakeBTN = async () => {
     try {
+      handleApproveModalClose();
       handleWaitModalOpen();
       const signer = await getSigner(walletProvider);
       const contract = GetContract(fetchDiamondContract.address);
+      let selectTime =
+        Number(selectedDays) === 31 ? 300 : Number(selectedDays * 86400);
 
       const tx = await contract
         ?.connect(signer)
         // @ts-ignore
-        .stake(parseEther(stakeInput.toString()), BigInt(selectedDays * 86400));
+        .stake(parseEther(stakeInput.toString()), selectTime);
       await tx.wait();
       handleWaitModalClose();
       handleSuccessModalOpenForStake();
@@ -569,7 +572,7 @@ export default function Stake() {
                           ? "bg-[#a664fe] text-white"
                           : "bg-gray-800/50 text-white/50"
                       )}>
-                      31 Days
+                      {/* 31 Days */}5 Min
                     </Button>
                     <div className="absolute -top-4 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       1x
@@ -646,7 +649,8 @@ export default function Stake() {
                               : "text-white/50"
                           )}
                           key="31_days">
-                          {`31 days (1x)`}
+                          {/* {`31 days (1x)`} */}
+                          {`5 Min (1x)`}
                         </DropdownItem>
                         <DropdownItem
                           color="secondary"
@@ -918,7 +922,7 @@ export default function Stake() {
                                 radius="sm"
                                 disabled
                                 className="bg-transparent border border-gray-800/50 text-white">
-                                Unstake
+                                Withdraw
                               </Button>
                             )}
                           {Number(item.requestEndTime) === 0 &&

@@ -43,10 +43,13 @@ export async function GetStakePool() {
 export async function CalculateScore(amount, time) {
   try {
     const contract = GetContract(fetchDiamondContract.address);
-    const score = await contract.calculateScore(
-      parseEther(amount),
-      parseFloat(Number(time) * 86400)
-    );
+    let calTime = 0;
+    if (Number(time) == 31) {
+      calTime = 300;
+    } else {
+      calTime = parseFloat(Number(time) * 86400);
+    }
+    const score = await contract.calculateScore(parseEther(amount), calTime);
     return score;
   } catch (error) {}
 }
