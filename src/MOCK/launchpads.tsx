@@ -9,7 +9,7 @@ export const MOCK_LAUNCHPADS = [
     profile: "/gamesGallery/lussa/logo.png",
     coverImage: "/gamesGallery/lussa/poster.webp",
     status: "Upcoming",
-    launchStatus: "IDO",
+    launchStatus: "IGO",
     eventName: "Event Date",
     eventValue: "TBA",
     tokenAllo: "TBA",
@@ -29,6 +29,10 @@ export const MOCK_LAUNCHPADS = [
       },
       {
         name: "Web",
+        link: "/",
+      },
+      {
+        name: "Youtube",
         link: "/",
       },
     ],

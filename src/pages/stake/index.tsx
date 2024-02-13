@@ -555,7 +555,7 @@ export default function Stake() {
                 </Button>
               </div>
               <div className="text-white pr-5 sm:text-sm">
-                <span className="text-[#9d9d9d]">APR:</span> NaN%
+                <span className="text-[#9d9d9d]">APR:</span> -%
               </div>
             </div>
             {activeTab === 0 ? (
@@ -572,7 +572,7 @@ export default function Stake() {
                           ? "bg-[#a664fe] text-white"
                           : "bg-gray-800/50 text-white/50"
                       )}>
-                      {/* 31 Days */}5 Min
+                      5 Min
                     </Button>
                     <div className="absolute -top-4 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
                       1x
@@ -644,12 +644,11 @@ export default function Stake() {
                           onPress={() => selectedTimeVeriable(31, true)}
                           className={classNames(
                             "sm:flex md:flex xl:hidden",
-                            selectedValue === "31 Days"
+                            selectedValue === "5 Min"
                               ? "text-white"
                               : "text-white/50"
                           )}
-                          key="31_days">
-                          {/* {`31 days (1x)`} */}
+                          key="5_min">
                           {`5 Min (1x)`}
                         </DropdownItem>
                         <DropdownItem
@@ -753,12 +752,11 @@ export default function Stake() {
                         </DropdownItem>
                       </DropdownMenu>
                     </Dropdown>
-                    <div className="absolute -top-4 z-10 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
-                      {windowW > 1279 && selectedMultipler > 3
-                        ? `${selectedMultipler}x`
-                        : windowW < 1280 && selectedMultipler > 3
-                        ? `${selectedMultipler}x`
-                        : ""}
+                    <div className="absolute xl:hidden -top-4 z-10 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
+                      {selectedMultipler}x
+                    </div>
+                    <div className="absolute sm:hidden md:hidden xl:flex -top-4 z-10 right-2 bg-black border border-white rounded-full w-7 h-7 text-xs flex items-center justify-center">
+                      {selectedMultipler > 3 ? `${selectedMultipler}x` : ""}
                     </div>
                   </div>
                 </div>
@@ -830,9 +828,9 @@ export default function Stake() {
                       placeholder="Enter Stake Amount"
                       classNames={{
                         input:
-                          "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75 dark:text-white ",
+                          "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75 light:placeholder:text-white/75 light:text-white dark:text-white ",
                         inputWrapper:
-                          "dark:bg-transparent dark:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
+                          "dark:bg-transparent dark:hover:bg-transparent light:bg-transparent light:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
                         innerWrapper: "bg-transparent text-white",
                       }}
                       color={
@@ -883,7 +881,7 @@ export default function Stake() {
                   {userStakeData.map(
                     (item: StakeListInterface, index: number) => (
                       <div key={"positions_" + index.toString()}>
-                        <div className="rounded-lg border border-gray-800/50 p-3 flex sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
+                        <div className="rounded-lg border border-gray-800/50 p-3 flex whitespace-nowrap sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
                           <div className="flex items-center gap-1 w-[15%]  text-white">
                             <Image width={20} src="/logos/gmx-logo.svg" />
                             {item.amount}

@@ -80,11 +80,16 @@ const Launchpad: NextPageWithLayout<
   const FAQ_ITEMS = [
     {
       id: 0,
-      name: "Vesting/Unlock",
+      name: "How to participate",
       desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
     },
     {
       id: 1,
+      name: "Vesting/Unlock",
+      desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+    },
+    {
+      id: 2,
       name: "Type of Sale/Round",
       desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
     },
@@ -92,8 +97,8 @@ const Launchpad: NextPageWithLayout<
 
   return (
     <>
-      <div className="flex flex-col gap-10 h-full">
-        <div className="w-screen flex  sm:h-[250px]  overflow-hidden ">
+      <div className="flex flex-col gap-10 h-full pb-24">
+        <div className="w-screen flex  sm:h-[200px]  overflow-hidden ">
           <div className="relative w-full h-full">
             <div className="absolute h-full left-0 w-[10%] bg-gradient-to-r from-dark  via-black/50 to-dark/0 z-10"></div>
             <div className="absolute h-full right-0 w-[10%] bg-gradient-to-l from-dark  via-black/50 to-dark/0 z-10"></div>
@@ -110,10 +115,10 @@ const Launchpad: NextPageWithLayout<
             </div>
             <div className="absolute z-10 sm:bottom-5 sm:left-5 bottom-16 left-[10%]  w-full flex justify-between   text-white">
               <div className="flex flex-col gap-2">
-                <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
+                <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
                   {avaLaunchpads.genre[0]}
                 </div>
-                <p className=" text-4xl md:font-Orbitron md:text-5xl">
+                <p className=" text-3xl font-Orbitron md:text-5xl">
                   {avaLaunchpads.name}
                 </p>
                 <div className="text-white sm:hidden md:hidden xl:flex w-[35%]">
@@ -130,36 +135,53 @@ const Launchpad: NextPageWithLayout<
             <div className="absolute bot-5 h-[20%] w-full bg-gradient-to-t from-black  via-black/25 to-black/0 z-10"></div>
           </div>
         </div>
-        <div className="flex flex-col gap-12 px-[10%]">
+        <div className="flex flex-col gap-12 sm:px-[5%] md:px-[10%]">
           <div className="text-3xl text-white">{avaLaunchpads.name}</div>
           <div className="bg-dark-gray p-5 flex flex-col gap-5 rounded-lg">
-            <div className="flex justify-between">
-              <div className="w-[60%] flex flex-col justify-center">
+            <div className="flex sm:flex-col-reverse sm:gap-10 md:gap-10 xl:gap-0 md:flex-col-reverse xl:flex-row justify-between">
+              <div className="sm:w-full md:w-full xl:w-[60%] flex flex-col justify-center">
                 <Image
                   src={avaLaunchpads.image}
                   className="w-full brightness-75"
                 />
-                <div className="flex text-white justify-between items-center mt-5">
+                <div className="flex sm:flex-col md:flex-col xl:flex-row text-white justify-between items-center mt-5">
                   <div>
-                    <p className="text-2xl">Official links</p>
+                    <p className="text-2xl">Official Links</p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 items-center">
                     {avaLaunchpads.socials.map((item: any, index: number) => (
-                      <div key={"ava_s_launch_" + index.toString()}>
+                      <div
+                        key={"ava_s_launch_" + index.toString()}
+                        className="flex items-center">
                         <Button
                           as={Link}
                           href={item.link}
-                          className="bg-gray-800/50 text-white">
+                          isIconOnly
+                          className="bg-transparent ">
                           <Image
-                            width={20}
+                            width={
+                              item.name === "Web"
+                                ? 22
+                                : item.name === "Discord"
+                                ? 25
+                                : item.name === "Youtube"
+                                ? 40
+                                : 30
+                            }
+                            radius="none"
+                            className="bg-transparent"
                             src={
                               item.name === "Twitter"
-                                ? "/socials/twitter-border.svg"
+                                ? "/icons/socials/twitter.svg"
                                 : item.name === "Discord"
                                 ? "/socials/discord-border.svg"
                                 : item.name === "Telegram"
-                                ? "/socials/medium-border.svg"
-                                : "/icons/web.svg"
+                                ? "/icons/socials/telegram.svg"
+                                : item.name === "Web"
+                                ? "/icons/socials/website.svg"
+                                : item.name === "Youtube"
+                                ? "/icons/socials/youtube.svg"
+                                : ""
                             }
                           />
                         </Button>
@@ -167,9 +189,9 @@ const Launchpad: NextPageWithLayout<
                     ))}
                   </div>
                 </div>
-                <div className="grid grid-cols-4 text-white mt-10 gap-5 whitespace-nowrap">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
                   <div className="flex flex-col">
-                    <p className="text-2xl font-SpaceGro">23 Jan,2024</p>
+                    <p className="text-2xl font-SpaceGro">23 Jan 2024</p>
                     <p className="text-sm text-[#9d9d9d]">Event date</p>
                   </div>
                   <div className="flex flex-col">
@@ -178,47 +200,35 @@ const Launchpad: NextPageWithLayout<
                   </div>
                   <div className="flex flex-col">
                     <p className="text-2xl font-SpaceGro">0.032 USD</p>
-                    <p className="text-sm text-[#9d9d9d]">Event token price</p>
+                    <p className="text-sm text-[#9d9d9d]">Token price</p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-2xl font-SpaceGro">1000000 USD</p>
+                    <p className="text-2xl font-SpaceGro">100,000.0 USD</p>
                     <p className="text-sm text-[#9d9d9d]">Total allocation</p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-2xl font-SpaceGro">$COD</p>
+                    <p className="text-2xl font-SpaceGro">$LUSSA</p>
                     <p className="text-sm text-[#9d9d9d]">Token symbol</p>
                   </div>
                   <div className="flex flex-col">
                     <p className="text-2xl font-SpaceGro">SKALE</p>
                     <p className="text-sm text-[#9d9d9d]">Network</p>
                   </div>
+
                   <div className="flex flex-col">
-                    <p className="text-2xl font-SpaceGro">TBA</p>
-                    <p className="text-sm text-[#9d9d9d]">
-                      CEX Listing date/time
-                    </p>
+                    <p className="text-2xl font-SpaceGro">SKALE</p>
+                    <p className="text-sm text-[#9d9d9d]">Currency</p>
                   </div>
                 </div>
 
                 <div className="flex flex-col mt-10 gap-3 pb-12">
-                  <div className="text-2xl text-white">
-                    {avaLaunchpads.name} Games Token Sale FAQs
-                  </div>
-                  <div className="border border-gray-800/50 relative overflow-hidden">
-                    <div className="absolute top-3 left-3 z-10 text-white text-2xl font-SpaceGro">
-                      How to participate
-                    </div>
-                    <Image
-                      radius="none"
-                      className=" brightness-50 z-0"
-                      src={avaLaunchpads.image}
-                    />
-                  </div>
+                  <div className="text-2xl text-white">FAQs</div>
+
                   <Accordion
                     variant="light"
                     showDivider={false}
                     itemClasses={{
-                      base: "w-full py-2",
+                      base: "w-full py-1",
                       heading:
                         " data-[open=true]:bg-dark  bg-dark px-4 py-2 rounded",
                       indicator: " text-white data-[open=true]:text-white",
@@ -236,7 +246,7 @@ const Launchpad: NextPageWithLayout<
                   </Accordion>
                 </div>
               </div>
-              <div className="w-[37%] h-full border border-gray-800/50 rounded-lg flex flex-col justify-between  overflow-hidden">
+              <div className="sm:w-full md:w-full xl:w-[37%] h-full border border-gray-800/50 rounded-lg flex flex-col justify-between  overflow-hidden">
                 <div>
                   <div className="p-5 text-white/75 text-xl font-sans border-b border-gray-800/50 bg-[#1d1d1d]">
                     <p>Strategic Sale</p>
