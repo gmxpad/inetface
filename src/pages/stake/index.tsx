@@ -181,6 +181,12 @@ export default function Stake() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newValue = event.target.value.toString();
+
+    // Harf veya boşluk karakteri varsa işlem yapma
+    if (/[^0-9]/.test(newValue)) {
+      return;
+    }
+
     setStakeInput(newValue);
     try {
       const score: any | undefined = await CalculateScore(
@@ -192,9 +198,12 @@ export default function Stake() {
         setTotalScore(scoreDiv.toString());
       }
     } catch (error) {
+      // Hata durumlarına göre işlemler
     } finally {
+      // Son işlemler
     }
   };
+
   const icons = {
     chevron: (
       <ChevronDown
@@ -828,9 +837,9 @@ export default function Stake() {
                       placeholder="Enter Stake Amount"
                       classNames={{
                         input:
-                          "bg-transparent placeholder:text-white/75 dark:placeholder:text-white/75 light:placeholder:text-white/75 light:text-white dark:text-white ",
+                          "bg-transparent text-white placeholder:text-white/75 dark:placeholder:text-white/75 light:placeholder:text-white/75 light:text-white dark:text-white ",
                         inputWrapper:
-                          "dark:bg-transparent dark:hover:bg-transparent light:bg-transparent light:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
+                          "bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent light:bg-transparent light:hover:bg-transparent focus-within:!bg-transparent border border-gray-800/50 focus-within:border-[#a664fe] rounded-r-none",
                         innerWrapper: "bg-transparent text-white",
                       }}
                       color={
