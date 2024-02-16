@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
   Accordion,
   AccordionItem,
+  Avatar,
+  AvatarGroup,
   Button,
   Image,
   Link,
@@ -152,37 +154,48 @@ const Games: NextPageWithLayout<
                       </div>
                       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
                         <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">23 Jan 2024</p>
-                          <p className="text-sm text-[#9d9d9d]">Event date</p>
+                          <p className="text-2xl font-SpaceGro">
+                            {game.genre[0]}
+                          </p>
+                          <p className="text-sm text-[#9d9d9d]">Genre</p>
                         </div>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">IDO</p>
-                          <p className="text-sm text-[#9d9d9d]">Event type</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">0.032 USD</p>
-                          <p className="text-sm text-[#9d9d9d]">Token price</p>
+                        <div className="flex flex-col justify-center gap-1">
+                          <div className="flex gap-1">
+                            <AvatarGroup>
+                              {game.chains.map((item: any, index: number) => (
+                                <Avatar
+                                  size="sm"
+                                  key={item.toString() + index.toString()}
+                                  src={item}
+                                />
+                              ))}
+                            </AvatarGroup>
+                          </div>
+                          <p className="text-sm text-[#9d9d9d]">Network</p>
                         </div>
                         <div className="flex flex-col">
                           <p className="text-2xl font-SpaceGro">
-                            100,000.0 USD
+                            {game.developer}
                           </p>
-                          <p className="text-sm text-[#9d9d9d]">
-                            Total allocation
+                          <p className="text-sm text-[#9d9d9d]">Developer</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">
+                            {game.releasedOn}
                           </p>
+                          <p className="text-sm text-[#9d9d9d]">Released On</p>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">$LUSSA</p>
-                          <p className="text-sm text-[#9d9d9d]">Token symbol</p>
+                          <p className="text-2xl font-SpaceGro">
+                            {game.holders}
+                          </p>
+                          <p className="text-sm text-[#9d9d9d]">Holders</p>
                         </div>
                         <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">SKALE</p>
-                          <p className="text-sm text-[#9d9d9d]">Network</p>
-                        </div>
-
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">SKALE</p>
-                          <p className="text-sm text-[#9d9d9d]">Currency</p>
+                          <p className="text-2xl font-SpaceGro">
+                            {game.tokenSymbol}
+                          </p>
+                          <p className="text-sm text-[#9d9d9d]">Token Symbol</p>
                         </div>
                       </div>
 
