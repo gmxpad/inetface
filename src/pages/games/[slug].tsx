@@ -13,6 +13,12 @@ import { InferGetStaticPropsType } from "next";
 import classNames from "classnames";
 export { getStaticPaths, getStaticProps };
 
+interface FaqInterface {
+  id: number;
+  name: string;
+  desx: string;
+}
+
 const Games: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ game }: any) => {
@@ -180,30 +186,32 @@ const Games: NextPageWithLayout<
                         </div>
                       </div>
 
-                      {/* <div className="flex flex-col mt-10 gap-3 pb-12">
-                  <div className="text-2xl text-white">FAQs</div>
+                      <div className="flex flex-col mt-10 gap-3 pb-12">
+                        <div className="text-2xl text-white">FAQs</div>
 
-                  <Accordion
-                    variant="light"
-                    showDivider={false}
-                    itemClasses={{
-                      base: "w-full py-1",
-                      heading:
-                        " data-[open=true]:bg-dark  bg-dark px-4 py-2 rounded",
-                      indicator: " text-white data-[open=true]:text-white",
-                      content: "px-3 rounded mt-2 bg-dark text-[#9d9d9d]",
-                      trigger: "mt-2",
-                      title: " text-white text-sm data-[open=true]:text-white",
-                    }}>
-                    {FAQ_ITEMS.map((item) => (
-                      <AccordionItem
-                        key={"key" + item.id.toString()}
-                        title={item.name}>
-                        <div>{item.desx}</div>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </div> */}
+                        <Accordion
+                          variant="light"
+                          showDivider={false}
+                          itemClasses={{
+                            base: "w-full py-1",
+                            heading:
+                              " data-[open=true]:bg-dark  bg-dark-gray px-4 py-2 rounded",
+                            indicator:
+                              " text-white data-[open=true]:text-white",
+                            content: "px-3 rounded mt-2 bg-dark text-[#9d9d9d]",
+                            trigger: "mt-2",
+                            title:
+                              " text-white text-sm data-[open=true]:text-white",
+                          }}>
+                          {game.faqMenu.map((item: FaqInterface) => (
+                            <AccordionItem
+                              key={"key" + item.id.toString()}
+                              title={item.name}>
+                              <div>{item.desx}</div>
+                            </AccordionItem>
+                          ))}
+                        </Accordion>
+                      </div>
                     </div>
                   </div>
                 </div>

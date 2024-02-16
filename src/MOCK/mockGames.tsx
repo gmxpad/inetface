@@ -8,7 +8,45 @@ export const MOCK_GAMES = [
     chains: ["/chains/arb-logo.svg", "/chains/polygon.svg"],
     logo: "/gamesGallery/cod-logo.jpeg",
     gameBanner: "/gamesGallery/lussa/poster.png",
-    socials: ["twitter", "telegram", "medium", "discord"],
+    socials: [
+      {
+        name: "Twitter",
+        link: "/",
+      },
+      {
+        name: "Discord",
+        link: "/",
+      },
+      {
+        name: "Telegram",
+        link: "/",
+      },
+      {
+        name: "Web",
+        link: "/",
+      },
+      {
+        name: "Youtube",
+        link: "/",
+      },
+    ],
+    faqMenu: [
+      {
+        id: 0,
+        name: "How to participate",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 1,
+        name: "Vesting/Unlock",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 2,
+        name: "Type of Sale/Round",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+    ],
     platform: ["windows", "macos"],
     chainIDs: [42161, 137],
   },
@@ -21,7 +59,45 @@ export const MOCK_GAMES = [
     chains: ["/chains/bnb.svg"],
     logo: "/gamesGallery/cod-logo.jpeg",
     gameBanner: "/gamesGallery/magicCraft/poster.png",
-    socials: ["twitter", "telegram", "medium", "discord"],
+    socials: [
+      {
+        name: "Twitter",
+        link: "/",
+      },
+      {
+        name: "Discord",
+        link: "/",
+      },
+      {
+        name: "Telegram",
+        link: "/",
+      },
+      {
+        name: "Web",
+        link: "/",
+      },
+      {
+        name: "Youtube",
+        link: "/",
+      },
+    ],
+    faqMenu: [
+      {
+        id: 0,
+        name: "How to participate",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 1,
+        name: "Vesting/Unlock",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 2,
+        name: "Type of Sale/Round",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+    ],
     platform: ["windows", "macos", "android", "ios"],
     chainIDs: [56],
   },
@@ -34,7 +110,45 @@ export const MOCK_GAMES = [
     chains: ["/chains/eth.svg"],
     logo: "/gamesGallery/cod-logo.jpeg",
     gameBanner: "/gamesGallery/katanainu/poster.png",
-    socials: ["twitter", "telegram", "medium", "discord"],
+    socials: [
+      {
+        name: "Twitter",
+        link: "/",
+      },
+      {
+        name: "Discord",
+        link: "/",
+      },
+      {
+        name: "Telegram",
+        link: "/",
+      },
+      {
+        name: "Web",
+        link: "/",
+      },
+      {
+        name: "Youtube",
+        link: "/",
+      },
+    ],
+    faqMenu: [
+      {
+        id: 0,
+        name: "How to participate",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 1,
+        name: "Vesting/Unlock",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+      {
+        id: 2,
+        name: "Type of Sale/Round",
+        desx: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus iure vero, autem, dolor natus tempora cupiditate reiciendis nostrum pariatur consectetur at dicta accusantium nesciunt.",
+      },
+    ],
     platform: ["windows"],
     chainIDs: [1],
   },
