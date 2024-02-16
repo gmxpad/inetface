@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Image } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Button,
+  Image,
+  Link,
+  Progress,
+} from "@nextui-org/react";
 import { getStaticProps, getStaticPaths } from "@/framework/rest/game.ssr";
 import { NextPageWithLayout } from "@/types";
 import { InferGetStaticPropsType } from "next";
@@ -63,6 +70,7 @@ const Games: NextPageWithLayout<
                 Overview
               </Button>
               <Button
+                disabled
                 onPress={() => setActiveTab(1)}
                 className={classNames(
                   "bg-transparent text-lg",
@@ -71,6 +79,7 @@ const Games: NextPageWithLayout<
                 NFTs
               </Button>
               <Button
+                disabled
                 onPress={() => setActiveTab(2)}
                 className={classNames(
                   "bg-transparent text-lg",
@@ -80,9 +89,127 @@ const Games: NextPageWithLayout<
               </Button>
             </div>
           </div>
-          <div className="flex justify-center items-center p-24 text-white whitespace-nowrap">
-            No Available Data
-          </div>
+          {activeTab === 0 && (
+            <div className="flex text-white whitespace-nowrap pb-12">
+              <div className="flex flex-col gap-12">
+                <div className="p-5 flex flex-col gap-5 rounded-lg">
+                  <div className="flex sm:flex-col-reverse sm:gap-10 md:gap-10 xl:gap-0 md:flex-col-reverse xl:flex-row justify-between">
+                    <div className="sm:w-full md:w-full xl:w-[60%] flex flex-col justify-center">
+                      <Image
+                        src={game.image}
+                        className="w-full brightness-75"
+                      />
+                      <div className="flex sm:flex-col md:flex-col xl:flex-row text-white justify-between items-center mt-5">
+                        <div>
+                          <p className="text-2xl">Official Links</p>
+                        </div>
+                        <div className="flex gap-3 items-center">
+                          {game.socials.map((item: any, index: number) => (
+                            <div
+                              key={"ava_s_launch_" + index.toString()}
+                              className="flex items-center">
+                              <Button
+                                as={Link}
+                                href={item.link}
+                                isIconOnly
+                                className="bg-transparent ">
+                                <Image
+                                  width={
+                                    item.name === "Web"
+                                      ? 22
+                                      : item.name === "Discord"
+                                      ? 25
+                                      : item.name === "Youtube"
+                                      ? 40
+                                      : 30
+                                  }
+                                  radius="none"
+                                  className="bg-transparent"
+                                  src={
+                                    item.name === "Twitter"
+                                      ? "/icons/socials/twitter.svg"
+                                      : item.name === "Discord"
+                                      ? "/socials/discord-border.svg"
+                                      : item.name === "Telegram"
+                                      ? "/icons/socials/telegram.svg"
+                                      : item.name === "Web"
+                                      ? "/icons/socials/website.svg"
+                                      : item.name === "Youtube"
+                                      ? "/icons/socials/youtube.svg"
+                                      : ""
+                                  }
+                                />
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">23 Jan 2024</p>
+                          <p className="text-sm text-[#9d9d9d]">Event date</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">IDO</p>
+                          <p className="text-sm text-[#9d9d9d]">Event type</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">0.032 USD</p>
+                          <p className="text-sm text-[#9d9d9d]">Token price</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">
+                            100,000.0 USD
+                          </p>
+                          <p className="text-sm text-[#9d9d9d]">
+                            Total allocation
+                          </p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">$LUSSA</p>
+                          <p className="text-sm text-[#9d9d9d]">Token symbol</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">SKALE</p>
+                          <p className="text-sm text-[#9d9d9d]">Network</p>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <p className="text-2xl font-SpaceGro">SKALE</p>
+                          <p className="text-sm text-[#9d9d9d]">Currency</p>
+                        </div>
+                      </div>
+
+                      {/* <div className="flex flex-col mt-10 gap-3 pb-12">
+                  <div className="text-2xl text-white">FAQs</div>
+
+                  <Accordion
+                    variant="light"
+                    showDivider={false}
+                    itemClasses={{
+                      base: "w-full py-1",
+                      heading:
+                        " data-[open=true]:bg-dark  bg-dark px-4 py-2 rounded",
+                      indicator: " text-white data-[open=true]:text-white",
+                      content: "px-3 rounded mt-2 bg-dark text-[#9d9d9d]",
+                      trigger: "mt-2",
+                      title: " text-white text-sm data-[open=true]:text-white",
+                    }}>
+                    {FAQ_ITEMS.map((item) => (
+                      <AccordionItem
+                        key={"key" + item.id.toString()}
+                        title={item.name}>
+                        <div>{item.desx}</div>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div> */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
