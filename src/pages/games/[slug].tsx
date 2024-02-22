@@ -71,14 +71,7 @@ const Games: NextPageWithLayout<
     setAvaGame(game);
   }, [game]);
   const [activeTab, setActiveTab] = useState<number>(0);
-  const urll = "https://www.youtube.com/watch?v=LXb3EKWsInQ";
 
-  const [hasWindow, setHasWindow] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setHasWindow(true);
-    }
-  }, []);
   return (
     <>
       <div className="flex flex-col sm:gap-5 md:gap-10">

@@ -6,10 +6,15 @@ import HeroHeader from "@/components/heroHeader";
 import HowToJoin from "@/components/howToJoin";
 import IgoAndIno from "@/components/igoAndIno";
 import PopulerGames from "@/components/populerGames";
-import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
-import { skaleNebulaTestnet } from "viem/chains";
 
-export default function Home() {
+import { getStaticProps } from "@/framework/rest/allLaunchpads.ssr";
+import { InferGetStaticPropsType } from "next";
+import { NextPageWithLayout } from "@/types";
+export { getStaticProps };
+
+const Home: NextPageWithLayout<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ launchpads }: any) => {
   return (
     <>
       <div className="flex flex-col sm:gap-20 md:gap-48 ">
@@ -17,7 +22,7 @@ export default function Home() {
           <HeroHeader />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
-          <IgoAndIno />
+          <IgoAndIno launchpads={launchpads.reverse()} />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
           <HowToJoin />
@@ -37,4 +42,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

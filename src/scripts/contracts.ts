@@ -1,6 +1,7 @@
 import DiamondABI from "./DiamondABI.json";
 import ERC20ABI from "./ERC20ABI.json";
 import Distributor from "./Distributor.json";
+import vesting from "./vesting.json";
 
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
@@ -17,7 +18,7 @@ export const SkaleChaosTestnet = {
 
 // FETCH CONTRACTS
 export const fetchDiamondContract: contractInterfaces = {
-  address: "0x6c6f20De245A73d9BC543727A5121D7E2C2E3725",
+  address: "0x5d13429C6c4Fe2E22f6ef42556FBFbc420fA272D",
   abi: DiamondABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
@@ -27,7 +28,7 @@ export const fetchGMXTokenContract: contractInterfaces = {
   chainId: SkaleChaosTestnet.id,
 };
 export const fetchXXTokenContract: contractInterfaces = {
-  address: "0x218FFe7b4c93B7685125f8A55dCF9C00201AdaD0",
+  address: "0xa5Fe0D55d33f6179790fA620F81Fe27463334f6B",
   abi: ERC20ABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
@@ -62,6 +63,13 @@ export function GetContract(address: `0x${string}` | undefined | string) {
     return new Contract(
       fetchDistTokenContract.address,
       fetchDistTokenContract.abi,
+      Provider
+    );
+  } else {
+    return new Contract(
+      // @ts-ignore
+      address,
+      vesting.abi,
       Provider
     );
   }

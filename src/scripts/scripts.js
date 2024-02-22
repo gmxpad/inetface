@@ -8,6 +8,10 @@ import {
 } from "./contracts";
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
+export function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export async function AllowanceCheck(userAddress, tokenAddress) {
   try {
     let allowance = parseEther("0");
@@ -204,4 +208,42 @@ export async function getSigner(walletProvider) {
   const provider = new BrowserProvider(walletProvider);
   const signer = await provider.getSigner();
   return signer;
+}
+
+export function formatTimestampGMT(timestamp) {
+  const date = new Date(timestamp * 1000);
+
+  const month = new Intl.DateTimeFormat("en-GB", { month: "long" }).format(
+    date
+  );
+  const day = date.getDate();
+  const hour = date.getHours().toString().padStart(2, "0");
+  const minute = date.getMinutes().toString().padStart(2, "0");
+
+  return `${month} ${day} ${hour}:${minute} (UTC)`;
+}
+
+export function getImageChainImage(chainId) {
+  let imageUrl;
+  switch (chainId) {
+    case 1:
+      imageUrl = "/chains/eth.svg";
+      break;
+    case 37084624:
+      imageUrl = "/chains/skale.svg";
+      break;
+    case 42161:
+      imageUrl = "/chains/arb-logo.svg";
+      break;
+    case 137:
+      imageUrl = "/chains/polygon.svg";
+      break;
+    case 56:
+      imageUrl = "/chains/bnb.svg";
+      break;
+    default:
+      imageUrl = "";
+      break;
+  }
+  return imageUrl;
 }

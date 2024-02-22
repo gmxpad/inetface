@@ -10,50 +10,83 @@ import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
 export { getStaticProps };
 
-interface LaunchpadsInterface {
-  name: string;
-  genre: string[];
-  desc: string;
-  image: string;
+interface Socials {
+  website: string;
+  twitter: string;
+  telegram: string;
+  discord: string;
+  youtube: string;
+  medium: string;
+  whitepaper: string;
+}
+
+interface Details {
   slug: string;
-  chains: string[];
-  logo: string;
+  projectName: string;
+  tokenName: string;
+  tokenSymbol: string;
+  developer: string;
   status: string;
-  launchStatus: string;
-  eventName: string;
-  eventValue: string;
-  tokenAllo: string;
-  tokenPrice: string;
+  description: string;
+  announcement: string;
+  listing: string;
+  backgroundImage: string;
+
+  profileImage: string;
+  posterImage: string;
+
+  itemType: number;
+  eventType: number;
+  eventRound: number;
+  socials: Socials;
+  genres: string[];
+  chainIDs: number[];
+}
+
+interface LaunchpadsInterface {
+  isExist: boolean;
+  isUpcoming: boolean;
+  isRefundable: boolean;
+  isRefund: boolean;
+  isSale: boolean;
+  isStakerRequired: boolean;
+
+  isDistribution: boolean;
+  isSaleNative: boolean;
+
+  details: Details;
+
+  currency: number;
+  projectID: number;
+  userCount: number;
+  tokenPrice: number;
+  collectedValue: number;
+  tokensToBeSold: number;
+  soldTokens: number;
+  salesPerUser: number;
+  poolScore: number;
+  minDepositAmount: number;
+  maxDepositAmount: number;
+  registerStart: number;
+  registerEnd: number;
+  guaranteedDepositStart: number;
+  guaranteedDepositEnd: number;
+  fcfsDepositStart: number;
+  fcfsDepositEnd: number;
+  claimStart: number;
+
+  tokenAddress: any;
+  usedTokenAddress: any;
+  vestingContract: any;
+  users: any[];
 }
 const Launchpads: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ launchpads }: any) => {
-  const [avaLaunchpads, setAvaLaunchpads] = useState<LaunchpadsInterface[]>([
-    {
-      name: "",
-      genre: ["", "", ""],
-      desc: "",
-      image: "",
-      slug: "",
-      chains: [""],
-      logo: "",
-      status: "",
-      launchStatus: "",
-      eventName: "",
-      eventValue: "",
-      tokenAllo: "",
-      tokenPrice: "",
-    },
-  ]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    setAvaLaunchpads(launchpads);
-  }, []);
-
   const nextGroup = () => {
-    if (currentIndex < avaLaunchpads.length - 1) {
+    if (currentIndex < launchpads.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
       setCurrentIndex(0);
@@ -63,18 +96,18 @@ const Launchpads: NextPageWithLayout<
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      setCurrentIndex(avaLaunchpads.length - 1);
+      setCurrentIndex(launchpads.length - 1);
     }
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (currentIndex + 1) % avaLaunchpads.length;
+      const nextIndex = (currentIndex + 1) % launchpads.length;
       setCurrentIndex(nextIndex);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, avaLaunchpads.length]);
+  }, [currentIndex, launchpads.length]);
 
   return (
     <>
@@ -86,7 +119,7 @@ const Launchpads: NextPageWithLayout<
               transition: "transform 1s",
               transform: `translateX(-${currentIndex * 100}%)`,
             }}>
-            {avaLaunchpads.map((item: any, index: number) => (
+            {launchpads.map((item: any, index: number) => (
               <div
                 key={"ihome_" + index.toString()}
                 className="relative z-0 text-white sm:h-[250px] md:h-[500px]"
@@ -133,7 +166,7 @@ const Launchpads: NextPageWithLayout<
               onClick={() => nextGroup()}
               className="hover:bg-[#a664fe] sm:p-2 md:p-4 hover:border-[#a664fe] sm:w-9 sm:h-9 md:w-16 md:h-16 border border-gray-500 rounded-full transition-all duration-300 flex items-center justify-center"></NextButton>
             <div className="text-xl">
-              {currentIndex + 1} / {avaLaunchpads.length}
+              {currentIndex + 1} / {launchpads.length}
             </div>
           </div>
         </div>
@@ -142,7 +175,7 @@ const Launchpads: NextPageWithLayout<
             <p>UPCOMING PROJECTS</p>
           </div>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
-            {avaLaunchpads.map((item: any, index: number) => (
+            {launchpads.map((item: any, index: number) => (
               <a
                 // href={`/launchpads/ido/${item.slug}`}
                 key={"upcoming_projects_" + index.toString()}

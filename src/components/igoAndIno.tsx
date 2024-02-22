@@ -1,9 +1,19 @@
 import React, { useEffect, useRef } from "react";
 
-import { Image } from "@nextui-org/react";
+import { Avatar, AvatarGroup, Image } from "@nextui-org/react";
 import classNames from "classnames";
+import {
+  formatTimestampGMT,
+  getImageChainImage,
+  numberWithCommas,
+} from "@/scripts/scripts";
+import { formatEther } from "viem";
 
-const IgoAndIno = () => {
+const IgoAndIno = ({ launchpads }: any) => {
+  const allLaunchpads = launchpads || [];
+  const firstThreeLaunchpads = allLaunchpads.slice(0, 3);
+  const currentTime: number = Math.floor(Date.now() / 1000);
+
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -29,45 +39,6 @@ const IgoAndIno = () => {
     }, [ref]);
   };
   const SLIDES = [
-    {
-      image: "/gamesGallery/lussa/poster.webp",
-      profile: "/gamesGallery/lussa/logo.png",
-      status: "Upcoming",
-      launchStatus: "IGO",
-      chainImage: "/chains/skale.svg",
-      name: "Lussa",
-      eventName: "Event Date",
-      eventValue: "TBA",
-      tokenAllo: "TBA",
-      tokenPrice: "TBA",
-      slug: "/",
-    },
-    {
-      image: "/comingsoon.webp",
-      profile: "",
-      status: "Coming Soon",
-      launchStatus: "IGO",
-      chainImage: "/chains/skale.svg",
-      name: "Coming Soon",
-      eventName: "Event Date",
-      eventValue: "TBA",
-      tokenAllo: "TBA",
-      tokenPrice: "TBA",
-      slug: "/",
-    },
-    {
-      image: "/comingsoon.webp",
-      profile: "",
-      status: "Coming Soon",
-      launchStatus: "IGO",
-      chainImage: "/chains/skale.svg",
-      name: "Coming Soon",
-      eventName: "Event Date",
-      eventValue: "TBA",
-      tokenAllo: "TBA",
-      tokenPrice: "TBA",
-      slug: "/",
-    },
     {
       image: "/comingsoon.webp",
       profile: "",
@@ -96,93 +67,116 @@ const IgoAndIno = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-5">
-        <div
-          ref={divRef}
-          style={{
-            opacity: "0.01",
-            scale: "0.9",
-            transition: "scale 1s, opacity 1s",
-          }}
-          className="md:text-4xl sm:text-2xl text-white font-semibold">
+      <div className="flex flex-col gap-12  mt-5">
+        <div className="md:text-4xl sm:text-2xl text-white font-semibold">
           <p>UPCOMING PROJECTS</p>
         </div>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
-          {SLIDES.map((item: any, index: number) => (
-            <div
-              ref={
-                index == 0
-                  ? divRef1
-                  : index === 1
-                  ? divRef2
-                  : index === 2
-                  ? divRef3
-                  : divRef4
-              }
-              style={{
-                opacity: "0.01",
-                scale: "0.9",
-                transition: "scale 1s, opacity 1s",
-              }}
-              key={"upcoming_projects_" + index.toString()}
-              className="bg-dark-gray rounded-lg flex flex-col overflow-hidden">
-              <div className="sm:h-[200px] md:h-[190px] lg:h-[220px] xl:h-[150px] 2xl:h-[200px] overflow-hidden bg-white">
-                <Image
-                  isBlurred
-                  radius="none"
-                  className="w-full h-full"
-                  src={item.image}
-                />
+          <div className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
+            <Image isBlurred radius="none" src={SLIDES[0].image} />
+            <div className="flex justify-between items-center relative px-5 pt-14">
+              <div className="absolute -top-9 left-5">
+                <Image width={70} radius="sm" src={SLIDES[0].profile} />
               </div>
+              <div className="w-full flex gap-4">
+                <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 flex items-center">
+                  {SLIDES[0].launchStatus}
+                </div>
+                <div className="bg-[#212e1c] text-green-550 flex font-Orbitron items-center text-sm rounded-lg px-3 py-1">
+                  {SLIDES[0].status}
+                </div>
+              </div>
+              <div className="w-1/3 flex justify-end">
+                <AvatarGroup>
+                  <Avatar
+                    size="sm"
+                    key={
+                      SLIDES[0].chainImage.toString() +
+                      SLIDES[0].eventName.toString()
+                    }
+                    src={SLIDES[0].chainImage}
+                  />
+                </AvatarGroup>
+              </div>
+            </div>
+            <div className="px-5 flex flex-col gap-1 pb-5 pt-2">
+              <p className=" font-Orbitron font-bold text-2xl pb-2">
+                {SLIDES[0].name}
+              </p>
+              <div className="flex justify-between font-normal text-sm w-full items-center">
+                <p className="text-[#9d9d9d] ">Event Date</p>
+                <p className="font-semibold ">TBA</p>
+              </div>
+              <div className="flex justify-between font-normal text-sm w-full items-center">
+                <p className="text-[#9d9d9d] ">Total Sales</p>
+                <p className="font-semibold ">TBA</p>
+              </div>
+              <div className="flex justify-between font-normal text-sm w-full items-center">
+                <p className="text-[#9d9d9d] ">Token Price</p>
+                <p className="font-semibold">TBA</p>
+              </div>
+            </div>
+          </div>
+          {firstThreeLaunchpads.map((item: any, index: number) => (
+            <a
+              href={`/launchpads/ino/${item[7][0]}`}
+              key={"upcoming_projects_home" + index.toString()}
+              className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
+              <Image isBlurred radius="none" src={item[7][9]} />
               <div className="flex justify-between items-center relative px-5 pt-14">
                 <div className="absolute -top-9 left-5">
-                  <Image
-                    width={70}
-                    radius="sm"
-                    className="object-fill"
-                    src={item.profile}
-                  />
+                  <Image width={70} radius="sm" src={item[7][10]} />
                 </div>
                 <div className="w-full flex gap-4">
                   <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 flex items-center">
-                    {item.launchStatus}
+                    {item[9] === 0 ? "IGO" : item[10] === 1 ? "INO" : "IDO"}
                   </div>
-                  <div
-                    className={classNames(
-                      " flex font-Orbitron items-center text-sm rounded-lg px-3 py-1",
-                      item.status === "Coming Soon"
-                        ? "text-white border border-gray-800/50"
-                        : "text-green-550 bg-[#212e1c]"
-                    )}>
-                    {item.status}
+                  <div className="bg-[#212e1c] text-green-550 flex font-Orbitron items-center text-sm rounded-lg px-3 py-1">
+                    {currentTime > item[28] && currentTime < item[29]
+                      ? "Live"
+                      : currentTime < item[28]
+                      ? "Upcoming"
+                      : currentTime > item[28]
+                      ? "End"
+                      : ""}
                   </div>
                 </div>
-                <div
-                  className={classNames(
-                    "w-1/3 justify-end",
-                    item.status === "Coming Soon" ? "hidden" : "flex"
-                  )}>
-                  <Image width={35} radius="sm" src={item.chainImage} />
+                <div className="w-1/3 flex justify-end">
+                  <AvatarGroup>
+                    {item[30].map((item: any, index: number) => (
+                      <Avatar
+                        size="sm"
+                        key={item.toString() + index.toString()}
+                        src={getImageChainImage(item)}
+                      />
+                    ))}
+                  </AvatarGroup>
                 </div>
               </div>
               <div className="px-5 flex flex-col gap-1 pb-5 pt-2">
                 <p className=" font-Orbitron font-bold text-2xl pb-2">
-                  {item.name}
+                  {item[7][1]}
                 </p>
                 <div className="flex justify-between font-normal text-sm w-full items-center">
-                  <p className="text-[#9d9d9d] ">{item.eventName}</p>
-                  <p className="font-semibold ">{item.eventValue}</p>
+                  <p className="text-[#9d9d9d] ">Event Date</p>
+                  <p className="font-semibold ">
+                    {formatTimestampGMT(item[22])}
+                  </p>
                 </div>
                 <div className="flex justify-between font-normal text-sm w-full items-center">
-                  <p className="text-[#9d9d9d] ">Total Allocation</p>
-                  <p className="font-semibold ">{item.tokenAllo}</p>
+                  <p className="text-[#9d9d9d] ">Total Sales</p>
+                  <p className="font-semibold ">{numberWithCommas(item[16])}</p>
                 </div>
                 <div className="flex justify-between font-normal text-sm w-full items-center">
                   <p className="text-[#9d9d9d] ">Token Price</p>
-                  <p className="font-semibold">{item.tokenPrice}</p>
+                  <p className="font-semibold">
+                    {item[14] === 0
+                      ? "Free"
+                      : `${Number(formatEther(item[14])).toFixed(1)} $GMXP`}
+                  </p>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
