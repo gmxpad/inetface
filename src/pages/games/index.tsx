@@ -26,7 +26,6 @@ import { getStaticProps } from "@/framework/rest/games.ssr";
 import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
 import classNames from "classnames";
-import { base } from "viem/chains";
 import { ChevronDown } from "@/components/icons/Icons";
 
 export { getStaticProps };
@@ -80,7 +79,7 @@ const Games: NextPageWithLayout<
     setFilterGame(newValue);
 
     const matchingGames = games.filter((item: any) =>
-      item.name.toLowerCase().includes(newValue.trim().toLowerCase())
+      item[3][1].toLowerCase().includes(newValue.trim().toLowerCase())
     );
     setFilteredCount(matchingGames.length);
     if (newValue === "") {
@@ -92,7 +91,7 @@ const Games: NextPageWithLayout<
   let filteredGames: any[];
   if (filteredCount > 0) {
     filteredGames = games.filter((item: any) =>
-      item.name.toLowerCase().includes(filterGame.trim().toLowerCase())
+      item[3][1].toLowerCase().includes(filterGame.trim().toLowerCase())
     );
   } else {
     filteredGames = games;
@@ -109,7 +108,7 @@ const Games: NextPageWithLayout<
 
   return (
     <>
-      <div className="flex flex-col w-full h-full pb-10">
+      <div className="flex flex-col pb-24">
         <div className="relative h-full w-full">
           <div
             style={{
@@ -130,21 +129,21 @@ const Games: NextPageWithLayout<
                 <Image
                   draggable={false}
                   radius="none"
-                  src={item.image}
+                  src={item[3][4]}
                   className="w-screen brightness-75"
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
                   <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
-                    {item.genre[0]}
+                    {item[3][10][0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
-                    {item.name}
+                    {item[3][1]}
                   </p>
-                  <p className=" sm:hidden md:flex md:w-[50%]">{item.desc}</p>
+                  <p className=" sm:hidden md:flex md:w-[50%]">{item[3][3]}</p>
                   <Button
                     as={Link}
-                    href={`/games/${item.slug}`}
+                    href={`/games/${item[3][0]}`}
                     radius="sm"
                     size="sm"
                     className="bg-[#a664fe] sm:max-w-[25%] md:py-6 md:max-w-[25%] font-Orbitron text-white sm:text-sm md:text-lg px-16">
@@ -168,7 +167,7 @@ const Games: NextPageWithLayout<
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5 text-white text-4xl font-semibold px-[5%] mt-10">
+        <div className="flex flex-col gap-5 text-white text-4xl font-semibold px-[10%] mt-10">
           <div className="flex w-full justify-between">
             <p>Games</p>
           </div>
@@ -261,7 +260,7 @@ const Games: NextPageWithLayout<
             </Dropdown>
           </div>
         </div>
-        <div className="flex sm:flex-col px-[5%] flex-row gap-5">
+        <div className="flex sm:flex-col px-[10%] flex-row gap-5">
           <div
             className={classNames(
               "bg-dark-gray sm:w-full md:w-[30%] p-5 transition-all duration-400 mt-10 rounded-lg flex flex-col gap-5",
@@ -314,38 +313,7 @@ const Games: NextPageWithLayout<
                 </Checkbox>
               </CheckboxGroup>
             </div>
-            <div>
-              <CheckboxGroup label="Network">
-                <Checkbox color="secondary" value="skale">
-                  <div className="text-white flex items-center gap-1">
-                    <Image width={20} src="/icons/skale-dark.svg" />
-                    Skale
-                  </div>
-                </Checkbox>
-                <Checkbox color="secondary" value="eth">
-                  <div className="text-white flex items-center gap-1">
-                    <Image width={20} src="/chains/eth.svg" />
-                    Ethereum
-                  </div>
-                </Checkbox>
-                <Checkbox color="secondary" value="arbitrum">
-                  <div className="text-white flex items-center gap-1">
-                    <Image
-                      radius="none"
-                      width={20}
-                      src="/chains/arbitrum-logo.svg"
-                    />
-                    Arbitrum
-                  </div>
-                </Checkbox>
-                <Checkbox color="secondary" value="polygon">
-                  <div className="text-white flex items-center gap-1">
-                    <Image width={20} src="/chains/polygon.svg" />
-                    Polygon
-                  </div>
-                </Checkbox>
-              </CheckboxGroup>
-            </div>
+
             <div>
               <CheckboxGroup label="Genres">
                 <Checkbox color="secondary" value="metaverse">
@@ -396,7 +364,7 @@ const Games: NextPageWithLayout<
                   key={"filteredGame_keys" + index.toString()}
                   className="flex flex-col overflow-hidden">
                   <Card className="bg-dark-gray">
-                    <Link href={"/games/" + filteredGame.slug}>
+                    <Link href={"/games/" + filteredGame[3][0]}>
                       <CardBody className="h-[350px] w-full gap-2 flex flex-col justify-between ">
                         <Image
                           width={1650}
@@ -404,16 +372,16 @@ const Games: NextPageWithLayout<
                           isBlurred
                           isZoomed
                           className="h-[240px] w-full"
-                          src={filteredGame.gameBanner}
+                          src={filteredGame[3][5]}
                           alt="game"
                         />
                         <p className="text-white font-Orbitron">
-                          {filteredGame.name}
+                          {filteredGame[3][1]}
                         </p>
 
                         <div className="flex justify-between items-center text-white">
                           <div className="flex gap-1">
-                            {filteredGame.genre.map(
+                            {filteredGame[3][10].map(
                               (item: any, index: number) => (
                                 <div
                                   key={"imageKey" + index.toString()}
@@ -422,20 +390,6 @@ const Games: NextPageWithLayout<
                                 </div>
                               )
                             )}
-                          </div>
-                          <div className="flex gap-1">
-                            <AvatarGroup key={"chainKey_" + index.toString()}>
-                              {filteredGame.chains.map(
-                                (item: any, index: number) => (
-                                  <Avatar
-                                    size="sm"
-                                    isBordered
-                                    key={item.toString() + index.toString()}
-                                    src={item}
-                                  />
-                                )
-                              )}
-                            </AvatarGroup>
                           </div>
                         </div>
                       </CardBody>

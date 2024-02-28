@@ -18,7 +18,7 @@ export const SkaleChaosTestnet = {
 
 // FETCH CONTRACTS
 export const fetchDiamondContract: contractInterfaces = {
-  address: "0x5d13429C6c4Fe2E22f6ef42556FBFbc420fA272D",
+  address: "0xDd32E902AE551CBA07016AAb66debCd077Ccfb77",
   abi: DiamondABI.abi,
   chainId: SkaleChaosTestnet.id,
 };

@@ -7,14 +7,14 @@ import HowToJoin from "@/components/howToJoin";
 import IgoAndIno from "@/components/igoAndIno";
 import PopulerGames from "@/components/populerGames";
 
-import { getStaticProps } from "@/framework/rest/allLaunchpads.ssr";
+import { getStaticProps } from "@/framework/rest/ipos.ssr";
 import { InferGetStaticPropsType } from "next";
 import { NextPageWithLayout } from "@/types";
 export { getStaticProps };
 
 const Home: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ launchpads }: any) => {
+> = ({ ipos }: any) => {
   return (
     <>
       <div className="flex flex-col sm:gap-20 md:gap-48 ">
@@ -22,7 +22,7 @@ const Home: NextPageWithLayout<
           <HeroHeader />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
-          <IgoAndIno launchpads={launchpads.reverse()} />
+          <IgoAndIno games={ipos.reverse()} />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
           <HowToJoin />
@@ -33,9 +33,9 @@ const Home: NextPageWithLayout<
         <section className="sm:px-[5%] md:px-[10%]">
           <Features />
         </section>
-        <section className="sm:px-[5%] md:px-[10%]">
+        {/* <section className="sm:px-[5%] md:px-[10%]">
           <PopulerGames />
-        </section>
+        </section> */}
         <section className="sm:px-[1%] md:px-[8%]">
           <FAQ />
         </section>

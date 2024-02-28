@@ -31,24 +31,24 @@ const HowToJoin = () => {
     {
       image: "/icons/Getgmxp.png",
       name: "Get $GMXP",
-      desx: "Get your hands on $GMXP tokens and unlock the door to engaging in exciting Initial Game Offerings (IGOs) available on GameXPad.",
+      desx: "Get your hands on $GMXP tokens and unlock the door to engaging in exciting Initial Publisher Offerings (IPOs) available on GameXPad.",
       link: "/",
     },
     {
       image: "/icons/stake.png",
       name: "Stake $GMXP",
-      desx: "Unlock the world of Initial Game Offerings (IGOs) with GMXP token staking. The key to winning is here at GameXPad!",
+      desx: "Unlock the world of Initial Game Offerings (IPOs) with GMXP token staking. The key to winning is here at GameXPad!",
       link: "/",
     },
     {
       image: "/icons/register.png",
       name: "Register",
-      desx: "Apply to IGOs and unlock your path to winning by determining your participation amount with GameXPad.",
+      desx: "Apply to IPOs and unlock your path to winning by determining your participation amount with GameXPad.",
       link: "/",
     },
     {
       image: "/icons/ido.png",
-      name: "Join IGO",
+      name: "Join IPO",
       desx: "Acquire your new tokens and reveal the earnings that are on the horizon. Your adventure towards success begins now!",
       link: "/",
     },

@@ -5,9 +5,12 @@ import {
   applyAnimationTopDuration,
 } from "@/scripts/applyAnimationTop";
 import useWindowDimensions from "@/scripts/useWindowDimensions";
+import { useRouter } from "next/router";
 
 const AccessGames = () => {
   const { windowWidth } = useWindowDimensions();
+
+  const router = useRouter();
 
   const useIntersectionObserverWithAnimation = (
     divRef: React.RefObject<HTMLDivElement>,
@@ -124,13 +127,12 @@ const AccessGames = () => {
               Access Games Instantly
             </p>
             <p className="md:w-[80%] text-center">
-              Explore these thrilling Web3 games and immerse yourself in an
-              engaging and profitable experience
+              Explore these thrilling games and immerse yourself in an engaging
+              and profitable experience
             </p>
             <Button
-              as={Link}
-              className="bg-transparent z-50 text-white font-bold  md:text-xl duration-300 border-3 md:py-7 sm:py-6 px-8 border-white"
-              href="/games">
+              onPress={() => router.push("/games")}
+              className="bg-transparent z-50 text-white font-bold  md:text-xl duration-300 border-3 md:py-7 sm:py-6 px-8 border-white">
               Explore Games
             </Button>
           </div>

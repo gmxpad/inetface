@@ -15,61 +15,11 @@ import classNames from "classnames";
 import dynamic from "next/dynamic";
 export { getStaticPaths, getStaticProps };
 
-interface FaqInterface {
-  id: number;
-  name: string;
-  desx: string;
-}
-interface SocialsInterface {
-  name: string;
-  link: string;
-}
-
-interface GameInterface {
-  name: string;
-  genre: string[];
-  developer: string;
-  releasedOn: string;
-  holders: string;
-  tokenSymbol: string;
-  desc: string;
-  image: string;
-  slug: string;
-  chains: string[];
-  logo: string;
-  gameBanner: string;
-  socials: SocialsInterface[];
-  faqMenu: FaqInterface[];
-  platform: string[];
-  chainIDs: number[];
-}
-
 const Games: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ game }: any) => {
   const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
-  const [avaGame, setAvaGame] = useState<GameInterface>({
-    name: "",
-    genre: [""],
-    developer: "",
-    releasedOn: "",
-    holders: "",
-    tokenSymbol: "",
-    desc: "",
-    image: "",
-    slug: "",
-    chains: [""],
-    logo: "",
-    gameBanner: "",
-    socials: [{ name: "", link: "" }],
-    faqMenu: [{ id: 0, name: "", desx: "" }],
-    platform: [""],
-    chainIDs: [1],
-  });
-  useEffect(() => {
-    setAvaGame(game);
-  }, [game]);
   const [activeTab, setActiveTab] = useState<number>(0);
 
   return (
@@ -82,25 +32,25 @@ const Games: NextPageWithLayout<
                 className="w-screen z-0 brightness-75"
                 height={280}
                 radius="none"
-                src={game.image}
-                alt={game.name}
+                src={game[3][4]}
+                alt={game[3][1]}
                 draggable={false}
               />
             </div>
             <div className="absolute z-10 sm:bottom-5 sm:left-5 top-[40%] left-[10%]  w-full sm:hidden md:flex justify-between   text-white">
               <div className="flex flex-col gap-2">
                 <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
-                  {game.genre[0]}
+                  {game[3][10][0]}
                 </div>
                 <p className=" text-4xl font-Orbitron md:text-5xl">
-                  {game.name}
+                  {game[3][1]}
                 </p>
                 <div className="text-white sm:hidden md:hidden xl:flex w-[45%]">
-                  {game.desc}
+                  {game[3][3]}
                 </div>
                 <Button
                   as={Link}
-                  href={game.socials[4].link}
+                  href={game[3][8][0]}
                   isExternal={true}
                   radius="sm"
                   size="sm"
@@ -113,16 +63,16 @@ const Games: NextPageWithLayout<
         </div>
         <div className=" z-10 p-5 w-full sm:flex md:hidden justify-between   text-white">
           <div className="flex flex-col gap-2">
-            <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center py-1 font-Orbitron text-center md:max-w-[20%] rounded-md">
-              {game.genre[0]}
+            <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
+              {game[3][10][0]}
             </div>
-            <p className=" text-4xl font-Orbitron md:text-5xl">{game.name}</p>
+            <p className=" text-4xl font-Orbitron md:text-5xl">{game[3][1]}</p>
             <div className="text-white sm:hidden md:hidden xl:flex w-[45%]">
-              {game.desc}
+              {game[3][3]}
             </div>
             <Button
               as={Link}
-              href={game.socials[4].link}
+              href={game[3][8][0]}
               isExternal={true}
               radius="sm"
               size="sm"
@@ -164,14 +114,14 @@ const Games: NextPageWithLayout<
           {activeTab === 0 ? (
             <div className="flex text-white w-full ">
               <div className="flex flex-col gap-12 w-full">
-                <div className="sm:p-2 md:p-5 flex flex-col gap-5 rounded-lg ">
+                <div className="sm:p-2 flex flex-col gap-5 rounded-lg ">
                   <div className="flex sm:flex-col-reverse sm:gap-10 md:gap-10 xl:gap-0 md:flex-col-reverse xl:flex-row justify-between ">
                     <div className="sm:w-full md:w-full xl:w-[60%] flex flex-col justify-center h-full ">
                       <div className="flex w-full">
                         <ReactPlayer
                           width={"1920vh"}
                           height={"450px"}
-                          url={game.gameVideo}
+                          url={game[3][7]}
                         />
                       </div>
                       <div className="flex sm:flex-col md:flex-col xl:flex-row text-white justify-between items-center mt-5">
@@ -179,96 +129,68 @@ const Games: NextPageWithLayout<
                           <p className="text-2xl">Official Links</p>
                         </div>
                         <div className="flex gap-3 items-center">
-                          {game.socials.map((item: any, index: number) => (
-                            <div
-                              key={"ava_games" + index.toString()}
-                              className="flex items-center">
-                              <Button
-                                as={Link}
-                                href={item.link}
-                                isExternal={true}
-                                isIconOnly
-                                className="bg-transparent ">
-                                <Image
-                                  width={
-                                    item.name === "Web"
-                                      ? 22
-                                      : item.name === "Discord"
-                                      ? 25
-                                      : item.name === "Whitepaper"
-                                      ? 38
-                                      : item.name === "Youtube"
-                                      ? 40
-                                      : 30
-                                  }
-                                  radius="none"
-                                  className="bg-transparent"
-                                  src={
-                                    item.name === "Twitter"
-                                      ? "/icons/socials/twitter.svg"
-                                      : item.name === "Discord"
-                                      ? "/socials/discord-border.svg"
-                                      : item.name === "Telegram"
-                                      ? "/icons/socials/telegram.svg"
-                                      : item.name === "Web"
-                                      ? "/icons/socials/website.svg"
-                                      : item.name === "Whitepaper"
-                                      ? "/icons/socials/whitepaper.svg"
-                                      : item.name === "Youtube"
-                                      ? "/icons/socials/youtube.svg"
-                                      : ""
-                                  }
-                                />
-                              </Button>
-                            </div>
-                          ))}
+                          {game[3][8]
+                            .filter((item: string) => item !== "")
+                            .map((item: string, index: number) => (
+                              <div
+                                key={"ava_s_game_" + index.toString()}
+                                className="flex items-center">
+                                <Button
+                                  as={Link}
+                                  href={item}
+                                  isIconOnly
+                                  isExternal={true}
+                                  className="bg-transparent flex">
+                                  <Image
+                                    width={
+                                      item.startsWith("https://docs")
+                                        ? 40
+                                        : item.startsWith("https://t.me")
+                                        ? 30
+                                        : item.startsWith("https://twitter.com")
+                                        ? 30
+                                        : item.startsWith(
+                                            "https://www.youtube.com"
+                                          )
+                                        ? 35
+                                        : 24
+                                    }
+                                    radius="none"
+                                    className="bg-transparent"
+                                    src={
+                                      item.startsWith("https://twitter.com")
+                                        ? "/icons/socials/twitter.svg"
+                                        : item.startsWith("https://t.me")
+                                        ? "/icons/socials/telegram.svg"
+                                        : item.startsWith(
+                                            "https://www.youtube.com"
+                                          )
+                                        ? "/icons/socials/youtube.svg"
+                                        : item.startsWith("https://docs")
+                                        ? "/icons/socials/whitepaper.svg"
+                                        : item.startsWith("https://discord.com")
+                                        ? "/socials/discord-border.svg"
+                                        : item !== ""
+                                        ? "/icons/socials/website.svg"
+                                        : ""
+                                    }
+                                  />
+                                </Button>
+                              </div>
+                            ))}
                         </div>
                       </div>
                       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
                         <div className="flex flex-col">
                           <p className="text-2xl font-SpaceGro">
-                            {game.genre[0]}
+                            {game[3][10][0]}
                           </p>
                           <p className="text-sm text-[#9d9d9d]">Genre</p>
                         </div>
-                        <div className="flex flex-col justify-center gap-1">
-                          <div className="flex gap-1">
-                            <AvatarGroup>
-                              {game.chains.map((item: any, index: number) => (
-                                <Avatar
-                                  size="sm"
-                                  key={item.toString() + index.toString() + "_"}
-                                  src={item}
-                                />
-                              ))}
-                            </AvatarGroup>
-                          </div>
-                          <p className="text-sm text-[#9d9d9d]">Network</p>
-                        </div>
 
                         <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">
-                            {game.releasedOn}
-                          </p>
-                          <p className="text-sm text-[#9d9d9d]">Released On</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">
-                            {game.developer}
-                          </p>
+                          <p className="text-2xl font-SpaceGro">{game[3][2]}</p>
                           <p className="text-sm text-[#9d9d9d]">Developer</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">
-                            {game.holders}
-                          </p>
-                          <p className="text-sm text-[#9d9d9d]">Holders</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-2xl font-SpaceGro">
-                            {game.tokenSymbol}
-                          </p>
-                          <p className="text-sm text-[#9d9d9d]">Token Symbol</p>
                         </div>
                       </div>
                       <div className="gap-3  sm:w-full md:w-full  flex flex-col justify-center pb-24">
@@ -290,13 +212,11 @@ const Games: NextPageWithLayout<
                               title:
                                 " text-white text-sm data-[open=true]:text-white",
                             }}>
-                            {game.faqMenu.map((item: FaqInterface) => (
-                              <AccordionItem
-                                key={"key_games_slug" + item.id.toString()}
-                                title={item.name}>
-                                <div className="">{item.desx}</div>
-                              </AccordionItem>
-                            ))}
+                            <AccordionItem
+                              key={"key_game_about"}
+                              title={`About ${game[3][1]}`}>
+                              <div className="">{game[3][3]}</div>
+                            </AccordionItem>
                           </Accordion>
                         </div>
                       </div>

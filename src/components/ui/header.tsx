@@ -45,12 +45,8 @@ export default function Header() {
       link: "/",
     },
     {
-      name: "IGO Launchpads",
-      link: "/launchpads/igo",
-    },
-    {
-      name: "INO Launchpads",
-      link: "/launchpads/ino",
+      name: "X Pad",
+      link: "/x-pad",
     },
     {
       name: "Stake",
@@ -102,58 +98,19 @@ export default function Header() {
         className="sm:hidden md:hidden lg:flex gap-4 "
         justify="center">
         <NavbarItem>
-          <Dropdown className="bg-dark-gray text-white p-0">
-            <DropdownTrigger>
-              <Button
-                radius="sm"
-                endContent={icons.chevron}
-                className="font-normal text-white bg-transparent text-lg  ">
-                Launchpads
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-              aria-label="Single selection example"
-              disallowEmptySelection
-              selectionMode="single"
-              // @ts-ignore
-            >
-              <DropdownItem
-                key="igo_key"
-                color="secondary"
-                className={classNames("p-0")}>
-                <Button
-                  onPress={() => router.push("/launchpads/igo")}
-                  className={classNames(
-                    "w-full bg-transparent flex justify-start hover:text-white",
-                    router.asPath === "/launchpads/igo"
-                      ? "text-white"
-                      : "text-white/50"
-                  )}>
-                  IGO Launchpads
-                </Button>
-              </DropdownItem>
-              <DropdownItem
-                key="ino_key"
-                color="secondary"
-                className={classNames("p-0")}>
-                <Button
-                  onPress={() => router.push("/launchpads/ino")}
-                  className={classNames(
-                    "w-full bg-transparent flex justify-start hover:text-white",
-                    router.asPath === "/launchpads/ino"
-                      ? "text-white"
-                      : "text-white/50"
-                  )}>
-                  INO Launchpads
-                </Button>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <Button
+            onPress={() => router.push("/x-pad")}
+            radius="full"
+            className="bg-transparent text-white font-normal  text-lg duration-300"
+            aria-current="page">
+            GameXPad
+          </Button>
         </NavbarItem>
+
         <NavbarItem isActive>
           <Button
             onPress={() => router.push("/stake")}
-            radius="none"
+            radius="full"
             className="bg-transparent text-white font-normal  text-lg duration-300"
             aria-current="page">
             Stake
@@ -162,9 +119,17 @@ export default function Header() {
         <NavbarItem>
           <Button
             onPress={() => router.push("/games")}
-            radius="none"
+            radius="full"
             className="bg-transparent text-white font-normal  text-lg duration-300">
             Games
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            onPress={() => router.push("/x-pass")}
+            radius="full"
+            className="bg-transparent text-white font-normal  text-lg duration-300 animate-pulse">
+            XPass Card
           </Button>
         </NavbarItem>
       </NavbarContent>

@@ -88,10 +88,7 @@ const Footer = () => {
               <p className="text-xl font-Orbitron pb-5">Products</p>
               <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-start whitespace-nowrap gap-2">
                 <Link className="text-[#9d9d9d]" href="/launchpads/igo">
-                  IGO Launchpad
-                </Link>
-                <Link className="text-[#9d9d9d]" href="/launchpads/ino">
-                  INO Launchpad
+                  IPO
                 </Link>
                 <Link className="text-[#9d9d9d]" href="/stake">
                   Staking

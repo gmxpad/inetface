@@ -54,8 +54,7 @@ const HeroHeader = () => {
             <p>Invest</p>
             <p>& Earn</p>
             <p className="lg:text-lg sm:text-base md:text-base lg:w-[85%]">
-              Elevate Your Gaming Experience with Our Route to Triumph and
-              Beyond!
+              New Era of Decentralized Game Publisher Platform.
             </p>
           </div>
           <div
@@ -68,12 +67,12 @@ const HeroHeader = () => {
             className="flex sm:flex-col sm:justify-center sm:items-center sm:gap-6 md:justify-between md:items-center md:gap-6 lg:justify-between sm:w-full md:w-full lg:w-2/3">
             <div className="flex flex-col sm:text-center ">
               <div className="text-lg  relative md:max-w-48 whitespace-nowrap">
-                Project Launched
+                Project Published
                 <span className="absolute -top-11 text-6xl text-purple-600 -right-3">
                   .
                 </span>
               </div>
-              <p className="text-5xl font-mono">0,00</p>
+              <p className="text-5xl font-mono">0</p>
             </div>
             <div className="flex flex-col sm:text-center ">
               <div className="text-lg relative md:max-w-12 sm:text-center ">
@@ -82,7 +81,7 @@ const HeroHeader = () => {
                   .
                 </span>
               </div>
-              <p className="text-5xl font-mono">0,00</p>
+              <p className="text-5xl font-mono">0</p>
             </div>
           </div>
           <div
@@ -100,6 +99,7 @@ const HeroHeader = () => {
               href="https://docs.gamexpad.io/">
               Learn More
             </Button>
+
             <Button
               as={Link}
               isExternal={true}

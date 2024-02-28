@@ -1,4 +1,4 @@
-import { formatEther, hexToString, parseEther } from "viem";
+import { formatEther, hexToString, parseEther, BigNumber } from "viem";
 import {
   GetContract,
   fetchDiamondContract,
@@ -7,6 +7,7 @@ import {
   SkaleChaosTestnet,
 } from "./contracts";
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
+const { ethers } = require("ethers");
 
 export function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -213,14 +214,27 @@ export async function getSigner(walletProvider) {
 export function formatTimestampGMT(timestamp) {
   const date = new Date(timestamp * 1000);
 
-  const month = new Intl.DateTimeFormat("en-GB", { month: "long" }).format(
-    date
-  );
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const month = monthNames[date.getMonth()];
   const day = date.getDate();
   const hour = date.getHours().toString().padStart(2, "0");
   const minute = date.getMinutes().toString().padStart(2, "0");
 
-  return `${month} ${day} ${hour}:${minute} (UTC)`;
+  return `${month} ${day}, ${hour}:${minute}`;
 }
 
 export function getImageChainImage(chainId) {
@@ -246,4 +260,11 @@ export function getImageChainImage(chainId) {
       break;
   }
   return imageUrl;
+}
+
+export function format6DecimalsAsEther(value) {
+  const bigValue = ethers.parseUnits(value.toString(), 6);
+  const multipliedValue = bigValue / ethers.toBigInt(1e6);
+  const formattedValue = ethers.formatUnits(multipliedValue, 6);
+  return formattedValue;
 }
