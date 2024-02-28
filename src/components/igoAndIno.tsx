@@ -81,7 +81,7 @@ const IPOAndIno = ({ games }: any) => {
           className="md:text-4xl sm:text-2xl text-white font-semibold">
           <p>UPCOMING PROJECTS</p>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 text-white">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 text-white">
           {firstThreeGames.map((item: any, index: number) => (
             <div
               key={"upcoming_projects_home" + index.toString()}

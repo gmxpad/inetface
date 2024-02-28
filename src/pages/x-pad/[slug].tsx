@@ -132,7 +132,7 @@ const Launchpad: NextPageWithLayout<
                       ))}
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 sm:gap-6 text-white mt-10 gap-5 whitespace-nowrap">
                   <div className="flex flex-col">
                     <p className="text-2xl font-SpaceGro">
                       {formatTimestampGMT(ipo[16])}
