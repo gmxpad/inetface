@@ -233,16 +233,20 @@ export default function Stake() {
     rewardGMXP: "0.0",
     rewardSGMXP: "0.0",
   });
-  const rewardsCal = async () => {
+  const rewardsCal = async (
+    userAddress: `0x${string}` | string | undefined
+  ) => {
     try {
-      const userRewards: any = await calculateRewards(address);
+      const userRewards: any = await calculateRewards(userAddress);
       setRewards(userRewards);
     } catch (error) {}
   };
-  const allowanceCheckForUser = async () => {
+  const allowanceCheckForUser = async (
+    userAddress: `0x${string}` | string | undefined
+  ) => {
     try {
       const allowance: any = await AllowanceCheck(
-        address,
+        userAddress,
         fetchGMXTokenContract.address
       );
       setGmxAllowanceForUser(allowance);
@@ -259,7 +263,7 @@ export default function Stake() {
           getStakeList(address),
           GetStaker(address),
           calculateRewards(address),
-          allowanceCheckForUser(),
+          allowanceCheckForUser(address),
         ]);
         if (rewards !== undefined) {
           // @ts-ignore
@@ -297,9 +301,9 @@ export default function Stake() {
   useEffect(() => {
     const calReward = async () => {
       try {
-        if (stakerInfo.staker === true) {
+        if (stakerInfo && stakerInfo.staker === true) {
           setLoadingRewards(true);
-          await rewardsCal();
+          await rewardsCal(address);
         }
       } catch (error) {
       } finally {
@@ -307,7 +311,7 @@ export default function Stake() {
       }
     };
     calReward();
-    if (stakerInfo.staker === true) {
+    if (stakerInfo && stakerInfo.staker === true) {
       const a = setInterval(() => {
         calReward();
       }, 15000);
@@ -315,7 +319,7 @@ export default function Stake() {
         clearInterval(a);
       };
     }
-  }, [address, isConnected, chainId]);
+  }, [address, isConnected, chainId, stakerInfo]);
 
   const maxBTN = async () => {
     setStakeInput(gmxBalance);
@@ -511,7 +515,7 @@ export default function Stake() {
           <div className="flex flex-col justify-center sm:w-full md:w-full xl:w-[49%] gap-5">
             <div className="text-white text-5xl font-SpaceGro sm:text-center md:text-center xl:text-start">
               <span className="text-[#a664fe]">Stake</span> your $GMXPs to join
-              the best <span className="text-[#a664fe]">IGOs</span>
+              the best <span className="text-[#a664fe]">IPOs</span>
             </div>
             <div className="flex gap-2 sm:justify-center md:justify-center xl:justify-start">
               <Button
@@ -535,11 +539,12 @@ export default function Stake() {
                 width={190}
                 className="sm:w-[100px] md:w-[100px] xl:w-[190px]"
                 src="/chains/skale-name.svg"
+                alt="chain"
               />
             </div>
             <div className="bg-dark-gray z-10 text-white/75 p-3 rounded-lg">
-              Stakers have priority access to IGOs, granting them early
-              investment opportunities in blockchain gaming projects.
+              Stakers have priority access to IPOs, granting them early
+              investment opportunities in gaming projects.
             </div>
           </div>
 
@@ -772,7 +777,7 @@ export default function Stake() {
                 <div className="text-[#a664fe] text-xs sm:text-center md:text-center xl:text-start">
                   <p>
                     Longer lock-up periods result in higher coefficients,
-                    leading to increased rewards and access to more IGO
+                    leading to increased rewards and access to more IPO
                     opportunities.
                   </p>
                 </div>
@@ -892,7 +897,11 @@ export default function Stake() {
                       <div key={"positions_" + index.toString()}>
                         <div className="rounded-lg border border-gray-800/50 p-3 flex whitespace-nowrap sm:flex-col md:flex-col xl:flex-row sm:gap-2 md:gap-2 xl:gap-0 justify-between">
                           <div className="flex items-center gap-1 w-[15%]  text-white">
-                            <Image width={20} src="/logos/gmx-logo.svg" />
+                            <Image
+                              width={20}
+                              src="/logos/gmx-logo.svg"
+                              alt="logo"
+                            />
                             {item.amount}
                           </div>
 

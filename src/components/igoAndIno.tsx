@@ -19,24 +19,26 @@ const IPOAndIno = ({ games }: any) => {
 
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
+      const currentRef = ref.current;
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            ref.current?.style.setProperty("opacity", "1");
-            ref.current?.style.setProperty("scale", "1");
+            currentRef?.style.setProperty("opacity", "1");
+            currentRef?.style.setProperty("scale", "1");
           } else {
-            ref.current?.style.setProperty("opacity", "0.01");
-            ref.current?.style.setProperty("scale", "0.9");
+            currentRef?.style.setProperty("opacity", "0.01");
+            currentRef?.style.setProperty("scale", "0.9");
           }
         },
         { threshold: 0.4 }
       );
-      if (ref.current) {
-        observer.observe(ref.current);
+      if (currentRef) {
+        observer.observe(currentRef);
       }
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
         }
       };
     }, [ref]);
@@ -102,10 +104,20 @@ const IPOAndIno = ({ games }: any) => {
               <button
                 onClick={() => router.push(`/x-pad/${item[3][0]}`)}
                 className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
-                <Image isBlurred radius="none" src={item[3][5]} />
+                <Image
+                  isBlurred
+                  radius="none"
+                  src={item[3][5]}
+                  alt="index-key"
+                />
                 <div className="flex justify-between items-center relative px-5 pt-14">
                   <div className="absolute -top-9 left-5">
-                    <Image width={120} radius="sm" src={item[3][6]} />
+                    <Image
+                      width={120}
+                      radius="sm"
+                      src={item[3][6]}
+                      alt="index-key2"
+                    />
                   </div>
                   <div className="w-full flex gap-4">
                     <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 py-1 flex items-center">
@@ -151,10 +163,20 @@ const IPOAndIno = ({ games }: any) => {
             </div>
           ))}
           <div className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
-            <Image isBlurred radius="none" src={SLIDES[0].image} />
+            <Image
+              isBlurred
+              radius="none"
+              src={SLIDES[0].image}
+              alt="index-key3"
+            />
             <div className="flex justify-between items-center relative px-5 pt-14">
               <div className="absolute -top-9 left-5">
-                <Image width={70} radius="sm" src={SLIDES[0].profile} />
+                <Image
+                  width={70}
+                  radius="sm"
+                  src={SLIDES[0].profile}
+                  alt="index-key4"
+                />
               </div>
               <div className="w-full flex gap-4 pt-2">
                 <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 flex items-center">

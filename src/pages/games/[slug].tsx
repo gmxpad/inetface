@@ -174,6 +174,7 @@ const Games: NextPageWithLayout<
                                         ? "/icons/socials/website.svg"
                                         : ""
                                     }
+                                    alt="images"
                                   />
                                 </Button>
                               </div>

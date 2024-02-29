@@ -117,10 +117,10 @@ const Launchpads: NextPageWithLayout<
                 onClick={() => router.push(`/x-pad/${item[3][0]}`)}
                 key={"projects_" + index.toString()}
                 className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
-                <Image isBlurred radius="none" src={item[3][5]} />
+                <Image isBlurred radius="none" src={item[3][5]} alt="ipo" />
                 <div className="flex justify-between items-center relative px-5 pt-14">
                   <div className="absolute -top-9 left-5">
-                    <Image width={120} radius="sm" src={item[3][6]} />
+                    <Image width={120} radius="sm" src={item[3][6]} alt="ipo" />
                   </div>
                   <div className="w-full flex gap-4">
                     <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 py-1 flex items-center">

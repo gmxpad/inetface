@@ -4,24 +4,25 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 export default function FAQ() {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
+      const currentRef = ref.current;
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            ref.current?.style.setProperty("opacity", "1");
-            ref.current?.style.setProperty("scale", "1");
+            currentRef?.style.setProperty("opacity", "1");
+            currentRef?.style.setProperty("scale", "1");
           } else {
-            ref.current?.style.setProperty("opacity", "0.01");
-            ref.current?.style.setProperty("scale", "0.9");
+            currentRef?.style.setProperty("opacity", "0.01");
+            currentRef?.style.setProperty("scale", "0.9");
           }
         },
         { threshold: 0.4 }
       );
-      if (ref.current) {
-        observer.observe(ref.current);
+      if (currentRef) {
+        observer.observe(currentRef);
       }
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
         }
       };
     }, [ref]);

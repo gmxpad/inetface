@@ -79,7 +79,11 @@ const Launchpad: NextPageWithLayout<
           <div className="bg-dark-gray p-5 flex flex-col gap-5 rounded-lg">
             <div className="flex sm:flex-col-reverse sm:gap-10 md:gap-10 xl:gap-0 md:flex-col-reverse xl:flex-row justify-between">
               <div className="sm:w-full md:w-full xl:w-[60%] flex flex-col justify-center">
-                <Image src={ipo[3][4]} className="w-full brightness-75" />
+                <Image
+                  src={ipo[3][4]}
+                  className="w-full brightness-75"
+                  alt="ipo"
+                />
                 <div className="flex sm:flex-col md:flex-col xl:flex-row text-white justify-between items-center mt-5">
                   <div>
                     <p className="text-2xl">Official Links</p>
@@ -126,6 +130,7 @@ const Launchpad: NextPageWithLayout<
                                   ? "/icons/socials/website.svg"
                                   : ""
                               }
+                              alt="socials"
                             />
                           </Button>
                         </div>
@@ -213,7 +218,11 @@ const Launchpad: NextPageWithLayout<
                           )}{" "}
                           USDT
                         </p>
-                        <Image width={35} src={"/chains/skale.svg"} />
+                        <Image
+                          width={35}
+                          src={"/chains/skale.svg"}
+                          alt="chain"
+                        />
                       </div>
                       <div className="text-[#9d9d9d] text-xs">
                         {ipo ? (
@@ -249,7 +258,11 @@ const Launchpad: NextPageWithLayout<
                           </div>
                           <p>KYC Verification</p>
                         </div>
-                        <Image width={30} src="/icons/success.svg" />
+                        <Image
+                          width={30}
+                          src="/icons/success.svg"
+                          alt="success"
+                        />
                       </div>
                       <div className="flex justify-between w-full items-center text-white mt-1">
                         <div className="flex gap-2 items-center">
@@ -258,7 +271,11 @@ const Launchpad: NextPageWithLayout<
                           </div>
                           <p>Register for an allocation</p>
                         </div>
-                        <Image width={30} src="/icons/success.svg" />
+                        <Image
+                          width={30}
+                          src="/icons/success.svg"
+                          alt="success"
+                        />
                       </div>
                       <div className="flex justify-between w-full items-center text-white mt-1">
                         <div className="flex gap-2 items-center">
@@ -267,7 +284,11 @@ const Launchpad: NextPageWithLayout<
                           </div>
                           <p>Guaranteed allocation</p>
                         </div>
-                        <Image width={30} src="/icons/success.svg" />
+                        <Image
+                          width={30}
+                          src="/icons/success.svg"
+                          alt="success"
+                        />
                       </div>
                       <div className="flex justify-between items-center w-full text-white mt-1">
                         <div className="flex gap-2 items-center">
@@ -276,7 +297,11 @@ const Launchpad: NextPageWithLayout<
                           </div>
                           <p>Event complete</p>
                         </div>
-                        <Image width={30} src="/icons/success.svg" />
+                        <Image
+                          width={30}
+                          src="/icons/success.svg"
+                          alt="success"
+                        />
                       </div>
                     </div>
                   </div>

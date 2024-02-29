@@ -19,26 +19,27 @@ const AccessGames = () => {
     const observerRef = useRef<IntersectionObserver | null>(null); // Keep a reference to the observer
 
     useEffect(() => {
+      const currentDivRef = divRef.current;
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            divRef.current?.style.setProperty("opacity", "1");
+            currentDivRef?.style.setProperty("opacity", "1");
             if (windowWidth > 768) {
-              divRef.current?.style.setProperty(
+              currentDivRef?.style.setProperty(
                 "transform",
                 "translateY(-100px)"
               );
             } else {
-              divRef.current?.style.setProperty(
+              currentDivRef?.style.setProperty(
                 "transform",
                 "translateY(100px)"
               );
             }
-            divRef.current?.style.setProperty("scale", "1");
+            currentDivRef?.style.setProperty("scale", "1");
           } else {
-            divRef.current?.style.setProperty("transform", "translateY(100px)");
-            divRef.current?.style.setProperty("opacity", "0.01");
-            divRef.current?.style.setProperty("scale", "0.9");
+            currentDivRef?.style.setProperty("transform", "translateY(100px)");
+            currentDivRef?.style.setProperty("opacity", "0.01");
+            currentDivRef?.style.setProperty("scale", "0.9");
           }
         },
         { threshold: 0.4 }
@@ -46,13 +47,13 @@ const AccessGames = () => {
 
       observerRef.current = observer;
 
-      if (divRef.current) {
-        observer.observe(divRef.current);
+      if (currentDivRef) {
+        observer.observe(currentDivRef);
       }
 
       return () => {
-        if (divRef.current && observerRef.current) {
-          observerRef.current.unobserve(divRef.current);
+        if (currentDivRef && observerRef.current) {
+          observerRef.current.unobserve(currentDivRef);
         }
       };
     }, [divRef, windowWidth]);
@@ -91,7 +92,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="absolute xl:left-24 md:top-[40%] sm:-top-32 sm:right-0 md:-left-12 z-50 text-white">
-          <Image width={120} src="/gamesGallery/bit-hotel-fi.png" />
+          <Image width={120} src="/gamesGallery/bit-hotel-fi.png" alt="bit" />
         </div>
         <div
           ref={divRef7}
@@ -103,7 +104,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="xl:absolute xl:flex -left-12 bottom-[30%] z-50 text-white md:hidden sm:hidden">
-          <Image width={250} src="/gamesGallery/lussa/banner.png" />
+          <Image width={250} src="/gamesGallery/lussa/banner.png" alt="lussa" />
         </div>
         <div
           ref={divRef6}
@@ -115,7 +116,7 @@ const AccessGames = () => {
             transition: "scale 1s,transform 1s, opacity 1s",
           }}
           className="absolute md:-right-12 md:top-1/2 sm:top-2/3 sm:right-0 z-50 text-white">
-          <Image width={200} src="/gamesGallery/katanainu/4bg.png" />
+          <Image width={200} src="/gamesGallery/katanainu/4bg.png" alt="ktn" />
         </div>
 
         <div
@@ -146,7 +147,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute md:left-6 md:top-[20%] sm:-left-6 sm:-top-[55%] z-50 text-white">
-            <Image width={150} src="/gamesGallery/Untitled.jpg" />
+            <Image width={150} src="/gamesGallery/Untitled.jpg" alt="untit" />
           </div>
           <div
             ref={divRef2}
@@ -158,7 +159,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute left-12 bottom-0 z-50 text-white sm:hidden">
-            <Image width={180} src="/gamesGallery/CryptoBlades.jpg" />
+            <Image width={180} src="/gamesGallery/CryptoBlades.jpg" alt="bld" />
           </div>
           <div
             ref={divRef3}
@@ -170,7 +171,11 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="absolute lg:-right-20 z-50 top-32 md:right-0 text-white sm:hidden">
-            <Image width={250} src="/gamesGallery/magicCraft/banner.png" />
+            <Image
+              width={250}
+              src="/gamesGallery/magicCraft/banner.png"
+              alt="mgc"
+            />
           </div>
           <div
             ref={divRef4}
@@ -182,7 +187,7 @@ const AccessGames = () => {
               transition: "scale 1s,transform 1s, opacity 1s",
             }}
             className="md:absolute -right-16 xl:bottom-32 md:bottom-12 z-50 text-white sm:hidden">
-            <Image width={200} src="/gamesGallery/motodex.jpg" />
+            <Image width={200} src="/gamesGallery/motodex.jpg" alt="mtdx" />
           </div>
 
           <div className="rounded-full border border-gray-800/50 sm:h-[200px] sm:w-[200px] md:h-[450px] md:w-[450px] xl:h-[500px] xl:w-[500px] flex items-center justify-center relative">
@@ -198,7 +203,11 @@ const AccessGames = () => {
                 transition: "scale 1s,transform 1s, opacity 1s",
               }}
               className="absolute xl:left-12 xl:top-28 sm:bottom-0 sm:-left-12 md:bottom-0 md:-left-12 z-50 text-white">
-              <Image width={100} src="/gamesGallery/rise-wallpaper.webp" />
+              <Image
+                width={100}
+                src="/gamesGallery/rise-wallpaper.webp"
+                alt="rise"
+              />
             </div>
 
             <div className="rounded-full border border-gray-800/50 sm:h-[100px] sm:w-[100px] md:h-[200px] md:w-[200px] flex items-center justify-center"></div>

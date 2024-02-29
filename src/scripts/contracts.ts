@@ -2,6 +2,7 @@ import DiamondABI from "./DiamondABI.json";
 import ERC20ABI from "./ERC20ABI.json";
 import Distributor from "./Distributor.json";
 import vesting from "./vesting.json";
+import XPassDistribute from "./XPassDistribute.json";
 
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
@@ -10,8 +11,12 @@ interface contractInterfaces {
   abi: object[];
   chainId: number;
 }
+interface networkInterface {
+  id: number;
+  rpc: string;
+}
 
-export const SkaleChaosTestnet = {
+export const SkaleChaosTestnet: networkInterface = {
   id: 37084624,
   rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
 };
@@ -22,13 +27,13 @@ export const fetchDiamondContract: contractInterfaces = {
   abi: DiamondABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
-export const fetchGMXTokenContract: contractInterfaces = {
-  address: "0xdD3932ad40716aBa856694a42A23EB66e1A57BF9",
-  abi: ERC20ABI.abi,
+export const fetchXPassDistributeContract: contractInterfaces = {
+  address: "0x3DA1F63E7bac343a13edb1A24c3e571989975AaB",
+  abi: XPassDistribute.abi,
   chainId: SkaleChaosTestnet.id,
 };
-export const fetchXXTokenContract: contractInterfaces = {
-  address: "0xa5Fe0D55d33f6179790fA620F81Fe27463334f6B",
+export const fetchGMXTokenContract: contractInterfaces = {
+  address: "0xdD3932ad40716aBa856694a42A23EB66e1A57BF9",
   abi: ERC20ABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
@@ -39,8 +44,21 @@ export const fetchDistTokenContract: contractInterfaces = {
   chainId: SkaleChaosTestnet.id,
 };
 
+export function GetContractAt(
+  address: `0x${string}` | undefined | string,
+  abi: object[] | undefined | any[],
+  network: networkInterface
+) {
+  const Provider = new JsonRpcProvider(network.rpc);
+  if (!address || address.length !== 42 || !abi || !network.id) {
+    return;
+  }
+  return new Contract(address, abi, Provider);
+}
+
 export function GetContract(address: `0x${string}` | undefined | string) {
   const Provider = new JsonRpcProvider(SkaleChaosTestnet.rpc);
+
   if (address === fetchDiamondContract.address) {
     return new Contract(
       fetchDiamondContract.address,
@@ -51,12 +69,6 @@ export function GetContract(address: `0x${string}` | undefined | string) {
     return new Contract(
       fetchGMXTokenContract.address,
       fetchGMXTokenContract.abi,
-      Provider
-    );
-  } else if (address === fetchXXTokenContract.address) {
-    return new Contract(
-      fetchXXTokenContract.address,
-      fetchXXTokenContract.abi,
       Provider
     );
   } else if (address === fetchDistTokenContract.address) {

@@ -5,24 +5,26 @@ import classNames from "classnames";
 const PopulerGames = () => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
+      const currentRef = ref.current;
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            ref.current?.style.setProperty("opacity", "1");
-            ref.current?.style.setProperty("scale", "1");
+            currentRef?.style.setProperty("opacity", "1");
+            currentRef?.style.setProperty("scale", "1");
           } else {
-            ref.current?.style.setProperty("opacity", "0.01");
-            ref.current?.style.setProperty("scale", "0.9");
+            currentRef?.style.setProperty("opacity", "0.01");
+            currentRef?.style.setProperty("scale", "0.9");
           }
         },
         { threshold: 0.4 }
       );
-      if (ref.current) {
-        observer.observe(ref.current);
+      if (currentRef) {
+        observer.observe(currentRef);
       }
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
         }
       };
     }, [ref]);
@@ -65,6 +67,7 @@ const PopulerGames = () => {
                 isBlurred
                 className="sm:w-[300px] md:w-[300px] xl:w-[550px]"
                 src="/gamesGallery/lussa/chracter.png"
+                alt="lussa"
               />
             </div>
             <div className="xl:w-2/3 flex flex-col gap-8 justify-center p-5 xl:h-[440px] overflow-hidden text-white">
@@ -75,6 +78,7 @@ const PopulerGames = () => {
                   isBlurred
                   radius="none"
                   src="/gamesGallery/lussa/lussa-logo-green.png"
+                  alt="luss2"
                 />
                 <p className="xl:w-[50%] sm:w-[75%] md:w-[75%]">
                   The Final Frontier
@@ -116,6 +120,7 @@ const PopulerGames = () => {
                       radius="none"
                       className=""
                       src="/gamesGallery/katanainu/logo.png"
+                      alt="ktn"
                     />
                   </div>
                   <Button
@@ -142,6 +147,7 @@ const PopulerGames = () => {
                     isBlurred
                     radius="none"
                     src="/gamesGallery/magicCraft/lolg.png"
+                    alt="mgx"
                   />
                 </div>
                 <div className="md:absolute bottom-0 right-0 w-full sm:hidden">

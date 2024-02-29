@@ -83,12 +83,14 @@ export default function Header() {
               width={50}
               className="sm:flex md:hidden"
               src="/logos/gmx-logo.svg"
+              alt="logo"
             />
             <Image
               radius="none"
               width={250}
               className="sm:hidden md:flex"
               src="/logos/game-x-pad.svg"
+              alt="logo"
             />
           </Link>
         </NavbarBrand>

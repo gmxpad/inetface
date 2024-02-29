@@ -182,6 +182,7 @@ const Games: NextPageWithLayout<
                       ? "/icons/filter-x.svg"
                       : "/icons/filter.svg"
                   }
+                  alt="filter"
                 />
                 Filters
               </Button>
@@ -283,31 +284,31 @@ const Games: NextPageWithLayout<
               <CheckboxGroup label="Platform">
                 <Checkbox color="secondary" value="windows">
                   <div className="text-white flex items-center gap-1">
-                    <Image src="/icons/windows.svg" />
+                    <Image src="/icons/windows.svg" alt="windows" />
                     Windows
                   </div>
                 </Checkbox>
                 <Checkbox color="secondary" value="macos">
                   <div className="text-white flex items-center gap-1">
-                    <Image src="/icons/macos.svg" />
+                    <Image src="/icons/macos.svg" alt="mac" />
                     MacOS
                   </div>
                 </Checkbox>
                 <Checkbox color="secondary" value="android">
                   <div className="text-white flex items-center gap-1">
-                    <Image src="/icons/android.svg" />
+                    <Image src="/icons/android.svg" alt="android" />
                     Android
                   </div>
                 </Checkbox>
                 <Checkbox color="secondary" value="ios">
                   <div className="text-white flex items-center gap-1">
-                    <Image src="/icons/ios.svg" />
+                    <Image src="/icons/ios.svg" alt="ios" />
                     IOS
                   </div>
                 </Checkbox>
                 <Checkbox color="secondary" value="web">
                   <div className="text-white flex items-center gap-1">
-                    <Image src="/icons/web.svg" />
+                    <Image src="/icons/web.svg" alt="web" />
                     Web
                   </div>
                 </Checkbox>

@@ -5,24 +5,26 @@ import { Image } from "@nextui-org/react";
 const HowToJoin = () => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
+      const currentRef = ref.current;
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            ref.current?.style.setProperty("opacity", "1");
-            ref.current?.style.setProperty("scale", "1");
+            currentRef?.style.setProperty("opacity", "1");
+            currentRef?.style.setProperty("scale", "1");
           } else {
-            ref.current?.style.setProperty("opacity", "0.01");
-            ref.current?.style.setProperty("scale", "0.9");
+            currentRef?.style.setProperty("opacity", "0.01");
+            currentRef?.style.setProperty("scale", "0.9");
           }
         },
         { threshold: 0.4 }
       );
-      if (ref.current) {
-        observer.observe(ref.current);
+      if (currentRef) {
+        observer.observe(currentRef);
       }
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
         }
       };
     }, [ref]);
@@ -105,7 +107,12 @@ const HowToJoin = () => {
                 </div>
                 <div className="flex sm:w-3/4 md:w-1/2 justify-center items-center h-full relative">
                   <div className="absolute -top-12 right-0">
-                    <Image isBlurred width={180} src={item.image} />
+                    <Image
+                      isBlurred
+                      width={180}
+                      src={item.image}
+                      alt="howtojoin"
+                    />
                   </div>
                 </div>
               </div>
