@@ -109,7 +109,7 @@ const Launchpads: NextPageWithLayout<
         </div>
         <div className="flex flex-col gap-12 px-[10%] mt-5">
           <div className="md:text-4xl sm:text-2xl text-white font-semibold">
-            <p>PROJECTS</p>
+            <p>UPCOMING GAMES</p>
           </div>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 text-white">
             {ipos.map((item: any, index: number) => (

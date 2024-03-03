@@ -56,7 +56,8 @@ const HeroHeader = () => {
             <p>Invest</p>
             <p>& Earn</p>
             <p className="lg:text-lg sm:text-base md:text-base lg:w-[85%]">
-              New Era of Decentralized Game Publisher Platform.
+              New Era of Decentralized Game Publisher launchpad for WEB2 Mobile
+              Games.
             </p>
           </div>
           <div
@@ -69,7 +70,7 @@ const HeroHeader = () => {
             className="flex sm:flex-col sm:justify-center sm:items-center sm:gap-6 md:justify-between md:items-center md:gap-6 lg:justify-between sm:w-full md:w-full lg:w-2/3">
             <div className="flex flex-col sm:text-center ">
               <div className="text-lg  relative md:max-w-48 whitespace-nowrap">
-                Project Published
+                Published Games
                 <span className="absolute -top-11 text-6xl text-purple-600 -right-3">
                   .
                 </span>
@@ -107,7 +108,7 @@ const HeroHeader = () => {
               isExternal={true}
               className="bg-[#a664fe] text-white font-bold  text-xl duration-300 border-3 py-7 md:px-8 sm:w-[45%] border-[#a664fe]"
               href="https://tl2s7cdikdk.typeform.com/to/k7QUQDdh">
-              Submit Project
+              Publish Your Game
             </Button>
           </div>
         </div>

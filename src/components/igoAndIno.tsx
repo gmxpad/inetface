@@ -81,7 +81,7 @@ const IPOAndIno = ({ games }: any) => {
             transition: "scale 1s, opacity 1s",
           }}
           className="md:text-4xl sm:text-2xl text-white font-semibold">
-          <p>UPCOMING PROJECTS</p>
+          <p>UPCOMING GAMES</p>
         </div>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 text-white">
           {firstThreeGames.map((item: any, index: number) => (
