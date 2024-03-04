@@ -1,10 +1,11 @@
+import React, { useEffect, useState } from "react";
+import { Button, Input, Image } from "@nextui-org/react";
+
 import {
   GetContractAt,
   SkaleChaosTestnet,
   fetchXGameCardContract,
 } from "@/scripts/contracts";
-import { Button, Input, Image } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
 
 const MetadataParser = () => {
   const [URI, setURI] = useState<any>();

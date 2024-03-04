@@ -44,6 +44,13 @@ export const fetchDistTokenContract: contractInterfaces = {
   abi: Distributor.abi,
   chainId: SkaleChaosTestnet.id,
 };
+
+export const fetchXGameCardContract: contractInterfaces = {
+  address: "0x29194B2189b6Bdb67337E70323cE22F68c1E2c7e",
+  abi: XGameCard.abi,
+  chainId: SkaleChaosTestnet.id,
+};
+
 export function GetContractAt(
   address: `0x${string}` | undefined | string,
   abi: object[] | undefined | any[],
