@@ -3,6 +3,7 @@ import ERC20ABI from "./ERC20ABI.json";
 import Distributor from "./Distributor.json";
 import vesting from "./vesting.json";
 import XPassDistribute from "./XPassDistribute.json";
+import XGameCard from "./XGameCard.json";
 
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
@@ -43,7 +44,6 @@ export const fetchDistTokenContract: contractInterfaces = {
   abi: Distributor.abi,
   chainId: SkaleChaosTestnet.id,
 };
-
 export function GetContractAt(
   address: `0x${string}` | undefined | string,
   abi: object[] | undefined | any[],

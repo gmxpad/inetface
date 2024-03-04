@@ -87,14 +87,17 @@ const Footer = () => {
             <div className="flex flex-col sm:gap-1 md:gap-5  ">
               <p className="text-xl font-Orbitron pb-5">Products</p>
               <div className="grid md:grid-cols-1 sm:grid-cols-2 sm:text-start whitespace-nowrap gap-2">
-                <Link className="text-[#9d9d9d]" href="/launchpads/igo">
-                  IPO
+                <Link className="text-[#9d9d9d]" href="/x-pad">
+                  X Pad
                 </Link>
                 <Link className="text-[#9d9d9d]" href="/stake">
                   Staking
                 </Link>
                 <Link className="text-[#9d9d9d]" href="/games">
                   Games
+                </Link>
+                <Link className="text-[#9d9d9d]" href="/metadata-parser">
+                  Metadata Parser
                 </Link>
               </div>
             </div>
@@ -126,7 +129,6 @@ const Footer = () => {
                   href="https://github.com/gmxpad">
                   Github
                 </Link>
-
                 <Link
                   isExternal
                   className="text-[#9d9d9d]"
