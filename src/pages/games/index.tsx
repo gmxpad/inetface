@@ -28,6 +28,8 @@ import { NextPageWithLayout } from "@/types";
 import classNames from "classnames";
 import { ChevronDown } from "@/components/icons/Icons";
 
+import { convertIpfsUrl } from "@/scripts/scripts";
+
 export { getStaticProps };
 const Games: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
@@ -129,7 +131,7 @@ const Games: NextPageWithLayout<
                 <Image
                   draggable={false}
                   radius="none"
-                  src={item[3][4]}
+                  src={convertIpfsUrl(item[3][4])}
                   className="w-screen brightness-75"
                   alt={`Slide ${index + 1}`}
                 />
@@ -373,7 +375,7 @@ const Games: NextPageWithLayout<
                           isBlurred
                           isZoomed
                           className="h-[240px] w-full"
-                          src={filteredGame[3][5]}
+                          src={convertIpfsUrl(filteredGame[3][5])}
                           alt="game"
                         />
                         <p className="text-white font-Orbitron">
@@ -383,9 +385,9 @@ const Games: NextPageWithLayout<
                         <div className="flex justify-between items-center text-white">
                           <div className="flex gap-1">
                             {filteredGame[3][10].map(
-                              (item: any, index: number) => (
+                              (item: any, index1: number) => (
                                 <div
-                                  key={"imageKey" + index.toString()}
+                                  key={"imageKey" + index1.toString()}
                                   className="font-normal text-sm px-2 rounded-md border border-gray-800/50">
                                   {item}
                                 </div>

@@ -22,6 +22,63 @@
       "anonymous": false,
       "inputs": [
         {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "gameId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "blockTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_CREATE_GAME",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "gameId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "roundId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "blockTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_CREATE_IPO",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "errors",
+          "type": "string"
+        }
+      ],
+      "name": "HANDLE_ERROR_CHECK",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
           "indexed": true,
           "internalType": "address",
           "name": "previousOwner",
@@ -183,19 +240,34 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
-              "name": "roundCount",
-              "type": "uint256"
+              "internalType": "uint256[]",
+              "name": "rounds",
+              "type": "uint256[]"
             },
             {
-              "internalType": "uint256",
-              "name": "totalUserCount",
-              "type": "uint256"
-            },
+              "internalType": "address",
+              "name": "nftContract",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct TGame",
+          "name": "_params",
+          "type": "tuple"
+        }
+      ],
+      "name": "createGame",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
             {
-              "internalType": "uint256",
-              "name": "totalInvestment",
-              "type": "uint256"
+              "internalType": "bool",
+              "name": "isExistIpo",
+              "type": "bool"
             },
             {
               "internalType": "uint256",
@@ -204,12 +276,12 @@
             },
             {
               "internalType": "uint256",
-              "name": "minInvestment",
+              "name": "projectIdForIpo",
               "type": "uint256"
             },
             {
               "internalType": "uint256",
-              "name": "maxInvestment",
+              "name": "roundUserCount",
               "type": "uint256"
             },
             {
@@ -224,17 +296,22 @@
             },
             {
               "internalType": "uint256",
+              "name": "minInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
               "name": "perSharePrice",
               "type": "uint256"
             },
             {
               "internalType": "uint256",
               "name": "roundScore",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "userCount",
               "type": "uint256"
             },
             {
@@ -258,17 +335,390 @@
               "type": "uint256"
             },
             {
-              "internalType": "address",
-              "name": "nftContract",
-              "type": "address"
+              "internalType": "uint256",
+              "name": "dividendValue",
+              "type": "uint256"
             }
           ],
-          "internalType": "struct TGame",
+          "internalType": "struct TGameIpo",
           "name": "_params",
           "type": "tuple"
         }
       ],
-      "name": "createGame",
+      "name": "createIpo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "Address_Cannot_Be_Zero",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Address_Is_A_Contract",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "End_Registration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Insufficient_Allowance",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Insufficient_Balance",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Invalid_Action",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Invalid_Input",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Invalid_Price",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MathOverflowedMulDiv",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Not_Started_Registration",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Overflow_0x11",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuard__ReentrantCall",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Sale_End",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Unregistered_Member",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "User_Already_Registered",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "User_Not_Stake",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "Wait_For_Deposit_Times",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ipoId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_CLAIM_IPO",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "multipler",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_DEPOSIT_IPO",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ipoId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_REGISTER_IPO",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ipoId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_STAKE_IPO",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ipoId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "HANDLE_UNSTAKE_IPO",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "calculateAllocation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "allocation",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateInvestmentShare",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "calculateMultipler",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "mul",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claimInvestmentShare",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        }
+      ],
+      "name": "register",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -421,79 +871,9 @@
               "type": "uint256"
             },
             {
-              "internalType": "uint256",
-              "name": "roundCount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "totalUserCount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "totalInvestment",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "round",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minInvestment",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "maxInvestment",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "toBeCollectedInvestment",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "collectedInvestment",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "perSharePrice",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "roundScore",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "userCount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "registerStart",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "registerEnd",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "guaranteedInvestmentStart",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "guaranteedInvestmentEnd",
-              "type": "uint256"
+              "internalType": "uint256[]",
+              "name": "rounds",
+              "type": "uint256[]"
             },
             {
               "internalType": "address",
@@ -517,6 +897,330 @@
           "internalType": "uint256[]",
           "name": "amounts",
           "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getGames",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isExist",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isView",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isIPO",
+              "type": "bool"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "slug",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "developer",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "imageBackground",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "imagePoster",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "imageLogo",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "videoTrailer",
+                  "type": "string"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "web",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "twitter",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "telegram",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "discord",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "whitepaper",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "youtube",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct TGameSocials",
+                  "name": "socials",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "string",
+                      "name": "pWeb",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "pAndroid",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "pWindows",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "pMacOS",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "pIOS",
+                      "type": "string"
+                    }
+                  ],
+                  "internalType": "struct TGamePlatforms",
+                  "name": "platforms",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "string[]",
+                  "name": "genres",
+                  "type": "string[]"
+                }
+              ],
+              "internalType": "struct TGameDetails",
+              "name": "details",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "projectId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256[]",
+              "name": "rounds",
+              "type": "uint256[]"
+            },
+            {
+              "internalType": "address",
+              "name": "nftContract",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct TGame",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        }
+      ],
+      "name": "getIpo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isExistIpo",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "round",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "projectIdForIpo",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "roundUserCount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "toBeCollectedInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "collectedInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxInvestment",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "perSharePrice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "roundScore",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "registerStart",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "registerEnd",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guaranteedInvestmentStart",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "guaranteedInvestmentEnd",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "dividendValue",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TGameIpo",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_round",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getIpoForUser",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isInvestmentor",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isRegister",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isClaimed",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "userRoundScore",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TUserIpo",
+          "name": "",
+          "type": "tuple"
         }
       ],
       "stateMutability": "view",
@@ -901,6 +1605,32 @@
         }
       ],
       "name": "addTimes",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_contract",
+          "type": "address"
+        }
+      ],
+      "name": "setIpoForReserveContractAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_contract",
+          "type": "address"
+        }
+      ],
+      "name": "setIpoForUsedTokenAddress",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

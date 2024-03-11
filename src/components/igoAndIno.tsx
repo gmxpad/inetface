@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { Avatar, AvatarGroup, Image } from "@nextui-org/react";
 import classNames from "classnames";
 import {
+  convertIpfsUrl,
   format6DecimalsAsEther,
   formatTimestampGMT,
   getImageChainImage,
@@ -107,7 +108,7 @@ const IPOAndIno = ({ games }: any) => {
                 <Image
                   isBlurred
                   radius="none"
-                  src={item[3][5]}
+                  src={convertIpfsUrl(item[3][5])}
                   alt="index-key"
                 />
                 <div className="flex justify-between items-center relative px-5 pt-14">
@@ -115,7 +116,7 @@ const IPOAndIno = ({ games }: any) => {
                     <Image
                       width={120}
                       radius="sm"
-                      src={item[3][6]}
+                      src={convertIpfsUrl(item[3][6])}
                       alt="index-key2"
                     />
                   </div>
@@ -124,11 +125,12 @@ const IPOAndIno = ({ games }: any) => {
                       IPO
                     </div>
                     <div className="bg-[#212e1c] text-green-550 flex font-Orbitron items-center text-sm rounded-lg px-3 py-1">
-                      {currentTime > item[16] && currentTime < item[19]
+                      {currentTime > item.ipoDatas[10] &&
+                      currentTime < item.ipoDatas[13]
                         ? "Live"
-                        : currentTime < item[19]
+                        : currentTime < item.ipoDatas[10]
                         ? "Upcoming"
-                        : currentTime > item[19]
+                        : currentTime > item.ipoDatas[13]
                         ? "End"
                         : ""}
                     </div>
@@ -141,7 +143,7 @@ const IPOAndIno = ({ games }: any) => {
                   <div className="flex w-full flex-col">
                     <div className="flex justify-between w-full">
                       <p className="pb-2 text-[#9d9d9d]">IPO Round</p>
-                      <p className="pb-2">#{item[8]}</p>
+                      <p className="pb-2">#{item.ipoDatas[1]}</p>
                     </div>
 
                     <div className="flex justify-between w-full">
@@ -149,13 +151,15 @@ const IPOAndIno = ({ games }: any) => {
                       <p className="pb-2">
                         $
                         {numberWithCommas(
-                          Number(format6DecimalsAsEther(item[11]))
+                          Number(format6DecimalsAsEther(item.ipoDatas[4]))
                         )}
                       </p>
                     </div>
                     <div className="flex justify-between w-full">
                       <p className="pb-2 text-[#9d9d9d]">Event Date (UTC)</p>
-                      <p className="pb-2">{formatTimestampGMT(item[16])}</p>
+                      <p className="pb-2">
+                        {formatTimestampGMT(item.ipoDatas[10])}
+                      </p>
                     </div>
                   </div>
                 </div>

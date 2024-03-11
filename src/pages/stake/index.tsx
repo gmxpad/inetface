@@ -543,8 +543,8 @@ export default function Stake() {
               />
             </div>
             <div className="bg-dark-gray z-10 text-white/75 p-3 rounded-lg">
-              Stakers have priority access to IPOs, granting them early
-              investment opportunities in gaming projects.
+              Only stakers have access to IPOs, granting them early investment
+              opportunities in gaming projects.
             </div>
           </div>
 

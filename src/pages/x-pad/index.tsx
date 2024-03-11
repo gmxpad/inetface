@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, AvatarGroup, Button, Image, Link } from "@nextui-org/react";
+import {
+  Avatar,
+  AvatarGroup,
+  Button,
+  CircularProgress,
+  Image,
+  Link,
+} from "@nextui-org/react";
 import {
   NextButton,
   PrevButton,
@@ -13,12 +20,17 @@ import {
   format6DecimalsAsEther,
   formatTimestampGMT,
   numberWithCommas,
+  convertIpfsUrl,
 } from "@/scripts/scripts";
 export { getStaticProps };
 
 const Launchpads: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ ipos }: any) => {
+  const [currentTimestamp, setCurrentTime] = useState(
+    Math.floor(Date.now() / 1000)
+  );
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
 
@@ -69,12 +81,12 @@ const Launchpads: NextPageWithLayout<
                 <Image
                   draggable={false}
                   radius="none"
-                  src={item[3][4]}
+                  src={convertIpfsUrl(item[3][4])}
                   className="w-screen brightness-75"
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
-                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
+                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[13%] rounded-md">
                     {item[3][10][0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
@@ -117,17 +129,36 @@ const Launchpads: NextPageWithLayout<
                 onClick={() => router.push(`/x-pad/${item[3][0]}`)}
                 key={"projects_" + index.toString()}
                 className="bg-dark-gray rounded-lg flex flex-col overflow-hidden hover:opacity-75 duration-400 hover:ease-in-out">
-                <Image isBlurred radius="none" src={item[3][5]} alt="ipo" />
+                <Image
+                  isBlurred
+                  radius="none"
+                  src={convertIpfsUrl(item[3][5])}
+                  alt="ipo"
+                />
                 <div className="flex justify-between items-center relative px-5 pt-14">
                   <div className="absolute -top-9 left-5">
-                    <Image width={120} radius="sm" src={item[3][6]} alt="ipo" />
+                    <Image
+                      width={120}
+                      radius="sm"
+                      src={convertIpfsUrl(item[3][6])}
+                      alt="ipo"
+                    />
                   </div>
                   <div className="w-full flex gap-4">
                     <div className="bg-[#271e39] text-[#a664fe] font-Orbitron text-sm rounded-lg px-3 py-1 flex items-center">
                       IPO
                     </div>
                     <div className="bg-[#212e1c] text-green-550 flex font-Orbitron items-center text-sm rounded-lg px-3 py-1">
-                      Upcoming {/* {item.status} */}
+                      {currentTimestamp < item.ipoDatas[10] ? (
+                        <>Upcoming</>
+                      ) : currentTimestamp > item.ipoDatas[13] ? (
+                        <>Ended</>
+                      ) : currentTimestamp > item.ipoDatas[10] &&
+                        currentTimestamp < item.ipoDatas[13] ? (
+                        <>Live</>
+                      ) : (
+                        <>Loading...</>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -137,7 +168,7 @@ const Launchpads: NextPageWithLayout<
                   </p>
                   <div className="flex justify-between w-full">
                     <p className="pb-2 text-[#9d9d9d]">IPO Round</p>
-                    <p className="pb-2">#{item[8]}</p>
+                    <p className="pb-2">#{item.ipoDatas[1]}</p>
                   </div>
 
                   <div className="flex justify-between w-full">
@@ -145,13 +176,16 @@ const Launchpads: NextPageWithLayout<
                     <p className="pb-2">
                       $
                       {numberWithCommas(
-                        Number(format6DecimalsAsEther(item[11]))
+                        Number(format6DecimalsAsEther(item.ipoDatas[4]))
                       )}
                     </p>
                   </div>
-                  <div className="flex justify-between w-full">
-                    <p className="pb-2 text-[#9d9d9d]">Event Date (UTC)</p>
-                    <p className="pb-2">{formatTimestampGMT(item[16])}</p>
+                  <div className="flex justify-between w-full items-center">
+                    <p className="pb-2 text-[#9d9d9d]">Event Date (UTC +3)</p>
+                    <div className="pb-2 flex whitespace-nowrap text-xs">
+                      {formatTimestampGMT(item.ipoDatas[10])}/
+                      {formatTimestampGMT(item.ipoDatas[13])}
+                    </div>
                   </div>
                 </div>
               </button>

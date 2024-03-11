@@ -19,10 +19,10 @@ const Home: NextPageWithLayout<
     <>
       <div className="flex flex-col sm:gap-20 md:gap-48 ">
         <section className="sm:px-[5%] md:px-[10%]">
-          <HeroHeader />
+          <HeroHeader publishedProjects={ipos.length} userCount={ipos.length} />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
-          <IgoAndIno games={ipos.reverse()} />
+          <IgoAndIno games={ipos} />
         </section>
         <section className="sm:px-[5%] md:px-[10%]">
           <HowToJoin />

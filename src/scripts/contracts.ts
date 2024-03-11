@@ -1,9 +1,9 @@
-import DiamondABI from "./DiamondABI.json";
-import ERC20ABI from "./ERC20ABI.json";
-import Distributor from "./Distributor.json";
-import vesting from "./vesting.json";
-import XPassDistribute from "./XPassDistribute.json";
-import XGameCard from "./XGameCard.json";
+import ERC20ABI from "./abis/ERC20ABI.json";
+import Distributor from "./abis/Distributor.json";
+import vesting from "./abis/vesting.json";
+import XPassDistribute from "./abis/XPassDistribute.json";
+import XGameCard from "./abis/XGameCard.json";
+import DiamondABI from "./abis/DiamondABI.json";
 
 import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
 
@@ -22,12 +22,23 @@ export const SkaleChaosTestnet: networkInterface = {
   rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
 };
 
-// FETCH CONTRACTS
+export const SKALE_LankyIllFunnyTestnet: networkInterface = {
+  id: 37084624,
+  rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
+};
+
 export const fetchDiamondContract: contractInterfaces = {
-  address: "0xDd32E902AE551CBA07016AAb66debCd077Ccfb77",
+  address: "0x7CC5d09557105753b3B2bF035435392727fc3F02",
   abi: DiamondABI.abi,
   chainId: SkaleChaosTestnet.id,
 };
+
+export const fetchUsdtTokenContract: contractInterfaces = {
+  address: "0x3E26e361Fe1E9d39E4362c6233C298bCdEAFffcb",
+  abi: ERC20ABI.abi,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
+};
+
 export const fetchXPassDistributeContract: contractInterfaces = {
   address: "0x3DA1F63E7bac343a13edb1A24c3e571989975AaB",
   abi: XPassDistribute.abi,

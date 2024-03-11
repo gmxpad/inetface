@@ -20,6 +20,7 @@ import { InferGetStaticPropsType } from "next";
 import classNames from "classnames";
 import {
   format6DecimalsAsEther,
+  formatTime,
   formatTimestampGMT,
   getSigner,
   numberWithCommas,
@@ -179,15 +180,6 @@ const XPass = () => {
 
     return () => clearInterval(timer);
   }, []);
-
-  const formatTime = (seconds: number) => {
-    const days = Math.floor(seconds / (3600 * 24));
-    const hours = Math.floor((seconds % (3600 * 24)) / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
-
-    return `${days}d, ${hours}h:${minutes}m:${remainingSeconds}s`;
-  };
 
   useEffect(() => {
     if (eventInfos && eventInfos[7] > currentTimestamp) {

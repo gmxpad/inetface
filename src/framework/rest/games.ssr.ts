@@ -12,19 +12,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       4: Number(game[4]),
       5: Number(game[5]),
       6: Number(game[6]),
-      7: Number(game[7]),
-      8: Number(game[8]),
-      9: Number(game[9]),
-      10: Number(game[10]),
-      11: Number(game[11]),
-      12: Number(game[12]),
-      13: Number(game[13]),
-      14: Number(game[14]),
-      15: Number(game[15]),
-      16: Number(game[16]),
-      17: Number(game[17]),
-      18: Number(game[18]),
-      19: Number(game[19]),
     }));
 
     return {

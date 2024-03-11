@@ -268,3 +268,25 @@ export function format6DecimalsAsEther(value) {
   const formattedValue = ethers.formatUnits(multipliedValue, 6);
   return formattedValue;
 }
+
+export function formatTime(seconds) {
+  const days = Math.floor(seconds / (3600 * 24));
+  const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${days}d, ${hours}h:${minutes}m:${remainingSeconds}s`;
+}
+
+export function convertIpfsUrl(ipfsURL) {
+  const ipfsPrefix = "ipfs://";
+
+  if (ipfsURL && ipfsURL.startsWith(ipfsPrefix)) {
+    const convertedUrl = `https://ipfs.infura.io/ipfs/${
+      ipfsURL.split("://")[1]
+    }`;
+    return convertedUrl;
+  }
+
+  return ipfsURL;
+}

@@ -13,6 +13,8 @@ import { NextPageWithLayout } from "@/types";
 import { InferGetStaticPropsType } from "next";
 import classNames from "classnames";
 import dynamic from "next/dynamic";
+import { convertIpfsUrl } from "@/scripts/scripts";
+
 export { getStaticPaths, getStaticProps };
 
 const Games: NextPageWithLayout<
@@ -32,7 +34,7 @@ const Games: NextPageWithLayout<
                 className="w-screen z-0 brightness-75"
                 height={280}
                 radius="none"
-                src={game[3][4]}
+                src={convertIpfsUrl(game[3][4])}
                 alt={game[3][1]}
                 draggable={false}
               />

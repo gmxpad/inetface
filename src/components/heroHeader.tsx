@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link, Button, Image } from "@nextui-org/react";
 
-const HeroHeader = () => {
+const HeroHeader = ({ publishedProjects, userCount }: any) => {
   const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>) => {
     useEffect(() => {
       const currentRef = ref.current;
@@ -52,10 +52,10 @@ const HeroHeader = () => {
           }}
           className="flex flex-col h-full sm:w-full md:w-full lg:w-[49%] gap-10 text-white">
           <div className="sm:text-6xl md:text-8xl sm:text-center md:text-center lg:text-start xl:text-9xl font-SpaceGro font-bold flex flex-col gap-3">
-            <p>Play,</p>
+            <p>Test,</p>
             <p>Invest</p>
             <p>& Earn</p>
-            <p className="lg:text-lg sm:text-base md:text-base lg:w-[85%]">
+            <p className="lg:text-lg sm:text-base md:text-base lg:w-[70%]">
               New Era of Decentralized Game Publisher launchpad for WEB2 Mobile
               Games.
             </p>
@@ -75,7 +75,7 @@ const HeroHeader = () => {
                   .
                 </span>
               </div>
-              <p className="text-5xl font-mono">0</p>
+              <p className="text-5xl font-mono">{Number(publishedProjects)}</p>
             </div>
             <div className="flex flex-col sm:text-center ">
               <div className="text-lg relative md:max-w-12 sm:text-center ">
