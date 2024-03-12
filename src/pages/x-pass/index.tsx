@@ -27,7 +27,7 @@ import {
 } from "@/scripts/scripts";
 import {
   GetContractAt,
-  SkaleChaosTestnet,
+  SKALE_LankyIllFunnyTestnet,
   fetchXPassDistributeContract,
 } from "@/scripts/contracts";
 import TwitterFollowButton from "@/providers/twitterFollowButton";
@@ -136,7 +136,7 @@ const XPass = () => {
       const contract = GetContractAt(
         fetchXPassDistributeContract.address,
         fetchXPassDistributeContract.abi,
-        SkaleChaosTestnet
+        SKALE_LankyIllFunnyTestnet
       );
       // @ts-ignore
       const info = await contract.getEventInfo();
@@ -161,7 +161,7 @@ const XPass = () => {
           const contract = GetContractAt(
             fetchXPassDistributeContract.address,
             fetchXPassDistributeContract.abi,
-            SkaleChaosTestnet
+            SKALE_LankyIllFunnyTestnet
           );
           // @ts-ignore
           const info = await contract.getUserCurrentEventInfo(address);
@@ -195,7 +195,7 @@ const XPass = () => {
         const contract = GetContractAt(
           fetchXPassDistributeContract.address,
           fetchXPassDistributeContract.abi,
-          SkaleChaosTestnet
+          SKALE_LankyIllFunnyTestnet
         );
         const signer = await getSigner(walletProvider);
         if (eventInfos[1] === false) {

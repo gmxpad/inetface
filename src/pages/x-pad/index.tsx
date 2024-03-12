@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Avatar,
-  AvatarGroup,
-  Button,
-  CircularProgress,
-  Image,
-  Link,
-} from "@nextui-org/react";
+import { Button, Image, Link } from "@nextui-org/react";
 import {
   NextButton,
   PrevButton,

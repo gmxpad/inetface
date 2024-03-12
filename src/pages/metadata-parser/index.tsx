@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Input, Image } from "@nextui-org/react";
-
 import {
   GetContractAt,
-  SkaleChaosTestnet,
+  SKALE_LankyIllFunnyTestnet,
   fetchXGameCardContract,
 } from "@/scripts/contracts";
 
@@ -19,7 +18,7 @@ const MetadataParser = () => {
     const contract = GetContractAt(
       inputValueForTokenAddress,
       fetchXGameCardContract.abi,
-      SkaleChaosTestnet
+      SKALE_LankyIllFunnyTestnet
     );
     try {
       setErrorMessage("");

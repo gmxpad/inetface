@@ -1,23 +1,26 @@
-import { formatEther, hexToString, parseEther, BigNumber } from "viem";
+import { formatEther, parseEther } from "viem";
 import {
-  GetContract,
+  GetContractAt,
   fetchDiamondContract,
+  SKALE_LankyIllFunnyTestnet,
   fetchGMXTokenContract,
-  fetchXXTokenContract,
-  SkaleChaosTestnet,
 } from "./contracts";
-import { Contract, JsonRpcProvider, BrowserProvider } from "ethers";
+import { BrowserProvider } from "ethers";
 const { ethers } = require("ethers");
 
 export function numberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export async function AllowanceCheck(userAddress, tokenAddress) {
+export async function AllowanceCheck(userAddress) {
   try {
     let allowance = parseEther("0");
     if (userAddress && userAddress.length === 42) {
-      const contract = GetContract(tokenAddress);
+      const contract = GetContractAt(
+        fetchGMXTokenContract.address,
+        fetchGMXTokenContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       allowance = await contract.allowance(
         userAddress,
         fetchDiamondContract.address
@@ -27,11 +30,15 @@ export async function AllowanceCheck(userAddress, tokenAddress) {
   } catch (error) {}
 }
 
-export async function GetBalance(userAddress, tokenAddress) {
+export async function GetBalance(userAddress) {
   let balance = parseEther("0");
   try {
     if (userAddress && userAddress.length === 42) {
-      const contract = GetContract(tokenAddress);
+      const contract = GetContractAt(
+        fetchGMXTokenContract.address,
+        fetchGMXTokenContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       balance = await contract.balanceOf(userAddress);
     }
     return balance;
@@ -40,14 +47,22 @@ export async function GetBalance(userAddress, tokenAddress) {
 
 export async function GetStakePool() {
   try {
-    const contract = GetContract(fetchDiamondContract.address);
+    const contract = GetContractAt(
+      fetchDiamondContract.address,
+      fetchDiamondContract.abi,
+      SKALE_LankyIllFunnyTestnet
+    );
     return await contract.getPoolInfo();
   } catch (error) {}
 }
 
 export async function CalculateScore(amount, time) {
   try {
-    const contract = GetContract(fetchDiamondContract.address);
+    const contract = GetContractAt(
+      fetchDiamondContract.address,
+      fetchDiamondContract.abi,
+      SKALE_LankyIllFunnyTestnet
+    );
     let calTime = 0;
     if (Number(time) == 31) {
       calTime = 300;
@@ -68,7 +83,11 @@ export async function GetStaker(userAddress) {
     let earnedToDateSGMX = 0;
 
     if (userAddress && userAddress.length === 42) {
-      const contract = GetContract(fetchDiamondContract.address);
+      const contract = GetContractAt(
+        fetchDiamondContract.address,
+        fetchDiamondContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       const result = await contract.getUserInfo(userAddress);
       staker = result[0];
       totalStakedAmount = Number(formatEther(result[2].toString()))
@@ -102,7 +121,11 @@ export async function calculateRewards(address) {
   let rewardSGMXP = 0;
 
   if (address && address.length === 42) {
-    const contract = GetContract(fetchDiamondContract.address);
+    const contract = GetContractAt(
+      fetchDiamondContract.address,
+      fetchDiamondContract.abi,
+      SKALE_LankyIllFunnyTestnet
+    );
     const results = await contract.calculateRewards(address);
 
     if (Number(results[0]) > 0) {
@@ -162,7 +185,11 @@ function calculateLockTimes(unlockTimes, requestTime, requaribles) {
 export async function getStakeList(address) {
   try {
     if (address && address.length === 42) {
-      const contract = GetContract(fetchDiamondContract.address);
+      const contract = GetContractAt(
+        fetchDiamondContract.address,
+        fetchDiamondContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       const tierSections = await contract.getUserStakeList(address);
 
       const stakeInfos = tierSections.map(async (index) => {

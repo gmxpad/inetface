@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
   Accordion,
   AccordionItem,
@@ -8,10 +7,13 @@ import {
   Image,
   Input,
   Link,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
   Progress,
 } from "@nextui-org/react";
 import { useRouter } from "next/router";
-
 import { getStaticProps, getStaticPaths } from "@/framework/rest/ipo.ssr";
 import { NextPageWithLayout } from "@/types";
 import { InferGetStaticPropsType } from "next";
@@ -31,7 +33,6 @@ import {
 import {
   GetContractAt,
   SKALE_LankyIllFunnyTestnet,
-  SkaleChaosTestnet,
   fetchDiamondContract,
   fetchUsdtTokenContract,
 } from "@/scripts/contracts";
@@ -40,6 +41,7 @@ import WaitModal from "@/components/modals/waitModal";
 import ErrorModal from "@/components/modals/errorModal";
 import SuccessModal from "@/components/modals/successModal";
 import ApproveModal from "@/components/modals/approveModal";
+import DepositModal from "@/components/modals/depositModal";
 
 export { getStaticPaths, getStaticProps };
 
@@ -53,12 +55,8 @@ const Launchpad: NextPageWithLayout<
     Math.floor(Date.now() / 1000)
   );
   const [isLoading, setLoading] = useState<boolean>(false);
-
   const [userInfo, setUserInfo] = useState<any>();
   const [isStaker, setIsStaker] = useState<boolean>(false);
-  const [allowance, setAllowance] = useState<number>(0);
-  const [allocation, setAllocation] = useState<number>(0);
-  const [usdtBalance, setUsdtBalance] = useState<number>(0);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -70,26 +68,13 @@ const Launchpad: NextPageWithLayout<
             SKALE_LankyIllFunnyTestnet
           );
 
-          const usdtContract: any = GetContractAt(
-            fetchUsdtTokenContract.address,
-            fetchUsdtTokenContract.abi,
-            SKALE_LankyIllFunnyTestnet
-          );
-
-          const [info, stakerInfo, allowances, allocations, balances] =
-            await Promise.all([
-              contract.getIpoForUser(ipo[4], ipo.ipoDatas[1], address),
-              contract.getUserInfo(address),
-              usdtContract.allowance(address, fetchDiamondContract.address),
-              contract.calculateAllocation(ipo[4], ipo.ipoDatas[1], address),
-              usdtContract.balanceOf(address),
-            ]);
+          const [info, stakerInfo] = await Promise.all([
+            contract.getIpoForUser(ipo[4], ipo.ipoDatas[1], address),
+            contract.getUserInfo(address),
+          ]);
 
           setIsStaker(stakerInfo[0]);
           setUserInfo(info);
-          setAllowance(Number(allowances));
-          setAllocation(Number(allocations));
-          setUsdtBalance(Number(balances));
           setLoading(true);
         }
       } catch (error) {
@@ -143,9 +128,6 @@ const Launchpad: NextPageWithLayout<
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
   const [successModalOpenForRegister, setSuccessModalOpenForRegister] =
     useState<boolean>(false);
-  const [successModalOpenForBuy, setSuccessModalOpenForBuy] =
-    useState<boolean>(false);
-  const [approveModalOpen, setApproveModalOpen] = useState<boolean>(false);
   const [depositModalOpen, setDepositModalOpen] = useState<boolean>(false);
 
   const handleWaitModalOpen = () => {
@@ -164,32 +146,12 @@ const Launchpad: NextPageWithLayout<
   const handleSuccessModalOpenForRegister = () => {
     setSuccessModalOpenForRegister(true);
   };
-  const handleSuccessModalOpenForBuy = () => {
-    setSuccessModalOpenForBuy(true);
-  };
-
-  const handleApproveModalOpen = () => {
-    setApproveModalOpen(true);
-  };
-  const handleApproveModalClose = () => {
-    setApproveModalOpen(false);
-  };
 
   const handleDepositModalOpen = () => {
     setDepositModalOpen(true);
   };
   const handleDepositModalClose = () => {
     setDepositModalOpen(false);
-  };
-
-  const [inputValue, setInputValue] = useState<string>("");
-  const handleBuyInput = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value.toString();
-
-    if (/[^0-9]/.test(newValue)) {
-      return;
-    }
-    setInputValue(newValue);
   };
 
   const registerBTN = async () => {
@@ -201,7 +163,7 @@ const Launchpad: NextPageWithLayout<
         const contract = GetContractAt(
           fetchDiamondContract.address,
           fetchDiamondContract.abi,
-          SkaleChaosTestnet
+          SKALE_LankyIllFunnyTestnet
         );
         const ipoId = ipo[4];
         const round = ipo.ipoDatas[1];
@@ -221,61 +183,6 @@ const Launchpad: NextPageWithLayout<
     }
   };
 
-  const approveBTN = async () => {
-    try {
-      if (isConnected === true) {
-        handleWaitModalOpen();
-        const contract: any = GetContractAt(
-          fetchUsdtTokenContract.address,
-          fetchUsdtTokenContract.abi,
-          SKALE_LankyIllFunnyTestnet
-        );
-        const signer = await getSigner(walletProvider);
-        const tx = await contract
-          .connect(signer)
-          .approve(fetchDiamondContract.address, Number(inputValue) * 1e6);
-        await tx.wait();
-        handleWaitModalClose();
-        handleApproveModalOpen();
-      }
-    } catch (error) {
-      handleWaitModalClose();
-      handleErrorModalOpen();
-    }
-  };
-
-  const buyBTN = async () => {
-    try {
-      if (isConnected === true) {
-        handleApproveModalClose();
-        handleWaitModalOpen();
-        const contract: any = GetContractAt(
-          fetchDiamondContract.address,
-          fetchDiamondContract.abi,
-          SKALE_LankyIllFunnyTestnet
-        );
-        const signer = await getSigner(walletProvider);
-        const ipoId: number = ipo.ipoDatas[2];
-        const round: number = ipo.ipoDatas[1];
-        const amount = Number(inputValue) * 1e6;
-        console.log(ipoId, round, amount);
-        const tx = await contract.connect(signer).deposit(ipoId, round, amount);
-        await tx.wait();
-
-        handleWaitModalClose();
-        handleSuccessModalOpenForBuy();
-      }
-    } catch (error) {
-      handleWaitModalClose();
-      handleErrorModalOpen();
-    }
-  };
-
-  const maxBTN = () => {
-    try {
-    } catch (error) {}
-  };
-
   const router = useRouter();
   const FAQ_ITEMS = [
     {
@@ -293,17 +200,10 @@ const Launchpad: NextPageWithLayout<
         isOpen={successModalOpenForRegister}
         desc={"You have successfully registered."}
       />
-      <SuccessModal
-        isOpen={successModalOpenForBuy}
-        desc={"You have successfully deposit."}
-      />
-
-      <ApproveModal
-        isOpen={approveModalOpen}
-        onClose={handleApproveModalClose}
-        deposit={() => buyBTN()}
-        desc={"You have successfully approved $GUSDT tokens."}
-        desc2={"Please continue to deposit your $GUSDT tokens..."}
+      <DepositModal
+        isOpen={depositModalOpen}
+        onClose={handleDepositModalClose}
+        ipo={ipo}
       />
 
       {isLoading === true ? (
@@ -343,8 +243,8 @@ const Launchpad: NextPageWithLayout<
               <div className="absolute bot-5 h-[20%] w-full bg-gradient-to-t from-black  via-black/25 to-black/0 z-10"></div>
             </div>
           </div>
-          <div className="flex flex-col gap-12 sm:px-[5%] md:px-[10%]">
-            <div className="text-3xl text-white">{ipo[3][1]}</div>
+          <div className="flex flex-col gap-12 sm:px-[0%] md:px-[10%]">
+            <div className="text-3xl text-white sm:pl-5">{ipo[3][1]}</div>
             <div className="bg-dark-gray p-5 flex flex-col gap-5 rounded-lg">
               <div className="flex sm:flex-col-reverse sm:gap-10 md:gap-10 xl:gap-0 md:flex-col-reverse xl:flex-row justify-between">
                 <div className="sm:w-full md:w-full xl:w-[60%] flex flex-col justify-center">
@@ -482,9 +382,14 @@ const Launchpad: NextPageWithLayout<
                 </div>
                 <div className="sm:w-full md:w-full xl:w-[37%] h-full border border-gray-800/50 rounded-lg flex flex-col justify-between  overflow-hidden">
                   <div>
-                    <div className="flex justify-between p-5 text-white/75 text-xl font-sans border-b border-gray-800/50 bg-[#1d1d1d]">
+                    <div className="flex sm:flex-col justify-between p-5 text-white/75 text-xl font-sans border-b border-gray-800/50 bg-[#1d1d1d]">
                       <p>Initial Publisher Offering</p>
-                      <div>Round: #{ipo.ipoDatas[1]}</div>
+                      <div>
+                        Round:{" "}
+                        <span className="text-[#a664fe]">
+                          #{ipo.ipoDatas[1]}
+                        </span>
+                      </div>
                     </div>
                     <>
                       <div className="flex flex-col gap-2 p-3">
@@ -682,45 +587,12 @@ const Launchpad: NextPageWithLayout<
                                   currentTimestamp < ipo.ipoDatas[13] ? (
                                     // bitmemiş ve deposit yapmamış
                                     <div className="flex items-center justify-end">
-                                      <Input
-                                        height={"10px"}
-                                        size="sm"
-                                        value={inputValue}
-                                        radius="sm"
-                                        onInput={handleBuyInput}
-                                        type="text"
-                                        isDisabled={
-                                          userInfo && userInfo[1] !== true
-                                        }
-                                        placeholder="Enter Amount"
-                                        classNames={{
-                                          base: "p-0",
-                                          input:
-                                            "bg-transparent text-white placeholder:text-[10px] placeholder:text-white/75 dark:placeholder:text-white/75 light:placeholder:text-white/75 light:text-white dark:text-white ",
-                                          inputWrapper:
-                                            "bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent light:bg-transparent light:hover:bg-transparent focus-within:!bg-transparent border h-8 border-gray-800/50 focus-within:border-[#a664fe] border-l-none rounded-r-none",
-                                          innerWrapper:
-                                            "bg-transparent text-white",
-                                        }}
-                                        color="success"
-                                        className="whitespace-nowrap w-[45%] text-white z-10"
-                                      />
-
                                       <Button
-                                        size="sm"
-                                        isDisabled={
-                                          userInfo && userInfo[1] !== true
-                                        }
-                                        onClick={() =>
-                                          allowance < Number(inputValue) * 1e6
-                                            ? approveBTN()
-                                            : buyBTN()
-                                        }
+                                        onPress={() => handleDepositModalOpen()}
                                         radius="sm"
-                                        className="bg-[#a664fe] rounded-l-none border-l border-gray-800/50 text-white">
-                                        {allowance < Number(inputValue) * 1e6
-                                          ? "Approve"
-                                          : "Buy"}
+                                        size="sm"
+                                        className="bg-[#a664fe] text-white">
+                                        Deposit
                                       </Button>
                                     </div>
                                   ) : userInfo && userInfo[0] === true ? (
@@ -801,29 +673,6 @@ const Launchpad: NextPageWithLayout<
                               Ends in: {guaranteedAllocationEndTime}
                             </div>
                           </div>
-                          <>
-                            {isConnected === true && userInfo ? (
-                              <>
-                                {currentTimestamp < ipo.ipoDatas[12] ? (
-                                  <></>
-                                ) : currentTimestamp > ipo.ipoDatas[12] &&
-                                  currentTimestamp < ipo.ipoDatas[13] &&
-                                  userInfo[1] === true &&
-                                  userInfo[0] === false ? (
-                                  <div className="text-[#9d9d9d] text-xs pl-10">
-                                    Your Max Allocation:{" "}
-                                    <button className="text-white border-b border-white">
-                                      ${format6DecimalsAsEther(allocation)}
-                                    </button>
-                                  </div>
-                                ) : (
-                                  <></>
-                                )}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                          </>
                         </div>
                         <div className="flex flex-col gap-1 ">
                           <div className="flex w-full justify-between">

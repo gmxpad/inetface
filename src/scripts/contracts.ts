@@ -17,11 +17,6 @@ interface networkInterface {
   rpc: string;
 }
 
-export const SkaleChaosTestnet: networkInterface = {
-  id: 37084624,
-  rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
-};
-
 export const SKALE_LankyIllFunnyTestnet: networkInterface = {
   id: 37084624,
   rpc: "https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet",
@@ -30,7 +25,7 @@ export const SKALE_LankyIllFunnyTestnet: networkInterface = {
 export const fetchDiamondContract: contractInterfaces = {
   address: "0x7CC5d09557105753b3B2bF035435392727fc3F02",
   abi: DiamondABI.abi,
-  chainId: SkaleChaosTestnet.id,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
 };
 
 export const fetchUsdtTokenContract: contractInterfaces = {
@@ -42,24 +37,24 @@ export const fetchUsdtTokenContract: contractInterfaces = {
 export const fetchXPassDistributeContract: contractInterfaces = {
   address: "0x3DA1F63E7bac343a13edb1A24c3e571989975AaB",
   abi: XPassDistribute.abi,
-  chainId: SkaleChaosTestnet.id,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
 };
 export const fetchGMXTokenContract: contractInterfaces = {
   address: "0xdD3932ad40716aBa856694a42A23EB66e1A57BF9",
   abi: ERC20ABI.abi,
-  chainId: SkaleChaosTestnet.id,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
 };
 
 export const fetchDistTokenContract: contractInterfaces = {
   address: "0x4406cE68D17f82fb5dcEAbE617E579F5Ee685206",
   abi: Distributor.abi,
-  chainId: SkaleChaosTestnet.id,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
 };
 
 export const fetchXGameCardContract: contractInterfaces = {
   address: "0x29194B2189b6Bdb67337E70323cE22F68c1E2c7e",
   abi: XGameCard.abi,
-  chainId: SkaleChaosTestnet.id,
+  chainId: SKALE_LankyIllFunnyTestnet.id,
 };
 
 export function GetContractAt(
@@ -72,35 +67,4 @@ export function GetContractAt(
     return;
   }
   return new Contract(address, abi, Provider);
-}
-
-export function GetContract(address: `0x${string}` | undefined | string) {
-  const Provider = new JsonRpcProvider(SkaleChaosTestnet.rpc);
-
-  if (address === fetchDiamondContract.address) {
-    return new Contract(
-      fetchDiamondContract.address,
-      fetchDiamondContract.abi,
-      Provider
-    );
-  } else if (address === fetchGMXTokenContract.address) {
-    return new Contract(
-      fetchGMXTokenContract.address,
-      fetchGMXTokenContract.abi,
-      Provider
-    );
-  } else if (address === fetchDistTokenContract.address) {
-    return new Contract(
-      fetchDistTokenContract.address,
-      fetchDistTokenContract.abi,
-      Provider
-    );
-  } else {
-    return new Contract(
-      // @ts-ignore
-      address,
-      vesting.abi,
-      Provider
-    );
-  }
 }

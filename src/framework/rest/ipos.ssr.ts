@@ -1,10 +1,18 @@
 "use client";
 import { GetStaticProps } from "next";
-import { GetContract, fetchDiamondContract } from "@/scripts/contracts";
+import {
+  GetContractAt,
+  SKALE_LankyIllFunnyTestnet,
+  fetchDiamondContract,
+} from "@/scripts/contracts";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const contract: any = GetContract(fetchDiamondContract.address);
+    const contract: any = GetContractAt(
+      fetchDiamondContract.address,
+      fetchDiamondContract.abi,
+      SKALE_LankyIllFunnyTestnet
+    );
     const allGames = await contract.getAllGames();
 
     const gamesWithIpoPromises = await allGames.map(async (game: any) => {
@@ -50,7 +58,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       revalidate: 10,
     };
   } catch (error) {
-    console.log("nbabna", error);
     return {
       notFound: true,
     };

@@ -22,7 +22,8 @@ import { formatEther, parseEther } from "viem";
 import { selectConnect, selectUserAddress } from "@/store/slices/walletSlice";
 import { useSelector } from "react-redux";
 import {
-  GetContract,
+  GetContractAt,
+  SKALE_LankyIllFunnyTestnet,
   fetchDiamondContract,
   fetchGMXTokenContract,
 } from "@/scripts/contracts";
@@ -72,35 +73,11 @@ export default function Stake() {
   const { windowWidth } = useWindowDimensions();
   const [isLoad, setLoad] = useState<boolean>(false);
   const [windowW, setWindowW] = useState<number>(0);
-
-  const MOCK_POSITIONS = [
-    {
-      amount: "45000",
-      multipler: "20x",
-      time: "1y:9m:19h",
-    },
-    {
-      amount: "45000",
-      multipler: "20x",
-      time: "1y:9m:19h",
-    },
-    {
-      amount: "45000",
-      multipler: "20x",
-      time: "1y:9m:19h",
-    },
-    {
-      amount: "45000",
-      multipler: "20x",
-      time: "1y:9m:19h",
-    },
-  ];
   const [activeTab, setActiveTab] = useState<number>(0);
   const [selectedDays, setSelectedDays] = useState<number>(361);
   const [selectedMultipler, setSelectedMultipler] = useState<number>(4);
   const [stakeInput, setStakeInput] = useState<string>("");
   const [totalScore, setTotalScore] = useState<string>("0");
-
   const [selectedKeys, setSelectedKeys] = useState(new Set(["1_Year"]));
 
   const selectedValue = useMemo(
@@ -245,10 +222,7 @@ export default function Stake() {
     userAddress: `0x${string}` | string | undefined
   ) => {
     try {
-      const allowance: any = await AllowanceCheck(
-        userAddress,
-        fetchGMXTokenContract.address
-      );
+      const allowance: any = await AllowanceCheck(userAddress);
       setGmxAllowanceForUser(allowance);
     } catch (error) {}
   };
@@ -259,7 +233,7 @@ export default function Stake() {
         setLoad(true);
 
         const [balanceGMX, stakeData, stakerInfo, rewards] = await Promise.all([
-          GetBalance(address, fetchGMXTokenContract.address),
+          GetBalance(address),
           getStakeList(address),
           GetStaker(address),
           calculateRewards(address),
@@ -383,10 +357,13 @@ export default function Stake() {
     try {
       handleWaitModalOpen();
       const signer = await getSigner(walletProvider);
-      const contract = GetContract(fetchGMXTokenContract.address);
+      const contract: any = GetContractAt(
+        fetchGMXTokenContract.address,
+        fetchGMXTokenContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       const tx = await contract
-        ?.connect(signer)
-        // @ts-ignore
+        .connect(signer)
         .approve(fetchDiamondContract.address, parseEther(stakeInput));
       await tx.wait();
       handleWaitModalClose();
@@ -402,13 +379,16 @@ export default function Stake() {
       handleApproveModalClose();
       handleWaitModalOpen();
       const signer = await getSigner(walletProvider);
-      const contract = GetContract(fetchDiamondContract.address);
+      const contract: any = GetContractAt(
+        fetchDiamondContract.address,
+        fetchDiamondContract.abi,
+        SKALE_LankyIllFunnyTestnet
+      );
       let selectTime =
         Number(selectedDays) === 31 ? 300 : Number(selectedDays * 86400);
 
       const tx = await contract
-        ?.connect(signer)
-        // @ts-ignore
+        .connect(signer)
         .stake(parseEther(stakeInput.toString()), selectTime);
       await tx.wait();
       handleWaitModalClose();
@@ -424,11 +404,12 @@ export default function Stake() {
       try {
         handleWaitModalOpen();
         const signer = await getSigner(walletProvider);
-        const contract = GetContract(fetchDiamondContract.address);
-        const tx = await contract
-          ?.connect(signer)
-          // @ts-ignore
-          .claimRewards();
+        const contract: any = GetContractAt(
+          fetchDiamondContract.address,
+          fetchDiamondContract.abi,
+          SKALE_LankyIllFunnyTestnet
+        );
+        const tx = await contract.connect(signer).claimRewards();
         await tx.wait();
         handleWaitModalClose();
         handleSuccessModalOpenForClaim();
@@ -444,11 +425,12 @@ export default function Stake() {
       try {
         handleWaitModalOpen();
         const signer = await getSigner(walletProvider);
-        const contract = GetContract(fetchDiamondContract.address);
-        const tx = await contract
-          ?.connect(signer)
-          // @ts-ignore
-          .withdrawRequest(index);
+        const contract: any = GetContractAt(
+          fetchDiamondContract.address,
+          fetchDiamondContract.abi,
+          SKALE_LankyIllFunnyTestnet
+        );
+        const tx = await contract.connect(signer).withdrawRequest(index);
         await tx.wait();
         handleWaitModalClose();
         handleSuccessModalOpenForWithdrawRequest();
@@ -464,11 +446,12 @@ export default function Stake() {
       try {
         handleWaitModalOpen();
         const signer = await getSigner(walletProvider);
-        const contract = GetContract(fetchDiamondContract.address);
-        const tx = await contract
-          ?.connect(signer)
-          // @ts-ignore
-          .withdraw(index);
+        const contract: any = GetContractAt(
+          fetchDiamondContract.address,
+          fetchDiamondContract.abi,
+          SKALE_LankyIllFunnyTestnet
+        );
+        const tx = await contract.connect(signer).withdraw(index);
         handleWaitModalClose();
         handleSuccessModalOpenForWithdraw();
         await tx.wait();
@@ -917,7 +900,7 @@ export default function Stake() {
                             <Button
                               radius="sm"
                               disabled
-                              className="bg-transparent border border-gray-800/50 text-white">
+                              className="bg-dark-gray border z-10 border-gray-800/50 text-white">
                               Locked
                             </Button>
                           )}

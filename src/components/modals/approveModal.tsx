@@ -41,7 +41,7 @@ const ApproveModal: React.FC<UpgradeModalProps> = ({
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalBody className="flex items-center">
+              <ModalBody className="flex items-center sm:text-center">
                 <Image
                   width={450}
                   height={450}
@@ -62,7 +62,9 @@ const ApproveModal: React.FC<UpgradeModalProps> = ({
                 <Button
                   onClick={() => deposit()}
                   className="w-[50%] bg-[#a566fd]  rounded-lg text-white  font-orbitron ">
-                  Stake
+                  {desc2 === "Please continue to deposit your $USDT tokens..."
+                    ? "Buy Now"
+                    : "Stake"}
                 </Button>
               </ModalFooter>
             </>

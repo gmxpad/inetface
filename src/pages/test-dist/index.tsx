@@ -1,7 +1,11 @@
 import ErrorModal from "@/components/modals/errorModal";
 import SuccessModal from "@/components/modals/successModal";
 import WaitModal from "@/components/modals/waitModal";
-import { GetContract, fetchDistTokenContract } from "@/scripts/contracts";
+import {
+  GetContractAt,
+  SKALE_LankyIllFunnyTestnet,
+  fetchDistTokenContract,
+} from "@/scripts/contracts";
 import { getSigner } from "@/scripts/scripts";
 import { Button } from "@nextui-org/react";
 import {
@@ -40,11 +44,12 @@ export default function TestDist() {
       try {
         handleWaitModalOpen();
         const signer = await getSigner(walletProvider);
-        const contract = GetContract(fetchDistTokenContract.address);
-        const tx = await contract
-          ?.connect(signer)
-          // @ts-ignore
-          .claimTokens();
+        const contract: any = GetContractAt(
+          fetchDistTokenContract.address,
+          fetchDistTokenContract.abi,
+          SKALE_LankyIllFunnyTestnet
+        );
+        const tx = await contract.connect(signer).claimTokens();
         await tx.wait();
         handleWaitModalClose();
         handleSuccessModalOpenForClaim();

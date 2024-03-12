@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Avatar,
-  AvatarGroup,
   Button,
   Card,
   CardBody,
@@ -14,8 +12,6 @@ import {
   Image,
   Input,
   Link,
-  Tab,
-  Tabs,
 } from "@nextui-org/react";
 import {
   PrevButton,
@@ -136,7 +132,7 @@ const Games: NextPageWithLayout<
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="absolute sm:bottom-[25%] md:bottom-[20%] lg:bottom-[10%] flex flex-col gap-1 sm:left-[5%] md:left-[5%] lg:left-[10%] z-10">
-                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[10%] rounded-md">
+                  <div className="bg-white sm:hidden md:flex text-black flex items-center justify-center sm:px-5 py-1 font-Orbitron text-center md:max-w-[15%] rounded-md">
                     {item[3][10][0]}
                   </div>
                   <p className=" text-xl font-Orbitron font-semibold">
@@ -359,7 +355,7 @@ const Games: NextPageWithLayout<
           <div
             className={classNames(
               "grid  md:grid-cols-2 sm:grid-cols-1 sm:gap-12 xl:gap-4 mt-10",
-              filterActive === true ? "xl:grid-cols-3" : "xl:grid-cols-4"
+              filterActive === true ? "xl:grid-cols-2" : "xl:grid-cols-3"
             )}>
             {filteredGames.length > 0 ? (
               filteredGames.map((filteredGame: any, index: number) => (

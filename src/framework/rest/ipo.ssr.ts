@@ -1,13 +1,21 @@
 "use client";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { GetContract, fetchDiamondContract } from "@/scripts/contracts";
+import {
+  GetContractAt,
+  SKALE_LankyIllFunnyTestnet,
+  fetchDiamondContract,
+} from "@/scripts/contracts";
 
 type ParsedQueryParams = {
   slug: string;
 };
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const contract: any = GetContract(fetchDiamondContract.address);
+  const contract: any = GetContractAt(
+    fetchDiamondContract.address,
+    fetchDiamondContract.abi,
+    SKALE_LankyIllFunnyTestnet
+  );
   const allGames = await contract.getAllGames();
 
   const games = allGames.map((game: any) => ({
@@ -30,7 +38,11 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const contract: any = GetContract(fetchDiamondContract.address);
+  const contract: any = GetContractAt(
+    fetchDiamondContract.address,
+    fetchDiamondContract.abi,
+    SKALE_LankyIllFunnyTestnet
+  );
   const allGames = await contract.getAllGames();
 
   const gamesWithIpoPromises = await allGames.map(async (game: any) => {
