@@ -12,6 +12,7 @@ interface contractInterfaces {
   abi: object[];
   chainId: number;
 }
+
 interface networkInterface {
   id: number;
   rpc: string;
@@ -39,6 +40,7 @@ export const fetchXPassDistributeContract: contractInterfaces = {
   abi: XPassDistribute.abi,
   chainId: SKALE_LankyIllFunnyTestnet.id,
 };
+
 export const fetchGMXTokenContract: contractInterfaces = {
   address: "0xdD3932ad40716aBa856694a42A23EB66e1A57BF9",
   abi: ERC20ABI.abi,

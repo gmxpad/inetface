@@ -199,6 +199,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
       handleWaitModalOpen();
       const value: number = Number(inputValue) * 1e6;
       const signer = await getSigner(walletProvider);
+
       const contract: any = GetContractAt(
         fetchDiamondContract.address,
         fetchDiamondContract.abi,
@@ -207,6 +208,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
       const depositTx = await contract
         .connect(signer)
         .deposit(ipo[4], ipo.ipoDatas[1], value);
+
       await depositTx.wait();
       handleWaitModalClose();
       handleSuccessModalOpenForBuy();
@@ -249,10 +251,9 @@ const DepositModal: React.FC<DepositModalProps> = ({
             <>
               <ModalBody>
                 <div className="flex md:flex-row sm:flex-col-reverse sm:text-center justify-between w-full border-b border-gray-800/50 pb-5">
-                  <div className="md:w-1/2 sm:w-full flex flex-col justify-between">
+                  <div className="md:w-1/2 sm:w-full flex flex-col">
                     <div>
                       <p className="font-Orbitron text-2xl">{ipo[3][1]}</p>
-                      <p className="text-[#9d9d9d] text-sm">Buying Shares</p>
                     </div>
                     <div>
                       Multipler:{" "}
@@ -260,7 +261,6 @@ const DepositModal: React.FC<DepositModalProps> = ({
                         {format6DecimalsAsEther(nftMultipler)}x
                       </span>
                     </div>
-                    <p>Piece Price: 1 USDT</p>
                   </div>
                   <div className="md:w-1/2 sm:w-full flex justify-end">
                     <Image
