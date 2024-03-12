@@ -5,6 +5,7 @@ import {
   SKALE_LankyIllFunnyTestnet,
   fetchXGameCardContract,
 } from "@/scripts/contracts";
+import { convertIpfsUrl } from "@/scripts/scripts";
 
 const MetadataParser = () => {
   const [URI, setURI] = useState<any>();
@@ -23,37 +24,15 @@ const MetadataParser = () => {
     try {
       setErrorMessage("");
 
-      const getTokenURI = await contract?.tokenURI(
+      const getTokenURI = await contract?.uri(
         BigInt(inputValueForTokenID.toString())
       );
       const metadataResponse = await fetch(getTokenURI);
       const metadata = await metadataResponse.json();
       setURI(metadata);
     } catch (error) {
-      try {
-        const getTokenURI = await contract?.uri(
-          BigInt(inputValueForTokenID.toString())
-        );
-        const metadataResponse = await fetch(getTokenURI);
-        const metadata = await metadataResponse.json();
-        setURI(metadata);
-      } catch (error) {
-        setErrorMessage("NFT Not Found");
-      }
+      setErrorMessage("NFT Not Found");
     }
-  };
-
-  const convertIpfsUrl = (ipfsURL: string) => {
-    const ipfsPrefix = "ipfs://";
-
-    if (ipfsURL && ipfsURL.startsWith(ipfsPrefix)) {
-      const convertedUrl = `https://ipfs.infura.io/ipfs/${
-        ipfsURL.split("://")[1]
-      }`;
-      return convertedUrl;
-    }
-
-    return ipfsURL;
   };
 
   const handleTokenAddressInput = async (
